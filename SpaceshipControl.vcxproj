@@ -89,10 +89,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="LevelOne.cpp" />
+    <ClCompile Include="NotSoSuperMario.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="spacewar.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="textureManager.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
@@ -100,10 +105,15 @@
     <ClInclude Include="constants.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameError.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="graphics.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="LevelOne.h" />
+    <ClInclude Include="NotSoSuperMario.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="spacewar.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="textureManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

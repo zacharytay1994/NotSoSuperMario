@@ -22,9 +22,6 @@
     <Filter Include="Header Files\AddedHeaders\GameObjects">
       <UniqueIdentifier>{509a20ba-2e4e-4f5e-bca0-218d92695379}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\AddedHeaders\Colliders&amp;Shapes">
-      <UniqueIdentifier>{abf098f4-a782-49f0-85f0-e39bd5fa7945}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -70,12 +67,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Mario.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Collider.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionDetection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -128,14 +119,8 @@
     <ClInclude Include="Mario.h">
       <Filter>Header Files\AddedHeaders\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionDetection.h">
-      <Filter>Header Files\AddedHeaders\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Collider.h">
-      <Filter>Header Files\AddedHeaders\Colliders&amp;Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape.h">
-      <Filter>Header Files\AddedHeaders\Colliders&amp;Shapes</Filter>
+    <ClInclude Include="Vec2.h">
+      <Filter>Header Files\AddedHeaders</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

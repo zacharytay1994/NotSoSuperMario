@@ -22,4 +22,6 @@ public:
 
 	void SetPosition(const float& x, const float& y);
 	D3DXVECTOR2 GetPosiiton();
+
+	void TellComponents(Component::Message msg);
 };

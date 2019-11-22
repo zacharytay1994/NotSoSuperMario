@@ -8,12 +8,14 @@
 class GameObject;
 class PhysicsComponent : public Component {
 private:
+	ComponentTypes type_ = ComponentTypes::Physics;
+
 	Vec2<float> velocity = {0.0f, 0.0f};
 	Vec2<float> acceleration = {0.0f, 0.0f};
 	float mass;
 	bool hasGravity;
 
-	Vec2<float> gravitationalAcceleration = { 0.0f, 980.0f };
+	Vec2<float> gravitationalAcceleration = { 0.0f, 98.0f };
 
 	// Update postion by adding velocity to position
 	void CalculatePosition(const float& frametime);
@@ -40,6 +42,8 @@ public:
 
 	void ApplyForce(Vec2<float> force);
 	void ApplyGravity(const float& frametime);
+
+	void ExecuteMessage(const Message& msg) override;
 
 
 

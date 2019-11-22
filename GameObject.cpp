@@ -64,3 +64,11 @@ D3DXVECTOR2 GameObject::GetPosiiton()
 {
 	return position_;
 }
+
+void GameObject::TellComponents(Component::Message msg){
+	for each (Component * c in components_) {
+		if (c != nullptr) {
+			c->ReceiveMessage(msg);
+		}
+	}
+}

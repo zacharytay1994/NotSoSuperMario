@@ -11,4 +11,6 @@ public:
 	~InputComponent();
 	void Update(const float& frametime) override;
 	void Draw() override;
+
+	void ExecuteMessage(const Message& msg) override;
 };

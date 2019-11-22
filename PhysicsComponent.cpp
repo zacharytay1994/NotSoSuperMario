@@ -39,6 +39,11 @@ void PhysicsComponent::CalculatePosition(const float& frametime){
 	// consider changing GameObject position to Vec2
 	Vec2<float> position = { owner_.GetPosiiton().x, owner_.GetPosiiton().y };
 	position += velocity2Add;
+	// ===TO=REMOVE=========================
+	if (position.y_ > GAME_HEIGHT) {
+		position.y_ = 0;
+	}
+	// =====================================
 	owner_.SetPosition(position.x_, position.y_);
 }
 
@@ -52,5 +57,21 @@ void PhysicsComponent::ApplyForce(Vec2<float> force) {
 
 void PhysicsComponent::ApplyGravity(const float& frametime) {
 	velocity += gravitationalAcceleration * frametime;
+}
+
+void PhysicsComponent::ExecuteMessage(const Message& msg){
+	switch (msg.type_) {
+	case ComponentTypes::Physics:
+
+
+		if (msg.message_==0) {
+			ApplyForce({ msg.params_[0] , 0 });
+		} else if (msg.message_ == 1) {
+			ApplyForce({ 0, msg.params_[0]});
+		}
+
+		
+		break;
+	}
 }
 

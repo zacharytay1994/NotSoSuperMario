@@ -15,15 +15,12 @@ private:
 	int columns_;
 	bool initialized_ = false;
 public:
-	Sprite(const std::string& path, const int& width, const int& height, const int& cols);
+	Sprite(const std::string& path, const int& width, const int& height, const int& columns);
 	~Sprite();
 	bool Initialize(Graphics& graphics);
 	void Update(const float& frametime);
 	void Draw();
 
-	// other functions
-	void SetX(const float& x);
-	int GetX();
-	void SetY(const float& y);
-	int GetY();
+	void InitializeAnimation(const int& startframe, const int& endframe, const float& animationdelay);
+	Image& GetImage();
 };

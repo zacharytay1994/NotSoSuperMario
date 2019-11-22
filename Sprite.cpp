@@ -1,11 +1,11 @@
 #include "Sprite.h"
 
-Sprite::Sprite(const std::string& path, const int& width, const int& height, const int& cols)
+Sprite::Sprite(const std::string& path, const int& width, const int& height, const int& columns)
 	:
 	path_location_(path),
 	width_(width),
 	height_(height),
-	columns_(cols)
+	columns_(columns)
 {
 }
 
@@ -38,28 +38,14 @@ void Sprite::Draw()
 	}
 }
 
-void Sprite::SetX(const float& x)
+void Sprite::InitializeAnimation(const int& startframe, const int& endframe, const float& animationdelay)
 {
-	if (initialized_) {
-		image_.setX(x);
-	}
+	image_.setFrames(startframe, endframe);
+	image_.setFrameDelay(animationdelay);
+	image_.setCurrentFrame(startframe);
 }
 
-int Sprite::GetX()
+Image& Sprite::GetImage()
 {
-	if (initialized_) {
-		return image_.getX();
-	}
-}
-
-void Sprite::SetY(const float& y)
-{
-	if (initialized_) {
-		image_.setY(y);
-	}
-}
-
-int Sprite::GetY()
-{
-	return 0;
+	return image_;
 }

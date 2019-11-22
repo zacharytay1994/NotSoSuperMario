@@ -18,7 +18,7 @@ bool CreateMainWindow(HWND &, HINSTANCE, int);
 LRESULT WINAPI WinProc(HWND, UINT, WPARAM, LPARAM); 
 
 // Game pointer
-NotSoSuperMario *game = NULL;
+NotSoSuperMario* game = NULL;
 HWND hwnd = NULL;
 
 //=============================================================================

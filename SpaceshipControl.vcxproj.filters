@@ -16,6 +16,12 @@
     <Filter Include="Header Files\AddedHeaders">
       <UniqueIdentifier>{4814bf52-10fd-4a32-aa9f-a8d752aa9723}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\AddedHeaders\Components">
+      <UniqueIdentifier>{66ce065c-f096-4b4f-8816-72537085c483}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AddedHeaders\GameObjects">
+      <UniqueIdentifier>{509a20ba-2e4e-4f5e-bca0-218d92695379}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -54,6 +60,15 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mario.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
@@ -80,9 +95,6 @@
     <ClInclude Include="gameError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files\AddedHeaders</Filter>
-    </ClInclude>
     <ClInclude Include="NotSoSuperMario.h">
       <Filter>Header Files\AddedHeaders</Filter>
     </ClInclude>
@@ -94,6 +106,18 @@
     </ClInclude>
     <ClInclude Include="Sprite.h">
       <Filter>Header Files\AddedHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Header Files\AddedHeaders\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="InputComponent.h">
+      <Filter>Header Files\AddedHeaders\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\AddedHeaders\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Mario.h">
+      <Filter>Header Files\AddedHeaders\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

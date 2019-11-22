@@ -88,12 +88,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Component.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="LevelOne.cpp" />
+    <ClCompile Include="Mario.cpp" />
     <ClCompile Include="NotSoSuperMario.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="spacewar.cpp" />
@@ -102,6 +105,7 @@
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameError.h" />
@@ -109,7 +113,9 @@
     <ClInclude Include="graphics.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="InputComponent.h" />
     <ClInclude Include="LevelOne.h" />
+    <ClInclude Include="Mario.h" />
     <ClInclude Include="NotSoSuperMario.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="spacewar.h" />

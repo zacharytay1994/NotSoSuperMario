@@ -147,6 +147,8 @@ class Image
     virtual void setTextureManager(TextureManager *textureM)
     { textureManager = textureM; }
 
+	void SetColumns(const int& column) { cols = column; }
+
     ////////////////////////////////////////
     //         Other functions            //
     ////////////////////////////////////////

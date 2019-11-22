@@ -13,8 +13,8 @@ public:
 	bool has_game_data_ = false;
 public:
 	Scene();
-	~Scene();
-	virtual void Update();
+	virtual ~Scene();
+	virtual void Update(const float& frametime);
 	void Render();
 	virtual void ChildRender();
 	void AddObjectToScene(GameObject& object);

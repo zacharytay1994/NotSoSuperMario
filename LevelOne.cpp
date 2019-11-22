@@ -1,11 +1,8 @@
 #include "LevelOne.h"
-#include "GameObject.h"
+#include "Mario.h"
 
 LevelOne::LevelOne()
 {
-	// adding a GameObject into scene gameobject list for testing
-	GameObject* temp = new GameObject(SHIP_IMAGE, SHIP_WIDTH, SHIP_HEIGHT, SHIP_COLS, D3DXVECTOR2(GAME_WIDTH/4, GAME_HEIGHT/4));
-	game_objects_.push_back(temp);
 }
 
 LevelOne::~LevelOne()
@@ -16,9 +13,9 @@ LevelOne::~LevelOne()
 	delete input_;
 }
 
-void LevelOne::Update()
+void LevelOne::Update(const float& frametime)
 {
-	Scene::Update();
+	Scene::Update(frametime);
 }
 
 void LevelOne::ChildRender()
@@ -28,5 +25,9 @@ void LevelOne::ChildRender()
 
 void LevelOne::Initialize()
 {
+	// Place to initialize and add objects to scene ----------------------------------------
+	Mario* temp = new Mario(*input_);
+	game_objects_.push_back(temp);
+	// -------------------------------------------------------------------------------------
 	Scene::Initialize();
 }

@@ -21,7 +21,7 @@
 #define SAFE_ON_LOST_DEVICE(ptr)    { if(ptr) { ptr->onLostDevice(); } }
 // Safely call onResetDevice
 #define SAFE_ON_RESET_DEVICE(ptr)   { if(ptr) { ptr->onResetDevice(); } }
-#define TRANSCOLOR  SETCOLOR_ARGB(0,255,0,255)  // transparent color (magenta)
+#define TRANSCOLOR  SETCOLOR_ARGB(255,255,0,255)  // transparent color (magenta)
 
 //-----------------------------------------------
 //                  Constants

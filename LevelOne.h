@@ -8,7 +8,7 @@ public:
 public:
 	LevelOne();
 	~LevelOne();
-	void Update() override;
+	void Update(const float& frametime) override;
 	void ChildRender() override;
 	void Initialize() override;
 };

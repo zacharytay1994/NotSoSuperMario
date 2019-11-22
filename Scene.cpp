@@ -15,11 +15,11 @@ Scene::~Scene()
 	}
 }
 
-void Scene::Update()
+void Scene::Update(const float& frametime)
 {
 	for each (GameObject* g in game_objects_) {
 		if (g != nullptr) {
-			g->Update();
+			g->Update(frametime);
 		}
 	}
 }

@@ -6,7 +6,7 @@
 #include "Component.h"
 
 class GameObject {
-private:
+protected:
 	D3DXVECTOR2 position_;
 	std::vector<Component*> components_;
 public:
@@ -17,7 +17,7 @@ public:
 	virtual void Update(const float& frametime);
 	virtual void Render();
 	void Initialize(Graphics& gfx);
-	void AddComponent(Component& component);
+	void AddComponent(Component* component);
 	void SyncSprite();
 
 	void SetPosition(const float& x, const float& y);

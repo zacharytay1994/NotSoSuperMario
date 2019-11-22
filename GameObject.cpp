@@ -10,8 +10,8 @@ GameObject::GameObject(const std::string& path, const int& width, const int& hei
 GameObject::~GameObject()
 {
 	for each (Component* c in components_) {
-		c = nullptr;
 		delete c;
+		c = nullptr;
 	}
 }
 
@@ -43,9 +43,9 @@ void GameObject::Initialize(Graphics& gfx)
 	sprite_.GetImage().setY(position_.y);
 }
 
-void GameObject::AddComponent(Component& component)
+void GameObject::AddComponent(Component* component)
 {
-	components_.push_back(&component);
+	components_.push_back(component);
 }
 
 void GameObject::SyncSprite()

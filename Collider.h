@@ -8,6 +8,7 @@ public:
 	std::string type_;
 	D3DXVECTOR2 center_point;
 public:
+	Collider() = default;
 	Collider(D3DXVECTOR2 center, const std::string& type);
 	virtual ~Collider();
 	bool DetectCollision(Collider& collider);
@@ -15,9 +16,17 @@ public:
 
 class AABBCollider : public Collider {
 public:
-	float width_;
-	float height_;
+	float half_width_;
+	float half_height_;
 public:
-	AABBCollider(D3DXVECTOR2 center, const std::string& type, const float& width, const float& height);
+	AABBCollider(D3DXVECTOR2 center, const float& width, const float& height);
 	~AABBCollider();
+};
+
+class CircleCollider : public Collider {
+public:
+	float radius_;
+public:
+	CircleCollider(D3DXVECTOR2 center, const float& radius);
+	~CircleCollider();
 };

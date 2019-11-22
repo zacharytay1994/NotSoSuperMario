@@ -6,6 +6,8 @@ public:
 	T x_;
 	T y_;
 public:
+	Vec2() = default;
+
 	Vec2(T x, T y)
 		:
 		x_(x),
@@ -31,6 +33,12 @@ public:
 	}
 	Vec2 operator*(const float& val) {
 		return { x_ * val, y_ * val };
+	}
+	float operator*(const Vec2& vec) {
+		return x_ * vec.x + y_ * vec.y;
+	}
+	Vec2 operator/ (const float& val) {
+		return { x_ / val, y_ / val };
 	}
 	Vec2& operator-=(const Vec2& rhs) {
 		x_ -= rhs.x_;

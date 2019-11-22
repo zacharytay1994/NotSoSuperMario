@@ -1,5 +1,6 @@
 #include "Mario.h"
 #include "InputComponent.h"
+#include "PhysicsComponent.h"
 
 Mario::Mario(Input& input)
 	:
@@ -7,6 +8,7 @@ Mario::Mario(Input& input)
 {
 	sprite_.InitializeAnimation(0, 5, SHIP_ANIMATION_DELAY);
 	AddComponent(*(new InputComponent(*this, input)));
+	AddComponent(*(new PhysicsComponent(*this)));
 }
 
 Mario::~Mario()

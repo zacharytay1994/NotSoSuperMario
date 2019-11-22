@@ -98,6 +98,7 @@
     <ClCompile Include="LevelOne.cpp" />
     <ClCompile Include="Mario.cpp" />
     <ClCompile Include="NotSoSuperMario.cpp" />
+    <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="spacewar.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -117,10 +118,12 @@
     <ClInclude Include="LevelOne.h" />
     <ClInclude Include="Mario.h" />
     <ClInclude Include="NotSoSuperMario.h" />
+    <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="spacewar.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="textureManager.h" />
+    <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

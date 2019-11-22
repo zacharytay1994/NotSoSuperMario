@@ -69,6 +69,9 @@
     <ClCompile Include="Mario.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
@@ -118,6 +121,12 @@
     </ClInclude>
     <ClInclude Include="Mario.h">
       <Filter>Header Files\AddedHeaders\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsComponent.h">
+      <Filter>Header Files\AddedHeaders\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,33 +1,28 @@
-C:\SARAH\WORK\GP\2013 SEM 6 OCT\(02) WEEKLY ACTIVITIES\WEEK3\CODE SAMPLES\SPACESHIPCONTROL\DEBUG\GAME.OBJ
-C:\SARAH\WORK\GP\2013 SEM 6 OCT\(02) WEEKLY ACTIVITIES\WEEK3\CODE SAMPLES\SPACESHIPCONTROL\DEBUG\GRAPHICS.OBJ
-C:\SARAH\WORK\GP\2013 SEM 6 OCT\(02) WEEKLY ACTIVITIES\WEEK3\CODE SAMPLES\SPACESHIPCONTROL\DEBUG\IMAGE.OBJ
-C:\SARAH\WORK\GP\2013 SEM 6 OCT\(02) WEEKLY ACTIVITIES\WEEK3\CODE SAMPLES\SPACESHIPCONTROL\DEBUG\INPUT.OBJ
-C:\SARAH\WORK\GP\2013 SEM 6 OCT\(02) WEEKLY ACTIVITIES\WEEK3\CODE SAMPLES\SPACESHIPCONTROL\DEBUG\SPACEWAR.OBJ
-C:\SARAH\WORK\GP\2013 SEM 6 OCT\(02) WEEKLY ACTIVITIES\WEEK3\CODE SAMPLES\SPACESHIPCONTROL\DEBUG\TEXTUREMANAGER.OBJ
-C:\SARAH\WORK\GP\2013 SEM 6 OCT\(02) WEEKLY ACTIVITIES\WEEK3\CODE SAMPLES\SPACESHIPCONTROL\DEBUG\WINMAIN.OBJ
-C:\SARAH\WORK\GP\2013 SEM 6 OCT\(02) WEEKLY ACTIVITIES\WEEK3\CODE SAMPLES\SPACESHIPCONTROL\DEBUG\VC110.PDB
-C:\SARAH\WORK\GP\2013 SEM 6 OCT\(02) WEEKLY ACTIVITIES\WEEK3\CODE SAMPLES\SPACESHIPCONTROL\DEBUG\SPACESHIPCONTROL.ILK
-C:\SARAH\WORK\GP\2013 SEM 6 OCT\(02) WEEKLY ACTIVITIES\WEEK3\CODE SAMPLES\SPACESHIPCONTROL\DEBUG\SPACESHIPCONTROL.EXE
-C:\SARAH\WORK\GP\2013 SEM 6 OCT\(02) WEEKLY ACTIVITIES\WEEK3\CODE SAMPLES\SPACESHIPCONTROL\DEBUG\SPACESHIPCONTROL.PDB
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\game.obj
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\graphics.obj
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\image.obj
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\input.obj
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\spacewar.obj
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\textureManager.obj
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\winmain.obj
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\SpaceshipControl.ilk
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\cl.command.1.tlog
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\CL.read.1.tlog
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\CL.write.1.tlog
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\link-cvtres.read.1.tlog
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\link-cvtres.write.1.tlog
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\link-rc.read.1.tlog
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\link-rc.write.1.tlog
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\link.command.1.tlog
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\link.read.1.tlog
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\link.write.1.tlog
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\vc110.idb
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\SpaceshipControl.pdb
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\vc110.pdb
-C:\SARAH\WORK\GP\2013 Sem 6 Oct\(02) Weekly Activities\Week3\Code Samples\SpaceshipControl\Debug\SpaceshipControl.exe
+c:\users\zach\documents\gpp\codebase\codebase\debug\vc142.pdb
+c:\users\zach\documents\gpp\codebase\codebase\debug\vc142.idb
+c:\users\zach\documents\gpp\codebase\codebase\debug\component.obj
+c:\users\zach\documents\gpp\codebase\codebase\debug\game.obj
+c:\users\zach\documents\gpp\codebase\codebase\debug\gameobject.obj
+c:\users\zach\documents\gpp\codebase\codebase\debug\graphics.obj
+c:\users\zach\documents\gpp\codebase\codebase\debug\image.obj
+c:\users\zach\documents\gpp\codebase\codebase\debug\input.obj
+c:\users\zach\documents\gpp\codebase\codebase\debug\inputcomponent.obj
+c:\users\zach\documents\gpp\codebase\codebase\debug\levelone.obj
+c:\users\zach\documents\gpp\codebase\codebase\debug\mario.obj
+c:\users\zach\documents\gpp\codebase\codebase\debug\notsosupermario.obj
+c:\users\zach\documents\gpp\codebase\codebase\debug\scene.obj
+c:\users\zach\documents\gpp\codebase\codebase\debug\spacewar.obj
+c:\users\zach\documents\gpp\codebase\codebase\debug\sprite.obj
+c:\users\zach\documents\gpp\codebase\codebase\debug\texturemanager.obj
+c:\users\zach\documents\gpp\codebase\codebase\debug\winmain.obj
+c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.ilk
+c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.exe
+c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.pdb
+c:\users\zach\documents\gpp\codebase\codebase\debug\vcpkg.applocal.log
+c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\cl.command.1.tlog
+c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\cl.read.1.tlog
+c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\cl.write.1.tlog
+c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\link.command.1.tlog
+c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\link.read.1.tlog
+c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\link.write.1.tlog
+c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\spaceshipcontrol.write.1u.tlog

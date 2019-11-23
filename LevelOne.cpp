@@ -1,5 +1,6 @@
 #include "LevelOne.h"
 #include "Mario.h"
+#include "TestObject.h"
 
 LevelOne::LevelOne()
 {
@@ -7,10 +8,10 @@ LevelOne::LevelOne()
 
 LevelOne::~LevelOne()
 {
-	graphics_ = nullptr;
-	input_ = nullptr;
 	delete graphics_;
 	delete input_;
+	graphics_ = nullptr;
+	input_ = nullptr;
 }
 
 void LevelOne::Update(const float& frametime)
@@ -26,8 +27,8 @@ void LevelOne::ChildRender()
 void LevelOne::Initialize()
 {
 	// Place to initialize and add objects to scene ----------------------------------------
-	Mario* temp = new Mario(*input_);
-	game_objects_.push_back(temp);
+	game_objects_.push_back(new Mario(*input_, collider_manager_));
+	game_objects_.push_back(new TestObject(collider_manager_));
 	// -------------------------------------------------------------------------------------
 	Scene::Initialize();
 }

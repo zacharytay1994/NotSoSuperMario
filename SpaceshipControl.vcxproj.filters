@@ -1,132 +1,162 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
-    </Filter>
-    <Filter Include="Header Files\AddedHeaders">
-      <UniqueIdentifier>{4814bf52-10fd-4a32-aa9f-a8d752aa9723}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\AddedHeaders\Components">
-      <UniqueIdentifier>{66ce065c-f096-4b4f-8816-72537085c483}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\AddedHeaders\GameObjects">
-      <UniqueIdentifier>{509a20ba-2e4e-4f5e-bca0-218d92695379}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="game.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="graphics.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="ColliderManager.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="winmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="image.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="textureManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="spacewar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NotSoSuperMario.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelOne.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="CollisionDetectionComponent.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="image.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="InputComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelOne.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Mario.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="NotSoSuperMario.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="spacewar.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="TestObject.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="textureManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="winmain.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="constants.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Vec2.h">
+      <Filter>Headers\Added\Math</Filter>
     </ClInclude>
-    <ClInclude Include="game.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Collider.h">
+      <Filter>Headers\Added\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="graphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="image.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="textureManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spacewar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gameError.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NotSoSuperMario.h">
-      <Filter>Header Files\AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelOne.h">
-      <Filter>Header Files\AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files\AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Header Files\AddedHeaders</Filter>
+    <ClInclude Include="ColliderManager.h">
+      <Filter>Headers\Added\Collision</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
-      <Filter>Header Files\AddedHeaders\Components</Filter>
+      <Filter>Headers\Added\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionDetectionComponent.h">
+      <Filter>Headers\Added\Components</Filter>
     </ClInclude>
     <ClInclude Include="InputComponent.h">
-      <Filter>Header Files\AddedHeaders\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files\AddedHeaders\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Mario.h">
-      <Filter>Header Files\AddedHeaders\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Vec2.h">
-      <Filter>Header Files</Filter>
+      <Filter>Headers\Added\Components</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsComponent.h">
-      <Filter>Header Files\AddedHeaders\Components</Filter>
+      <Filter>Headers\Added\Components</Filter>
     </ClInclude>
+    <ClInclude Include="constants.h">
+      <Filter>Headers\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>Headers\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="gameError.h">
+      <Filter>Headers\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics.h">
+      <Filter>Headers\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="image.h">
+      <Filter>Headers\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>Headers\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="spacewar.h">
+      <Filter>Headers\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="textureManager.h">
+      <Filter>Headers\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Headers\Added\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Mario.h">
+      <Filter>Headers\Added\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="TestObject.h">
+      <Filter>Headers\Added\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="NotSoSuperMario.h">
+      <Filter>Headers\Added</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Headers\Added</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelOne.h">
+      <Filter>Headers\Added\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Headers\Added\Scenes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{5e8996fb-1c9d-41e2-b3d8-b93873782f06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{9063334d-1aa8-431a-ae86-a780d46c776e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Base">
+      <UniqueIdentifier>{3a2e0283-aec9-46b1-8fc5-df81d6603924}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Added">
+      <UniqueIdentifier>{72f9694d-f93a-4e61-b23d-02d029f9380b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Added\GameObjects">
+      <UniqueIdentifier>{d417ab78-1d79-4e20-9bc2-9932a9339917}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Added\Components">
+      <UniqueIdentifier>{bcdfd1db-ca87-4c28-89ff-29468e37041d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Added\Collision">
+      <UniqueIdentifier>{b18a24f2-dd04-4143-ae42-5ea3491567f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Added\Scenes">
+      <UniqueIdentifier>{a4dd2f5d-1f53-4560-abf3-492318f056e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Added\Math">
+      <UniqueIdentifier>{b986500e-9d6d-4353-a2b8-024a2202b847}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

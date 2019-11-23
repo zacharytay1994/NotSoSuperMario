@@ -7,8 +7,8 @@ NotSoSuperMario::NotSoSuperMario()
 
 NotSoSuperMario::~NotSoSuperMario()
 {
-	current_scene_ = nullptr;
 	delete current_scene_;
+	current_scene_ = nullptr;
 	Game::releaseAll();
 }
 

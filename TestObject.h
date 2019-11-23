@@ -4,11 +4,11 @@
 
 class Input;
 class ColliderManager;
-class Mario : public GameObject {
+class TestObject : public GameObject {
 private:
 public:
-	Mario(Input& input, ColliderManager& cm);
-	~Mario();
+	TestObject(ColliderManager& cm);
+	~TestObject();
 	void Update(const float& frametime) override;
 	void Render() override;
 };

@@ -23,4 +23,6 @@ public:
 
 	void InitializeAnimation(const int& startframe, const int& endframe, const float& animationdelay);
 	Image& GetImage();
+	int GetWidth();
+	int GetHeight();
 };

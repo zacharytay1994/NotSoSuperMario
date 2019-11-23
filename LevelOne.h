@@ -1,10 +1,10 @@
 #pragma once
-#include "input.h"
-
 #include "Scene.h"
+#include "ColliderManager.h"
 
 class LevelOne : public Scene {
 public:
+	ColliderManager collider_manager_;
 public:
 	LevelOne();
 	~LevelOne();

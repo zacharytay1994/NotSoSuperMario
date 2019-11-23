@@ -49,3 +49,13 @@ Image& Sprite::GetImage()
 {
 	return image_;
 }
+
+int Sprite::GetWidth()
+{
+	return width_;
+}
+
+int Sprite::GetHeight()
+{
+	return height_;
+}

@@ -1,5 +1,11 @@
 ﻿  cl : Command line warning D9035 : option 'Gm' has been deprecated and will be removed in a future release
-  Mario.cpp
-C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Mario.cpp(13,133): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
-C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Mario.cpp(13,112): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+  LevelOne.cpp
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\LevelOne.cpp(33,65): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\LevelOne.cpp(34,65): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\LevelOne.cpp(38,65): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\LevelOne.cpp(39,65): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\LevelOne.cpp(45,69): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\LevelOne.cpp(46,69): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\LevelOne.cpp(52,82): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\LevelOne.cpp(53,82): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
   SpaceshipControl.vcxproj -> C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Debug\SpaceshipControl.exe

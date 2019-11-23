@@ -12,7 +12,7 @@ private:
 public:
 	CollisionDetectionComponent(GameObject& owner, T* collider, ColliderManager& cm)
 		:
-		Component(owner),
+		Component(owner, "CollisionDetectionComponent"),
 		collider_(collider),
 		collider_manager_(cm)
 	{
@@ -26,15 +26,15 @@ public:
 	{
 		SyncColliderPosition();
 		if (CheckForCollision()) {
-			owner_.sprite_.GetImage().setScale(0.9f);
+			//owner_.sprite_.GetImage().setScale(0.5f);
 		}
 		else {
-			owner_.sprite_.GetImage().setScale(1.0f);
+			//owner_.sprite_.GetImage().setScale(1.0f);
 		}
 	}
 	void SyncColliderPosition() {
-		collider_->center_point.x = owner_.GetPosiiton().x;
-		collider_->center_point.y = owner_.GetPosiiton().y;
+		collider_->center_point.x = owner_.GetPosition().x;
+		collider_->center_point.y = owner_.GetPosition().y;
 	}
 	bool CheckForCollision() {
 		return collider_manager_.QueryCollision(collider_);

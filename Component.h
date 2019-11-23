@@ -1,12 +1,13 @@
 #pragma once
 #include <iostream> 
 #include <vector>
-
+#include <string>
 
 class GameObject;
 class Component {
 protected:
 	GameObject& owner_;
+	std::string type_;
 public:	
 	enum class ComponentTypes {
 		Physics
@@ -30,10 +31,11 @@ public:
 
 	};
 
-	Component(GameObject& owner);
+	Component(GameObject& owner, const std::string& type);
 	virtual ~Component();
 	virtual void Update(const float& frametime);
 	virtual void Draw();
+	std::string GetType();
 
 	void ReceiveMessage(const Message& msg);
 	virtual void ExecuteMessage(const Message& msg) = 0;

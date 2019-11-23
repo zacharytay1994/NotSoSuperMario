@@ -48,10 +48,20 @@ void GameObject::AddComponent(Component* component)
 	components_.push_back(component);
 }
 
+Component* GameObject::GetComponent(std::string type)
+{
+	for each (Component * c in components_) {
+		if (c->GetType() == type) {
+			return c;
+		}
+	}
+	return nullptr;
+}
+
 void GameObject::SyncSprite()
 {
-	sprite_.GetImage().setX(position_.x);
-	sprite_.GetImage().setY(position_.y);
+	sprite_.GetImage().setX(position_.x - sprite_.GetImage().getWidth()/2);
+	sprite_.GetImage().setY(position_.y - sprite_.GetImage().getHeight()/2);
 }
 
 void GameObject::SetPosition(const float& x, const float& y)
@@ -60,7 +70,7 @@ void GameObject::SetPosition(const float& x, const float& y)
 	position_.y = y;
 }
 
-D3DXVECTOR2 GameObject::GetPosiiton()
+D3DXVECTOR2 GameObject::GetPosition()
 {
 	return position_;
 }

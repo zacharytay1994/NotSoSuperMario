@@ -2,6 +2,7 @@
 #include <d3d9.h>
 #include <d3dx9.h>
 #include <vector>
+#include <string>
 #include "Sprite.h"
 #include "Component.h"
 
@@ -18,10 +19,11 @@ public:
 	virtual void Render();
 	void Initialize(Graphics& gfx);
 	void AddComponent(Component* component);
+	Component* GetComponent(std::string type);
 	void SyncSprite();
 
 	void SetPosition(const float& x, const float& y);
-	D3DXVECTOR2 GetPosiiton();
+	D3DXVECTOR2 GetPosition();
 
 	void TellComponents(Component::Message msg);
 };

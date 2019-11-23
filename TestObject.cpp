@@ -1,11 +1,21 @@
 #include "TestObject.h"
 #include "CollisionDetectionComponent.h"
+#include "PhysicsComponent.h"
 
 TestObject::TestObject(ColliderManager& cm)
 	:
-	GameObject("pictures\\testsquare.png", 128, 128, 1, D3DXVECTOR2(GAME_WIDTH - 150, GAME_HEIGHT / 2))
+	GameObject("pictures\\testsquare.png", 64, 64, 1, D3DXVECTOR2(GAME_WIDTH - 150, GAME_HEIGHT / 2))
 {
-	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, sprite_.GetWidth(), sprite_.GetHeight()), cm));
+	AddComponent(new PhysicsComponent(*this));
+	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, this, sprite_.GetWidth(), sprite_.GetHeight(), true, true), cm));
+}
+
+TestObject::TestObject(ColliderManager& cm, const float& x, const float& y)
+	:
+	GameObject("pictures\\testsquare.png", 64, 64, 1, D3DXVECTOR2(x, y))
+{
+	AddComponent(new PhysicsComponent(*this, 0, false));
+	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, this, sprite_.GetWidth(), sprite_.GetHeight(), true, true), cm));
 }
 
 TestObject::~TestObject()

@@ -35,7 +35,7 @@ public:
 		return { x_ * val, y_ * val };
 	}
 	float operator*(const Vec2& vec) {
-		return x_ * vec.x + y_ * vec.y;
+		return x_ * vec.x_ + y_ * vec.y_;
 	}
 	Vec2 operator/ (const float& val) {
 		return { x_ / val, y_ / val };
@@ -47,5 +47,22 @@ public:
 	}
 	Vec2 operator-(const Vec2& rhs) {
 		return { x_ - rhs.x_, y_ - rhs.y_ };
+	}
+	float Magnitude() {
+		return sqrt(x_ * x_ + y_ * y_);
+	}
+	Vec2 Normalized() {
+		if (this->Magnitude() == 0.0f) {
+			return { 0.0f, 0.0f };
+		}
+		return (*this / this->Magnitude());
+	}
+	float MagnitudeSq() {
+		return x_ * x_ + y_ * y_;
+	}
+	Vec2& operator-() {
+		x_ = -x_;
+		y_ = -y_;
+		return *this;
 	}
 };

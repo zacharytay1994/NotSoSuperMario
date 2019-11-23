@@ -129,6 +129,9 @@
     <ClInclude Include="Scene.h">
       <Filter>Headers\Added\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionResolutionComponent.h">
+      <Filter>Headers\Added\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">

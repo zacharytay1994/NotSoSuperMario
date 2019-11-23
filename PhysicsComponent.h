@@ -13,9 +13,14 @@ private:
 	Vec2<float> velocity = {0.0f, 0.0f};
 	Vec2<float> acceleration = {0.0f, 0.0f};
 	float mass;
+	float inv_mass_;
+	float restitution_ = 0.2f;
+	float linear_drag_ = 10.0f;
 	bool hasGravity;
 
-	Vec2<float> gravitationalAcceleration = { 0.0f, 98.0f };
+	float max_acceleration_ = 10.0f;
+
+	Vec2<float> gravitationalAcceleration = { 0.0f, 980.0f };
 
 	// Update postion by adding velocity to position
 	void CalculatePosition(const float& frametime);
@@ -26,25 +31,23 @@ private:
 public:
 	// constructor
 	PhysicsComponent(GameObject& owner);
-
 	// constructor with mass & gravity
 	PhysicsComponent(GameObject& owner, float mass, bool hasGravity);
-
-
-
 	// destructor
 	~PhysicsComponent();
-
 	void Update(const float& frametime) override;
 	void Draw() override;
-
-
-
 	void ApplyForce(Vec2<float> force);
 	void ApplyGravity(const float& frametime);
-
+	void ApplyLinearDrag(const float& frametime);
+	void SetVelocity(Vec2<float>& vel);
 	void ExecuteMessage(const Message& msg) override;
 
-
-
+	void AddVelocity(const Vec2<float>& velocity);
+	Vec2<float> GetVelocity();
+	float GetMass();
+	float GetInvMass();
+	float GetRestitution();
+	void AddPosition(const Vec2<float>& placement);
+	void StayWithinScreen();
 };

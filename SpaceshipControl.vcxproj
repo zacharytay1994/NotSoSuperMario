@@ -113,6 +113,7 @@
     <ClInclude Include="Collider.h" />
     <ClInclude Include="ColliderManager.h" />
     <ClInclude Include="CollisionDetectionComponent.h" />
+    <ClInclude Include="CollisionResolutionComponent.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="game.h" />

@@ -1,12 +1,5 @@
 ﻿  cl : Command line warning D9035 : option 'Gm' has been deprecated and will be removed in a future release
-  CollisionDetectionComponent.cpp
-  Generating Code...
-  Compiling...
-  TestObject.cpp
-C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\TestObject.cpp(8,133): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
   Mario.cpp
-C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\TestObject.cpp(8,112): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
-C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Mario.cpp(11,133): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
-  Generating Code...
-C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Mario.cpp(11,112): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Mario.cpp(13,133): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Mario.cpp(13,112): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
   SpaceshipControl.vcxproj -> C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Debug\SpaceshipControl.exe

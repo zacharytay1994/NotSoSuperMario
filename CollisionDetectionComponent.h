@@ -39,4 +39,7 @@ public:
 	bool CheckForCollision() {
 		return collider_manager_.QueryCollision(collider_);
 	}
+	void ExecuteMessage(const Message& msg) override {
+
+	}
 };

@@ -36,6 +36,7 @@ void InputComponent::Update(const float& frametime)
 	if (input_.isKeyDown(SHIP_DOWN_KEY)) {
 		/*std::vector<float> params = { 100.0f };
 		owner_.TellComponents({ ComponentTypes::Physics, 1, params });*/
+		//dynamic_cast<PhysicsComponent*>(owner_.GetComponent("PhysicsComponent"))->AddVelocity(Vec2<float>(0.0f, 1.0f) * 20.0f);
 	}
 }
 

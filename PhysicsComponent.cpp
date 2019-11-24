@@ -48,9 +48,9 @@ void PhysicsComponent::CalculatePosition(const float& frametime){
 	Vec2<float> position = { owner_.GetPosition().x, owner_.GetPosition().y };
 	position += velocity2Add;
 	// ===TO=REMOVE=========================
-	if (position.y_ > GAME_HEIGHT) {
+	/*if (position.y_ > GAME_HEIGHT) {
 		position.y_ = 0;
-	}
+	}*/
 	// =====================================
 	owner_.SetPosition(position.x_, position.y_);
 }

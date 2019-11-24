@@ -95,6 +95,8 @@ private:
     // Initialize D3D presentation parameters
     void    initD3Dpp();
 
+	D3DXVECTOR2 camera_transform_ = D3DXVECTOR2(0.0f, 0.0f);
+
 public:
     // Constructor
     Graphics();
@@ -211,6 +213,8 @@ public:
     {
         sprite->End();
     }
+
+	void BindCameraTransform(D3DXVECTOR2& transform);
 };
 
 #endif

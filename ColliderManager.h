@@ -10,9 +10,9 @@ struct CollisionManifold {
 };
 class ColliderManager {
 private:
-	int max_colliders_ = 128;
+	int max_colliders_ = 1000;
 	int collider_count_ = 0;
-	Collider* collider_array_[128];
+	Collider* collider_array_[1000];
 public:
 	ColliderManager();
 	~ColliderManager();

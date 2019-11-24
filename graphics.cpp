@@ -228,7 +228,7 @@ void Graphics::drawSprite(const SpriteData &spriteData, COLOR_ARGB color)
     D3DXVECTOR2 spriteCenter=D3DXVECTOR2((float)(spriteData.width/2*spriteData.scale),
                                         (float)(spriteData.height/2*spriteData.scale));
     // Screen position of the sprite
-    D3DXVECTOR2 translate=D3DXVECTOR2((float)spriteData.x,(float)spriteData.y);
+    D3DXVECTOR2 translate=D3DXVECTOR2((float)spriteData.x + camera_transform_.x,(float)spriteData.y + camera_transform_.y);
     // Scaling X,Y
     D3DXVECTOR2 scaling(spriteData.scale,spriteData.scale);
     if (spriteData.flipHorizontal)  // if flip horizontal
@@ -277,6 +277,11 @@ HRESULT Graphics::getDeviceState()
         return  result;
     result = device3d->TestCooperativeLevel(); 
     return result;
+}
+
+void Graphics::BindCameraTransform(D3DXVECTOR2& transform)
+{
+	camera_transform_ = transform;
 }
 
 //=============================================================================

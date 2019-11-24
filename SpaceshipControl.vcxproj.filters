@@ -61,6 +61,9 @@
     <ClCompile Include="winmain.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="MapGenerator.cpp" />
+    <ClCompile Include="Background.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vec2.h">
@@ -132,6 +135,15 @@
     <ClInclude Include="CollisionResolutionComponent.h">
       <Filter>Headers\Added\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Headers\Added</Filter>
+    </ClInclude>
+    <ClInclude Include="MapGenerator.h">
+      <Filter>Headers\Added</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>Headers\Added\Backgrounds</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
@@ -160,6 +172,9 @@
     </Filter>
     <Filter Include="Headers\Added\Math">
       <UniqueIdentifier>{b986500e-9d6d-4353-a2b8-024a2202b847}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Added\Backgrounds">
+      <UniqueIdentifier>{e6c75a17-1c49-45c8-bc45-d32af05c0a7e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -39,6 +39,7 @@ void Scene::Initialize()
 void Scene::Render()
 {
 	graphics_->spriteBegin();
+	BackgroundRender();
 	for each (GameObject* g in game_objects_) {
 		if (g != nullptr) {
 			g->Render();
@@ -49,5 +50,9 @@ void Scene::Render()
 }
 
 void Scene::ChildRender()
+{
+}
+
+void Scene::BackgroundRender()
 {
 }

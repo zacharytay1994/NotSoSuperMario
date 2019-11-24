@@ -17,6 +17,7 @@ public:
 	virtual void Update(const float& frametime);
 	void Render();
 	virtual void ChildRender();
+	virtual void BackgroundRender();
 	void AddObjectToScene(GameObject& object);
 	virtual void Initialize();
 };

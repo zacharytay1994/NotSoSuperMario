@@ -52,10 +52,10 @@ Image& Sprite::GetImage()
 
 int Sprite::GetWidth()
 {
-	return width_;
+	return width_ * CAMERA_ZOOM;
 }
 
 int Sprite::GetHeight()
 {
-	return height_;
+	return height_ * CAMERA_ZOOM;
 }

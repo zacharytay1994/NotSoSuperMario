@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include "constants.h"
 
 GameObject::GameObject(const std::string& path, const int& width, const int& height, const int& cols, D3DXVECTOR2& pos)
 	:
@@ -41,6 +42,7 @@ void GameObject::Initialize(Graphics& gfx)
 	sprite_.Initialize(gfx);
 	sprite_.GetImage().setX(position_.x);
 	sprite_.GetImage().setY(position_.y);
+	sprite_.GetImage().setScale(CAMERA_ZOOM);
 }
 
 void GameObject::AddComponent(Component* component)

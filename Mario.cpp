@@ -5,7 +5,7 @@
 
 Mario::Mario(Input& input, ColliderManager& cm)
 	:
-	GameObject("pictures\\testsquare.png", 64, 64, 1, D3DXVECTOR2(GAME_WIDTH / 2, GAME_HEIGHT/2))
+	GameObject("pictures\\testsquare.png", 64, 64, 1, D3DXVECTOR2(200 * CAMERA_ZOOM, 100 * CAMERA_ZOOM))
 {
 	//sprite_.InitializeAnimation(0, 5, SHIP_ANIMATION_DELAY);
 	AddComponent(new PhysicsComponent(*this));

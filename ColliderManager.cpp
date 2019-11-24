@@ -35,17 +35,17 @@ bool ColliderManager::QueryCollision(Collider* collider)
 	// determine this collider type
 	if (collider->type_ == "AABB") {
 		for each (Collider * c in collider_array_) {
-			if (collider->resolved_) {
+			/*if (collider->resolved_) {
 				collider->resolved_ = false;
 				return true;
-			}
+			}*/
 			if (c != nullptr) {
 				// determine if not self
 				if (c != collider) {
 					// determine other collider type
 					if (c->type_ == "AABB") {
 						if (AABBvsAABB(*dynamic_cast<AABBCollider*>(collider), *dynamic_cast<AABBCollider*>(c))) {
-							collider->resolved_ = true;
+							//collider->resolved_ = true;
 							// if this and other collider is simulated, resolve collision
 							if (collider->is_simulated_ && c->is_simulated_) {
 								// generate manifold

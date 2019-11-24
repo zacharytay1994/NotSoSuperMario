@@ -15,7 +15,7 @@ void MapGenerator::GenerateWalls(ColliderManager& cm, std::vector<GameObject*>& 
 {
 	int start_x = 0;
 	int start_y = 0;
-	int cell_size_ = 64 * CAMERA_ZOOM;
+	int cell_size_ = 62 * CAMERA_ZOOM;
 	std::ifstream file(map_path_);
 	if (file.is_open()) {
 		std::string line;

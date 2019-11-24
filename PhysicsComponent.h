@@ -11,6 +11,8 @@ private:
 	ComponentTypes type_ = ComponentTypes::Physics;
 
 	Vec2<float> velocity = {0.0f, 0.0f};
+	Vec2<float> max_x_velocity_ = { 200.0f, 200.0f };
+	Vec2<float> max_y_velocity_ = { 400.0f, 1000.0f };
 	Vec2<float> acceleration = {0.0f, 0.0f};
 	float mass;
 	float inv_mass_;

@@ -57,6 +57,18 @@ void PhysicsComponent::CalculatePosition(const float& frametime){
 
 void PhysicsComponent::CalculateVelocity(const float& frametime){
 	velocity += acceleration * frametime;
+	if (velocity.x_ < 0.0f) {
+		velocity.x_ = velocity.x_ < -max_x_velocity_.x_ ? -max_x_velocity_.x_ : velocity.x_;
+	}
+	else {
+		velocity.x_ = velocity.x_ > max_x_velocity_.y_ ? max_x_velocity_.y_ : velocity.x_;
+	}
+	if (velocity.y_ < 0.0f) {
+		velocity.y_ = velocity.y_ < -max_y_velocity_.x_ ? -max_y_velocity_.x_ : velocity.y_;
+	}
+	else {
+		velocity.y_ = velocity.y_ > max_y_velocity_.y_ ? max_y_velocity_.y_ : velocity.y_;
+	}
 }
 
 void PhysicsComponent::ApplyForce(Vec2<float> force) {
@@ -138,16 +150,16 @@ void PhysicsComponent::AddPosition(const Vec2<float>& placement)
 
 void PhysicsComponent::StayWithinScreen()
 {
-	if (owner_.GetPosition().x - owner_.sprite_.GetWidth()/2 < 0.0f) {
+	if (owner_.GetPosition().x - owner_.sprite_->GetWidth()/2 < 0.0f) {
 		velocity.x_ = abs(velocity.x_);
 	}
-	if (owner_.GetPosition().x + owner_.sprite_.GetWidth() / 2 > GAME_WIDTH) {
+	if (owner_.GetPosition().x + owner_.sprite_->GetWidth() / 2 > GAME_WIDTH) {
 		velocity.x_ = -abs(velocity.x_);
 	}
-	if (owner_.GetPosition().y - owner_.sprite_.GetHeight()/2  < 0.0f) {
+	if (owner_.GetPosition().y - owner_.sprite_->GetHeight()/2  < 0.0f) {
 		velocity.y_ = abs(velocity.y_);
 	}
-	if (owner_.GetPosition().y + owner_.sprite_.GetHeight() / 2 > GAME_HEIGHT) {
+	if (owner_.GetPosition().y + owner_.sprite_->GetHeight() / 2 > GAME_HEIGHT) {
 		velocity.y_ = -abs(velocity.y_);
 	}
 }

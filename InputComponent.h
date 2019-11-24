@@ -2,10 +2,14 @@
 #include "Component.h"
 #include "input.h"
 
+#include <string>
+#include <sstream>
+
 class GameObject;
 class InputComponent : public Component {
 private:
 	Input& input_;
+	std::stringstream ss;
 public:
 	InputComponent(GameObject& owner, Input& input);
 	~InputComponent();

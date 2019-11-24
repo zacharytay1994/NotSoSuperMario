@@ -1,11 +1,42 @@
 ﻿  cl : Command line warning D9035 : option 'Gm' has been deprecated and will be removed in a future release
-  Camera.cpp
+  winmain.cpp
+  textureManager.cpp
+  TestObject.cpp
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\TestObject.cpp(10,141): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\TestObject.cpp(10,119): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\TestObject.cpp(18,141): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+  Sprite.cpp
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\TestObject.cpp(18,119): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Sprite.cpp(55,16): warning C4244:  'return': conversion from 'float' to 'int', possible loss of data
+  spacewar.cpp
+  Scene.cpp
+  PhysicsComponent.cpp
+  NotSoSuperMario.cpp
+  Mario.cpp
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Sprite.cpp(60,17): warning C4244:  'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Mario.cpp(16,141): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+  MapGenerator.cpp
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Mario.cpp(16,119): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(18,17): warning C4244:  'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(25,72): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+  LevelOne.cpp
+  InputComponent.cpp
+  input.cpp
+  image.cpp
+  graphics.cpp
+  GameObject.cpp
+  game.cpp
+  Component.cpp
+  CollisionDetectionComponent.cpp
+  ColliderManager.cpp
   Generating Code...
   Compiling...
-  NotSoSuperMario.cpp
-  LevelOne.cpp
+  Collider.cpp
+  Camera.cpp
   Background.cpp
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(25,50): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
 C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Background.cpp(49,63): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
   Generating Code...
 C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Background.cpp(49,38): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+Background.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
   SpaceshipControl.vcxproj -> C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Debug\SpaceshipControl.exe

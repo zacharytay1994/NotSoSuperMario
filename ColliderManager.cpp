@@ -28,6 +28,7 @@ void ColliderManager::AddCollider(Collider* collider)
 
 bool ColliderManager::QueryCollision(Collider* collider)
 {
+	collider->owner_->touched_ground_ = false;
 	// not the static bodies job to resolve
 	if (collider->is_static_) {
 		return false;
@@ -50,6 +51,11 @@ bool ColliderManager::QueryCollision(Collider* collider)
 							if (collider->is_simulated_ && c->is_simulated_) {
 								// generate manifold
 								CollisionManifold manifold = AABBvsAABBManifold(*dynamic_cast<AABBCollider*>(collider), *dynamic_cast<AABBCollider*>(c));
+								// temp solution
+								// if collision normal downwards detected
+								if (manifold.collision_normal_.y_ == 1) {
+									collider->owner_->touched_ground_ = true;
+								}
 								ForceCorrect(manifold);
 								ResolveCollision(manifold);
 								CalculateFriction(manifold);
@@ -155,6 +161,10 @@ void ColliderManager::ResolveCollision(CollisionManifold& m)
 
 void ColliderManager::CalculateFriction(CollisionManifold& m)
 {
+	// only apply friction on up and down surface
+	if (m.collision_normal_.x_ != 0) {
+		return;
+	}
 	PhysicsComponent* A = dynamic_cast<PhysicsComponent*>(m.A->GetComponent("PhysicsComponent"));
 	PhysicsComponent* B = dynamic_cast<PhysicsComponent*>(m.B->GetComponent("PhysicsComponent"));
 	// calculate relative velocity
@@ -168,7 +178,7 @@ void ColliderManager::CalculateFriction(CollisionManifold& m)
 	jt = jt / (A->GetInvMass() + B->GetInvMass());
 	Vec2<float> friction_impulse = tangent * jt;
 
-	float friction_coefficient = 0.2f;
+	float friction_coefficient = 0.4f;
 	// need some fixing here ---- future ----
 	A->AddVelocity(-friction_impulse * A->GetInvMass() * friction_coefficient);
 	B->AddVelocity(friction_impulse * B->GetInvMass() * friction_coefficient);
@@ -190,5 +200,12 @@ void ColliderManager::ForceCorrect(CollisionManifold& m)
 	float buffer = 0.1f;
 	PhysicsComponent* A = dynamic_cast<PhysicsComponent*>(m.A->GetComponent("PhysicsComponent"));
 	PhysicsComponent* B = dynamic_cast<PhysicsComponent*>(m.B->GetComponent("PhysicsComponent"));
-	A->AddPosition(m.collision_normal_ * (-m.penetration_depth_ - buffer));
+	// if horizontal collision apply more force correct
+	if (m.collision_normal_.x_ != 0) {
+		A->AddPosition(m.collision_normal_ * (-m.penetration_depth_ - 1.0f));
+	}
+	else {
+		A->AddPosition(m.collision_normal_ * (-m.penetration_depth_ - buffer));
+	}
+	//A->AddPosition(m.collision_normal_ * (-m.penetration_depth_ - buffer));
 }

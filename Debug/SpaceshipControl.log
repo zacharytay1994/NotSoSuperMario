@@ -1,3 +1,5 @@
 ﻿  cl : Command line warning D9035 : option 'Gm' has been deprecated and will be removed in a future release
-  LevelOne.cpp
+  Goomba.cpp
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Goomba.cpp(16,141): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Goomba.cpp(16,119): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
   SpaceshipControl.vcxproj -> C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Debug\SpaceshipControl.exe

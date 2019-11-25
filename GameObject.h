@@ -23,7 +23,12 @@ public:
 	TouchData touch_ = { false, false, false, false };
 	bool on_ground_ = false;
 	float air_time_ = 0.0f;
+	// "hacky fixes"
+	float death_timer_ = 1.0f;
+	bool pend_removal_ = false;
 	bool removed_ = false;
+	bool bounce_off_others_ = false;
+	float bounce_strength_ = 300.0f;
 public:
 	GameObject(const std::string& path, const int& width, const int& height, const int& cols, D3DXVECTOR2& pos);
 	virtual ~GameObject();
@@ -41,4 +46,6 @@ public:
 	D3DXVECTOR2 GetPosition();
 
 	void TellComponents(Component::Message msg);
+
+	void PendRemoval(const float& frametime);
 };

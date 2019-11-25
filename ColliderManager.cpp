@@ -59,6 +59,9 @@ bool ColliderManager::QueryCollision(Collider* collider)
 								// if collision normal downwards detected
 								if (manifold.collision_normal_.y_ == 1) {
 									collider->owner_->touch_.touch_bottom_ = true;
+									if (!c->is_static_) {
+										collider->owner_->bounce_off_others_ = true;
+									}
 								}
 								if (manifold.collision_normal_.y_ == -1) {
 									collider->owner_->touch_.touch_top_ = true;

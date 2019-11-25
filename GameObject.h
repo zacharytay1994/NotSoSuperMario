@@ -6,6 +6,12 @@
 #include "Sprite.h"
 #include "Component.h"
 
+struct TouchData {
+	bool touch_bottom_;
+	bool touch_top_;
+	bool touch_right_;
+	bool touch_left_;
+};
 class GameObject {
 protected:
 	D3DXVECTOR2 position_;
@@ -14,9 +20,10 @@ public:
 	Sprite* sprite_;
 	Sprite* hold_;
 	// temporary fix
-	bool touched_ground_ = false;
+	TouchData touch_ = { false, false, false, false };
 	bool on_ground_ = false;
 	float air_time_ = 0.0f;
+	bool removed_ = false;
 public:
 	GameObject(const std::string& path, const int& width, const int& height, const int& cols, D3DXVECTOR2& pos);
 	virtual ~GameObject();

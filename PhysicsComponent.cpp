@@ -164,3 +164,9 @@ void PhysicsComponent::StayWithinScreen()
 	}
 }
 
+void PhysicsComponent::SetMass(const float& m)
+{
+	mass = m;
+	inv_mass_ = 1 / m;
+}
+

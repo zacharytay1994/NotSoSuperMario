@@ -19,7 +19,9 @@ void Scene::Update(const float& frametime)
 {
 	for each (GameObject* g in game_objects_) {
 		if (g != nullptr) {
-			g->Update(frametime);
+			if (!g->removed_) {
+				g->Update(frametime);
+			}
 		}
 	}
 }
@@ -42,7 +44,9 @@ void Scene::Render()
 	BackgroundRender();
 	for each (GameObject* g in game_objects_) {
 		if (g != nullptr) {
-			g->Render();
+			if (!g->removed_) {
+				g->Render();
+			}
 		}
 	}
 	ChildRender();

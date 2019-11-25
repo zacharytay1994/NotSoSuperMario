@@ -12,6 +12,7 @@ Mario::Mario(Input& input, ColliderManager& cm)
 	//sprite_.InitializeAnimation(0, 5, SHIP_ANIMATION_DELAY);
 	running_animation_->InitializeAnimation(0, 5, 0.25f);
 	AddComponent(new PhysicsComponent(*this));
+	dynamic_cast<PhysicsComponent*>(GetComponent("PhysicsComponent"))->SetMass(10.0f);
 	AddComponent(new InputComponent(*this, input));
 	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, this, sprite_->GetWidth(), sprite_->GetHeight(), false, true), cm));
 }

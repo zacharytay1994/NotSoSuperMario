@@ -96,6 +96,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Goomba.cpp" />
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
@@ -124,6 +125,7 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="gameError.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Goomba.h" />
     <ClInclude Include="graphics.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />

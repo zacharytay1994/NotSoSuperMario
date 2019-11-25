@@ -28,9 +28,13 @@ void ColliderManager::AddCollider(Collider* collider)
 
 bool ColliderManager::QueryCollision(Collider* collider)
 {
-	collider->owner_->touched_ground_ = false;
+	// reset touch
+	collider->owner_->touch_.touch_top_ = false;
+	collider->owner_->touch_.touch_bottom_ = false;
+	collider->owner_->touch_.touch_left_ = false;
+	collider->owner_->touch_.touch_right_ = false;
 	// not the static bodies job to resolve
-	if (collider->is_static_) {
+	if (collider->is_static_ || collider->owner_->removed_) {
 		return false;
 	}
 	// determine this collider type
@@ -48,14 +52,24 @@ bool ColliderManager::QueryCollision(Collider* collider)
 						if (AABBvsAABB(*dynamic_cast<AABBCollider*>(collider), *dynamic_cast<AABBCollider*>(c))) {
 							//collider->resolved_ = true;
 							// if this and other collider is simulated, resolve collision
-							if (collider->is_simulated_ && c->is_simulated_) {
+							if (collider->is_simulated_ && c->is_simulated_ && !c->owner_->removed_) {
 								// generate manifold
 								CollisionManifold manifold = AABBvsAABBManifold(*dynamic_cast<AABBCollider*>(collider), *dynamic_cast<AABBCollider*>(c));
-								// temp solution
+								// temp solution ------------------------------------
 								// if collision normal downwards detected
 								if (manifold.collision_normal_.y_ == 1) {
-									collider->owner_->touched_ground_ = true;
+									collider->owner_->touch_.touch_bottom_ = true;
 								}
+								if (manifold.collision_normal_.y_ == -1) {
+									collider->owner_->touch_.touch_top_ = true;
+								}
+								if (manifold.collision_normal_.x_ == 1) {
+									collider->owner_->touch_.touch_left_ = true;
+								}
+								if (manifold.collision_normal_.x_ == -1) {
+									collider->owner_->touch_.touch_right_ = true;
+								}
+								// --------------------------------------------------
 								ForceCorrect(manifold);
 								ResolveCollision(manifold);
 								CalculateFriction(manifold);
@@ -178,7 +192,7 @@ void ColliderManager::CalculateFriction(CollisionManifold& m)
 	jt = jt / (A->GetInvMass() + B->GetInvMass());
 	Vec2<float> friction_impulse = tangent * jt;
 
-	float friction_coefficient = 0.4f;
+	float friction_coefficient = 0.8f;
 	// need some fixing here ---- future ----
 	A->AddVelocity(-friction_impulse * A->GetInvMass() * friction_coefficient);
 	B->AddVelocity(friction_impulse * B->GetInvMass() * friction_coefficient);

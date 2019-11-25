@@ -23,6 +23,7 @@ c:\users\zach\documents\gpp\codebase\codebase\debug\winmain.obj
 c:\users\zach\documents\gpp\codebase\codebase\debug\background.obj
 c:\users\zach\documents\gpp\codebase\codebase\debug\camera.obj
 c:\users\zach\documents\gpp\codebase\codebase\debug\collider.obj
+c:\users\zach\documents\gpp\codebase\codebase\debug\goomba.obj
 c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.exe
 c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.ilk
 c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.pdb
@@ -30,12 +31,9 @@ c:\users\zach\documents\gpp\codebase\codebase\debug\vcpkg.applocal.log
 c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\cl.command.1.tlog
 c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\cl.read.1.tlog
 c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\cl.write.1.tlog
-c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\link.10292.delete.1.tlog
-c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\link.12368.delete.1.tlog
-c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\link.19344.delete.1.tlog
-c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\link.19588.delete.1.tlog
-c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\link.9628.delete.1.tlog
+c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\link.17160.delete.1.tlog
 c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\link.command.1.tlog
+c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\link.delete.1.tlog
 c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\link.read.1.tlog
 c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\link.write.1.tlog
 c:\users\zach\documents\gpp\codebase\codebase\debug\spaceshipcontrol.tlog\spaceshipcontrol.write.1u.tlog

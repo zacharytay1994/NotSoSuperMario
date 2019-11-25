@@ -64,6 +64,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Goomba.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vec2.h">
@@ -143,6 +144,9 @@
     </ClInclude>
     <ClInclude Include="Background.h">
       <Filter>Headers\Added\Backgrounds</Filter>
+    </ClInclude>
+    <ClInclude Include="Goomba.h">
+      <Filter>Headers\Added\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

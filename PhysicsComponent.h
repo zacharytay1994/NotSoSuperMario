@@ -52,4 +52,5 @@ public:
 	float GetRestitution();
 	void AddPosition(const Vec2<float>& placement);
 	void StayWithinScreen();
+	void SetMass(const float& m);
 };

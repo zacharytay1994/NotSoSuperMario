@@ -1,5 +1,6 @@
 #include "LevelOne.h"
 #include "Mario.h"
+#include "Goomba.h"
 #include "TestObject.h"
 
 LevelOne::LevelOne()
@@ -51,6 +52,11 @@ void LevelOne::Initialize()
 	camera_.SetTarget(temp);
 	game_objects_.push_back(temp);
 	map_generator_.GenerateWalls(collider_manager_, game_objects_);
+	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 600.0f,200.0f }));
+	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 800.0f,200.0f }));
+	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1000.0f,200.0f }));
+	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1200.0f,200.0f }));
+	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1400.0f,200.0f }));
 	background4.Initialize(*graphics_);
 	background3.Initialize(*graphics_);
 	background2.Initialize(*graphics_);

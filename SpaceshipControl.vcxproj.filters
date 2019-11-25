@@ -65,6 +65,9 @@
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Goomba.cpp" />
+    <ClCompile Include="Coin.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vec2.h">
@@ -146,6 +149,9 @@
       <Filter>Headers\Added\Backgrounds</Filter>
     </ClInclude>
     <ClInclude Include="Goomba.h">
+      <Filter>Headers\Added\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin.h">
       <Filter>Headers\Added\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>

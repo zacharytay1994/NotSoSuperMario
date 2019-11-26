@@ -13,7 +13,7 @@ Coin::Coin(Input& input, ColliderManager& cm, const Vec2<float>& position)
 	AddComponent(phy_);
 
 	// Initialize CollisionDetectionComponent & add it to the Coin
-	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, this, sprite_->GetWidth(), sprite_->GetHeight(), false, true), cm));
+	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, this, sprite_->GetWidth(), sprite_->GetHeight(), false, false), cm));
 }
 
 void Coin::Update(const float& frametime)

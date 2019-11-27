@@ -24,7 +24,7 @@ public:
 	bool on_ground_ = false;
 	float air_time_ = 0.0f;
 	// "hacky fixes"
-	float death_timer_ = 1.0f;
+	float death_timer_ = 0.5f;
 	bool pend_removal_ = false;
 	bool removed_ = false;
 	bool bounce_off_others_ = false;

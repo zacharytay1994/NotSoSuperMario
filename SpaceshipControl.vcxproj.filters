@@ -68,6 +68,7 @@
     <ClCompile Include="Coin.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="MainMenuScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vec2.h">
@@ -153,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="Coin.h">
       <Filter>Headers\Added\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuScreen.h">
+      <Filter>Headers\Added\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

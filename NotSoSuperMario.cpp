@@ -1,5 +1,6 @@
 #include "NotSoSuperMario.h"
 #include "LevelOne.h"
+#include "MainMenuScreen.h"
 
 NotSoSuperMario::NotSoSuperMario()
 {
@@ -37,12 +38,12 @@ void NotSoSuperMario::ai()
 void NotSoSuperMario::initialize(HWND hwnd)
 {
 	Game::initialize(hwnd);
-	ChangeScene(*(new LevelOne()));
+	ChangeScene(new MainMenu(this));
 }
 
-void NotSoSuperMario::ChangeScene(Scene& scene)
+void NotSoSuperMario::ChangeScene(Scene* scene)
 {
-	current_scene_ = &scene;
+	current_scene_ = scene;
 	BindGameDataToScene();
 	current_scene_->Initialize();
 }

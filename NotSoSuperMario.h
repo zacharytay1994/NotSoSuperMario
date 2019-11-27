@@ -14,6 +14,6 @@ public:
 	void ai() override;
 	void initialize(HWND hwnd);
 
-	void ChangeScene(Scene& scene);
+	void ChangeScene(Scene* scene);
 	void BindGameDataToScene();
 };

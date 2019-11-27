@@ -14,7 +14,7 @@ private:
 	Vec2<float> direction_ = { -1.0f, 0.0f };
 	float speed_ = 10.0f;
 public:
-	Goomba(Input& input, ColliderManager& cm, const Vec2<float>& position);
+	Goomba(ColliderManager& cm, const Vec2<float>& position);
 	~Goomba();
 	void Update(const float& frametime) override;
 	void Render() override;

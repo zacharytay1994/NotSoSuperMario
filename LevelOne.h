@@ -15,7 +15,7 @@ public:
 	Background background2;
 	Background background1;
 public:
-	LevelOne();
+	LevelOne(Game* owner);
 	~LevelOne();
 	void Update(const float& frametime) override;
 	void ChildRender() override;

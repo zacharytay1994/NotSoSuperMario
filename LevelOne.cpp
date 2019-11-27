@@ -4,8 +4,9 @@
 #include "Goomba.h"
 #include "TestObject.h"
 
-LevelOne::LevelOne()
+LevelOne::LevelOne(Game* owner)
 	:
+	Scene(owner),
 	map_generator_("levelone.txt"),
 	background4("pictures\\mountainbackground.png", 1200, 1200, 1, camera_, 0.5f, 0.1f, -300.0f, -400.0f, 10, 1),
 	background3("pictures\\cloudbackground.png", 1200, 1200, 1, camera_, 0.4f, 0.1f, -300.0f, -300.0f, 10, 1),
@@ -53,13 +54,13 @@ void LevelOne::Initialize()
 	camera_.SetTarget(temp);
 	game_objects_.push_back(temp);
 	map_generator_.GenerateWalls(collider_manager_, game_objects_);
-	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 800.0f,200.0f }));
+	/*game_objects_.push_back(new Goomba(*input_, collider_manager_, { 800.0f,200.0f }));
 	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1000.0f,200.0f }));
 	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1200.0f,200.0f }));
-	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1400.0f,200.0f }));
-	game_objects_.push_back(new Coin(*input_, collider_manager_, { 400.0f,300.0f }));
-	game_objects_.push_back(new Coin(*input_, collider_manager_, { 500.0f,300.0f }));
-	game_objects_.push_back(new Coin(*input_, collider_manager_, { 600.0f,300.0f }));
+	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1400.0f,200.0f }));*/
+	/*game_objects_.push_back(new Coin(collider_manager_, { 400.0f,300.0f }));
+	game_objects_.push_back(new Coin(collider_manager_, { 500.0f,300.0f }));
+	game_objects_.push_back(new Coin(collider_manager_, { 600.0f,300.0f }));*/
 	background4.Initialize(*graphics_);
 	background3.Initialize(*graphics_);
 	background2.Initialize(*graphics_);

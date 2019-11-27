@@ -2,9 +2,9 @@
 #include "PhysicsComponent.h"
 #include "CollisionDetectionComponent.h"
 
-Goomba::Goomba(Input& input, ColliderManager& cm, const Vec2<float>& position)
+Goomba::Goomba(ColliderManager& cm, const Vec2<float>& position)
 	:
-	GameObject("pictures\\testsquare.png", 64, 64, 1, D3DXVECTOR2(position.x_ * CAMERA_ZOOM, position.y_ * CAMERA_ZOOM)),
+	GameObject("pictures\\testsquare.png", 64, 64, 1, D3DXVECTOR2(position.x_, position.y_)),
 	walking_sprite_(new Sprite("pictures\\goombawalksheet.png", 64, 64, 4)),
 	death_sprite_(new Sprite("pictures\\goombadeath.png", 64, 64, 1))
 {
@@ -13,7 +13,7 @@ Goomba::Goomba(Input& input, ColliderManager& cm, const Vec2<float>& position)
 	PhysicsComponent* temp = new PhysicsComponent(*this);
 	phy_ = temp;
 	AddComponent(temp);
-	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, this, sprite_->GetWidth(), sprite_->GetHeight(), false, true), cm));
+	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, this, sprite_->GetWidth() - 10.0f, sprite_->GetHeight(), false, true), cm));
 	sprite_ = walking_sprite_;
 }
 

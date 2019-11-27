@@ -28,6 +28,9 @@ void ColliderManager::AddCollider(Collider* collider)
 
 bool ColliderManager::QueryCollision(Collider* collider)
 {
+	if (collider->owner_->removed_) {
+		return false;
+	}
 	// reset touch
 	collider->owner_->touch_.touch_top_ = false;
 	collider->owner_->touch_.touch_bottom_ = false;
@@ -47,12 +50,15 @@ bool ColliderManager::QueryCollision(Collider* collider)
 			if (c != nullptr) {
 				// determine if not self
 				if (c != collider) {
+					if (c->owner_->removed_) {
+						continue;
+					}
 					// determine other collider type
 					if (c->type_ == "AABB") {
 						if (AABBvsAABB(*dynamic_cast<AABBCollider*>(collider), *dynamic_cast<AABBCollider*>(c))) {
 							//collider->resolved_ = true;
 							// if this and other collider is simulated, resolve collision
-							if (collider->is_simulated_ && c->is_simulated_ && !c->owner_->removed_) {
+							if (collider->is_simulated_ && c->is_simulated_) {
 								// generate manifold
 								CollisionManifold manifold = AABBvsAABBManifold(*dynamic_cast<AABBCollider*>(collider), *dynamic_cast<AABBCollider*>(c));
 								// temp solution ------------------------------------

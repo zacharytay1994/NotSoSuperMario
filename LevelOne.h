@@ -4,6 +4,7 @@
 #include "Camera.h"
 #include "MapGenerator.h"
 #include "Background.h"
+#include "ScoreManager.h"
 
 class LevelOne : public Scene {
 public:
@@ -14,6 +15,7 @@ public:
 	Background background3;
 	Background background2;
 	Background background1;
+	ScoreManager* score_manager_;
 public:
 	LevelOne(Game* owner);
 	~LevelOne();

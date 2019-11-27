@@ -22,7 +22,14 @@ public:
 	void Draw();
 
 	void InitializeAnimation(const int& startframe, const int& endframe, const float& animationdelay);
+
+	// Get functions
 	Image& GetImage();
 	int GetWidth();
 	int GetHeight();
+
+	// Set functions
+	void SetX(int x);
+	void SetY(int y);
+	void SetCurrentFrame(int c);
 };

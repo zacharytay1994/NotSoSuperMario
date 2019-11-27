@@ -69,6 +69,12 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="MainMenuScreen.cpp" />
+    <ClCompile Include="ScoreManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vec2.h">
@@ -91,9 +97,6 @@
     </ClInclude>
     <ClInclude Include="PhysicsComponent.h">
       <Filter>Headers\Added\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="constants.h">
-      <Filter>Headers\Base</Filter>
     </ClInclude>
     <ClInclude Include="game.h">
       <Filter>Headers\Base</Filter>
@@ -157,6 +160,14 @@
     </ClInclude>
     <ClInclude Include="MainMenuScreen.h">
       <Filter>Headers\Added\Scenes</Filter>
+    <ClInclude Include="ScoreManager.h">
+      <Filter>Headers\Added\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Headers\Added</Filter>
+    </ClInclude>
+    <ClInclude Include="constants.h">
+      <Filter>Headers\Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

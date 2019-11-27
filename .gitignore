@@ -1,2 +1,5 @@
 # Visual Studio cache/options directory
 .vs/
+
+# Miscellaneous Debug objects
+Debug/

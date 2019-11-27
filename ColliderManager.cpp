@@ -78,6 +78,27 @@ bool ColliderManager::QueryCollision(Collider* collider)
 								CalculateFriction(manifold);
 								return true;
 							}
+							// otherwise, check for but don't resolve collision
+							else {
+								// generate manifold
+								CollisionManifold manifold = AABBvsAABBManifold(*dynamic_cast<AABBCollider*>(collider), *dynamic_cast<AABBCollider*>(c));
+								// temp solution ------------------------------------
+								// if collision normal downwards detected
+								if (manifold.collision_normal_.y_ == 1) {
+									collider->owner_->touch_.touch_bottom_ = true;
+								}
+								if (manifold.collision_normal_.y_ == -1) {
+									collider->owner_->touch_.touch_top_ = true;
+								}
+								if (manifold.collision_normal_.x_ == 1) {
+									collider->owner_->touch_.touch_left_ = true;
+								}
+								if (manifold.collision_normal_.x_ == -1) {
+									collider->owner_->touch_.touch_right_ = true;
+								}
+								// --------------------------------------------------
+								return true;
+							}
 						}
 					}
 				}

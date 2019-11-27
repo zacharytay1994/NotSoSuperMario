@@ -11,7 +11,7 @@ private:
 	PhysicsComponent* phy_;
 	ScoreManager* score_manager_;
 public:
-	Coin(Input& input, ColliderManager& cm, const Vec2<float>& position, ScoreManager* sm);
+	Coin(ColliderManager& cm, const Vec2<float>& position, ScoreManager* sm);
 	void Update(const float& frametime) override;
 	void Render() override;
 	void ChildInitialize(Graphics& gfx) override;

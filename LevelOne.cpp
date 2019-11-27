@@ -56,7 +56,6 @@ void LevelOne::Initialize()
 	Mario* temp = new Mario(*input_, collider_manager_);
 	camera_.SetTarget(temp);
 	game_objects_.push_back(temp);
-	map_generator_.GenerateWalls(collider_manager_, game_objects_);
 	/*game_objects_.push_back(new Goomba(*input_, collider_manager_, { 800.0f,200.0f }));
 	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1000.0f,200.0f }));
 	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1200.0f,200.0f }));
@@ -64,14 +63,11 @@ void LevelOne::Initialize()
 	/*game_objects_.push_back(new Coin(collider_manager_, { 400.0f,300.0f }));
 	game_objects_.push_back(new Coin(collider_manager_, { 500.0f,300.0f }));
 	game_objects_.push_back(new Coin(collider_manager_, { 600.0f,300.0f }));*/
-	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1400.0f,200.0f }));
+	game_objects_.push_back(new Goomba(collider_manager_, { 1400.0f,200.0f }));
 
 	// Add scoremanager
 	score_manager_ = new ScoreManager(*graphics_, camera_);
-
-	game_objects_.push_back(new Coin(*input_, collider_manager_, { 400.0f,300.0f }, score_manager_));
-	game_objects_.push_back(new Coin(*input_, collider_manager_, { 500.0f,300.0f }, score_manager_));
-	game_objects_.push_back(new Coin(*input_, collider_manager_, { 600.0f,300.0f }, score_manager_));
+	map_generator_.GenerateWalls(collider_manager_, game_objects_, *score_manager_);
 
 	background4.Initialize(*graphics_);
 	background3.Initialize(*graphics_);

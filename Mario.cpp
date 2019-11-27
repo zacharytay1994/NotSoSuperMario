@@ -15,7 +15,7 @@ Mario::Mario(Input& input, ColliderManager& cm)
 	phy_ = dynamic_cast<PhysicsComponent*>(GetComponent("PhysicsComponent"));
 	phy_->SetMass(10.0f);
 	AddComponent(new InputComponent(*this, input));
-	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, this, sprite_->GetWidth() - 20.0f, sprite_->GetHeight(), false, true), cm));
+	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, this, sprite_->GetWidth() - 10.0f, sprite_->GetHeight(), false, true), cm));
 }
 
 Mario::~Mario()

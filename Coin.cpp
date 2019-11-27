@@ -1,9 +1,9 @@
 #include "Coin.h"
 #include "CollisionDetectionComponent.h"
 
-Coin::Coin(Input& input, ColliderManager& cm, const Vec2<float>& position, ScoreManager* sm)
+Coin::Coin(ColliderManager& cm, const Vec2<float>& position, ScoreManager* sm)
 	:
-	GameObject("pictures\\coinsheet.png", 64, 64, 4, D3DXVECTOR2(position.x_* CAMERA_ZOOM, position.y_* CAMERA_ZOOM)),
+	GameObject("pictures\\coinsheet.png", 64, 64, 4, D3DXVECTOR2(position.x_, position.y_)),
 	score_manager_(sm)
 {
 	// Begin animating Coin sprite

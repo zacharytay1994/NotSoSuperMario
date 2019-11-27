@@ -45,6 +45,7 @@ void Sprite::InitializeAnimation(const int& startframe, const int& endframe, con
 	image_.setCurrentFrame(startframe);
 }
 
+// Get functions
 Image& Sprite::GetImage()
 {
 	return image_;
@@ -58,4 +59,21 @@ int Sprite::GetWidth()
 int Sprite::GetHeight()
 {
 	return height_ * CAMERA_ZOOM;
+}
+
+// Set functions
+void Sprite::SetX(int x)
+{
+	image_.setX(x);
+}
+
+void Sprite::SetY(int y)
+{
+	image_.setY(y);
+}
+
+void Sprite::SetCurrentFrame(int c)
+{
+	image_.setCurrentFrame(c);
+	image_.setRect();
 }

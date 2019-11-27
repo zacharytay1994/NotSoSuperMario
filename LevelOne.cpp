@@ -36,6 +36,9 @@ void LevelOne::Update(const float& frametime)
 void LevelOne::ChildRender()
 {
 	// by default render on Scene.h is called every frame which will render the gameobjects
+
+	// Draw score
+	score_manager_->Draw();
 }
 
 void LevelOne::BackgroundRender()
@@ -57,13 +60,19 @@ void LevelOne::Initialize()
 	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1000.0f,200.0f }));
 	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1200.0f,200.0f }));
 	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1400.0f,200.0f }));
-	game_objects_.push_back(new Coin(*input_, collider_manager_, { 400.0f,300.0f }));
-	game_objects_.push_back(new Coin(*input_, collider_manager_, { 500.0f,300.0f }));
-	game_objects_.push_back(new Coin(*input_, collider_manager_, { 600.0f,300.0f }));
+
+	// Add scoremanager
+	score_manager_ = new ScoreManager(*graphics_, camera_);
+
+	game_objects_.push_back(new Coin(*input_, collider_manager_, { 400.0f,300.0f }, score_manager_));
+	game_objects_.push_back(new Coin(*input_, collider_manager_, { 500.0f,300.0f }, score_manager_));
+	game_objects_.push_back(new Coin(*input_, collider_manager_, { 600.0f,300.0f }, score_manager_));
+
 	background4.Initialize(*graphics_);
 	background3.Initialize(*graphics_);
 	background2.Initialize(*graphics_);
 	background1.Initialize(*graphics_);
+
 	/*game_objects_.push_back(new TestObject(collider_manager_, 320, GAME_HEIGHT - 50));
 	for (int i = 1; i < 5; i++) {
 		game_objects_.push_back(new TestObject(collider_manager_, 320 + i * 64, GAME_HEIGHT - 50));

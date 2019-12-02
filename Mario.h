@@ -11,6 +11,7 @@ public:
 	Sprite* jumping_animation_;
 	PhysicsComponent* phy_;
 	bool looking_left = true;
+	int animation_id_ = 0; // 0 = idle, 1 = running, 2 = jumping
 public:
 	Mario(Input& input, ColliderManager& cm);
 	~Mario();

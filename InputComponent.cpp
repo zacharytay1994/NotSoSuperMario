@@ -27,6 +27,7 @@ void InputComponent::Update(const float& frametime)
 		Mario* temp = dynamic_cast<Mario*>(&owner_);
 		temp->looking_left = false;
 		temp->ChangeSprite(temp->running_animation_);
+		temp->animation_id_ = 1;
 	}
 	if (input_.isKeyDown(SHIP_LEFT_KEY)) {
 		input_flag = true;
@@ -37,6 +38,7 @@ void InputComponent::Update(const float& frametime)
 		Mario* temp = dynamic_cast<Mario*>(&owner_);
 		temp->looking_left = true;
 		temp->ChangeSprite(temp->running_animation_);
+		temp->animation_id_ = 1;
 	}
 	if (input_.isKeyDown(SHIP_UP_KEY) && owner_.on_ground_) {
 		input_flag = true;
@@ -53,11 +55,13 @@ void InputComponent::Update(const float& frametime)
 		Mario* temp = dynamic_cast<Mario*>(&owner_);
 		temp->running_animation_->GetImage().flipHorizontal(false);
 		temp->ChangeSprite(temp->hold_);
+		temp->animation_id_ = 0;
 	}
 	else if (!owner_.on_ground_) {
 		Mario* temp = dynamic_cast<Mario*>(&owner_);
 		temp->running_animation_->GetImage().flipHorizontal(false);
 		temp->ChangeSprite(temp->jumping_animation_);
+		temp->animation_id_ = 2;
 	}
 }
 

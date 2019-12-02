@@ -3,6 +3,7 @@
 #include "game.h"
 #include <assert.h>
 
+
 Scene::Scene(Game* owner)
 	:
 	owner_(owner)

@@ -3,6 +3,7 @@
 #include "Mario.h"
 #include "Goomba.h"
 #include "TestObject.h"
+#include "MarioGhost.h"
 
 LevelOne::LevelOne(Game* owner)
 	:
@@ -11,7 +12,9 @@ LevelOne::LevelOne(Game* owner)
 	background4("pictures\\mountainbackground.png", 1200, 1200, 1, camera_, 0.5f, 0.1f, -300.0f, -400.0f, 10, 1),
 	background3("pictures\\cloudbackground.png", 1200, 1200, 1, camera_, 0.4f, 0.1f, -300.0f, -300.0f, 10, 1),
 	background2("pictures\\rockbackground.png", 1200, 1200, 1, camera_, 0.3f, 0.1f, -300.0f, -200.0f, 10, 1),
-	background1("pictures\\bushesbackground.png", 1200, 700, 1, camera_, 0.2f, 0.1f, -300.0f, 100.0f, 10, 1)
+	background1("pictures\\bushesbackground.png", 1200, 700, 1, camera_, 0.2f, 0.1f, -300.0f, 100.0f, 10, 1),
+	save_mario_("levelonerecord.txt"),
+	load_mario_("levelonerecord.txt")
 {
 }
 
@@ -32,6 +35,8 @@ void LevelOne::Update(const float& frametime)
 	background3.Update(frametime);
 	background2.Update(frametime);
 	background1.Update(frametime);
+	save_mario_.Update(frametime);
+	load_mario_.Update(frametime);
 }
 
 void LevelOne::ChildRender()
@@ -54,8 +59,13 @@ void LevelOne::Initialize()
 {
 	// Place to initialize and add objects to scene ----------------------------------------
 	Mario* temp = new Mario(*input_, collider_manager_);
+	MarioGhost* mario_ghost = new MarioGhost();
 	camera_.SetTarget(temp);
+	save_mario_.BindMario(temp);
+	save_mario_.StartRecording(true);
+	load_mario_.BindMario(mario_ghost);
 	game_objects_.push_back(temp);
+	game_objects_.push_back(mario_ghost);
 	/*game_objects_.push_back(new Goomba(*input_, collider_manager_, { 800.0f,200.0f }));
 	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1000.0f,200.0f }));
 	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1200.0f,200.0f }));

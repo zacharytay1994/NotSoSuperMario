@@ -1,4 +1,11 @@
 ﻿  cl : Command line warning D9035 : option 'Gm' has been deprecated and will be removed in a future release
-  Mario.cpp
-C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Mario.cpp(18,149): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+  SaveMario.cpp
+  NotSoSuperMario.cpp
+  MainMenuScreen.cpp
+  LoadMario.cpp
+  Generating Code...
+  Compiling...
+  LevelOne.cpp
+  Generating Code...
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\SaveMario.cpp(20,20): warning C4018:  '<': signed/unsigned mismatch
   SpaceshipControl.vcxproj -> C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Debug\SpaceshipControl.exe

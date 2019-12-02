@@ -5,6 +5,8 @@
 #include "MapGenerator.h"
 #include "Background.h"
 #include "ScoreManager.h"
+#include "SaveMario.h"
+#include "LoadMario.h"
 
 class LevelOne : public Scene {
 public:
@@ -16,6 +18,8 @@ public:
 	Background background2;
 	Background background1;
 	ScoreManager* score_manager_;
+	SaveMario save_mario_;
+	LoadMario load_mario_;
 public:
 	LevelOne(Game* owner);
 	~LevelOne();

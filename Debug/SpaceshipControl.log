@@ -1,11 +1,77 @@
 ﻿  cl : Command line warning D9035 : option 'Gm' has been deprecated and will be removed in a future release
+  winmain.cpp
+  TestObject.cpp
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\TestObject.cpp(10,141): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\TestObject.cpp(10,119): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\TestObject.cpp(18,141): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+  Sprite.cpp
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\TestObject.cpp(18,119): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Sprite.cpp(56,16): warning C4244:  'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Sprite.cpp(61,17): warning C4244:  'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Sprite.cpp(67,14): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+  ScoreManager.cpp
+  Scene.cpp
   SaveMario.cpp
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Sprite.cpp(72,14): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+  PhysicsComponent.cpp
   NotSoSuperMario.cpp
+  MarioGhost.cpp
+  Mario.cpp
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\SaveMario.cpp(20,20): warning C4018:  '<': signed/unsigned mismatch
+  MapGenerator.cpp
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Mario.cpp(18,149): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(20,17): warning C4244:  'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(27,72): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(27,50): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(30,79): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(30,79): warning C4244:         with
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(30,79): warning C4244:         [
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(30,79): warning C4244:             T=float
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(30,79): warning C4244:         ]
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(30,57): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(30,57): warning C4244:         with
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(30,57): warning C4244:         [
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(30,57): warning C4244:             T=float
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(30,57): warning C4244:         ]
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(33,80): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(33,80): warning C4244:         with
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(33,80): warning C4244:         [
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(33,80): warning C4244:             T=float
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(33,80): warning C4244:         ]
   MainMenuScreen.cpp
   LoadMario.cpp
+  LevelOne.cpp
+  InputComponent.cpp
+  Goomba.cpp
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(33,58): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(33,58): warning C4244:         with
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(33,58): warning C4244:         [
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(33,58): warning C4244:             T=float
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\MapGenerator.cpp(33,58): warning C4244:         ]
+  GameObject.cpp
+  Font.cpp
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Goomba.cpp(16,149): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Font.cpp(33,33): warning C4244:  'argument': conversion from 'T' to 'int', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Font.cpp(33,33): warning C4244:         with
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Font.cpp(33,33): warning C4244:         [
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Font.cpp(33,33): warning C4244:             T=float
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Font.cpp(33,33): warning C4244:         ]
+  CollisionDetectionComponent.cpp
+  ColliderManager.cpp
   Generating Code...
   Compiling...
-  LevelOne.cpp
+  Collider.cpp
+  Coin.cpp
+  Camera.cpp
+  Background.cpp
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Font.cpp(34,33): warning C4244:  'argument': conversion from 'T' to 'int', possible loss of data
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Font.cpp(34,33): warning C4244:         with
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Font.cpp(34,33): warning C4244:         [
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Font.cpp(34,33): warning C4244:             T=float
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Font.cpp(34,33): warning C4244:         ]
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Background.cpp(49,63): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
   Generating Code...
-C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\SaveMario.cpp(20,20): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Background.cpp(49,38): warning C4244:  'argument': conversion from 'int' to 'const float', possible loss of data
+  LINK : C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Debug\SpaceshipControl.exe not found or not built by the last incremental link; performing full link
+Background.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
   SpaceshipControl.vcxproj -> C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Debug\SpaceshipControl.exe

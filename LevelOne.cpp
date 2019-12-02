@@ -3,6 +3,7 @@
 #include "Mario.h"
 #include "Goomba.h"
 #include "TestObject.h"
+#include "Flag.h"
 
 LevelOne::LevelOne()
 	:
@@ -60,6 +61,7 @@ void LevelOne::Initialize()
 	game_objects_.push_back(new Coin(*input_, collider_manager_, { 400.0f,300.0f }));
 	game_objects_.push_back(new Coin(*input_, collider_manager_, { 500.0f,300.0f }));
 	game_objects_.push_back(new Coin(*input_, collider_manager_, { 600.0f,300.0f }));
+	game_objects_.push_back(new Flag(collider_manager_, { 300.0f, 740.0f },temp));
 	background4.Initialize(*graphics_);
 	background3.Initialize(*graphics_);
 	background2.Initialize(*graphics_);

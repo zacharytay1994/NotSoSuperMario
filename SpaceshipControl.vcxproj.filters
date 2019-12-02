@@ -68,6 +68,9 @@
     <ClCompile Include="Coin.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Flag.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vec2.h">
@@ -152,6 +155,9 @@
       <Filter>Headers\Added\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Coin.h">
+      <Filter>Headers\Added\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="flag.h">
       <Filter>Headers\Added\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>

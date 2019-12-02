@@ -95,6 +95,7 @@
     <ClCompile Include="ColliderManager.cpp" />
     <ClCompile Include="CollisionDetectionComponent.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Flag.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Goomba.cpp" />
@@ -124,6 +125,7 @@
     <ClInclude Include="CollisionResolutionComponent.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="constants.h" />
+    <ClInclude Include="flag.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameError.h" />
     <ClInclude Include="GameObject.h" />

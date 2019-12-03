@@ -28,6 +28,9 @@ void ColliderManager::AddCollider(Collider* collider)
 
 bool ColliderManager::QueryCollision(Collider* collider)
 {
+	if (collider->owner_->removed_) {
+		return false;
+	}
 	// reset touch
 	collider->owner_->touch_.touch_top_ = false;
 	collider->owner_->touch_.touch_bottom_ = false;
@@ -47,27 +50,37 @@ bool ColliderManager::QueryCollision(Collider* collider)
 			if (c != nullptr) {
 				// determine if not self
 				if (c != collider) {
+					if (c->owner_->removed_) {
+						continue;
+					}
 					// determine other collider type
 					if (c->type_ == "AABB") {
 						if (AABBvsAABB(*dynamic_cast<AABBCollider*>(collider), *dynamic_cast<AABBCollider*>(c))) {
 							//collider->resolved_ = true;
 							// if this and other collider is simulated, resolve collision
-							if (collider->is_simulated_ && c->is_simulated_ && !c->owner_->removed_) {
+							if (collider->is_simulated_ && c->is_simulated_) {
 								// generate manifold
 								CollisionManifold manifold = AABBvsAABBManifold(*dynamic_cast<AABBCollider*>(collider), *dynamic_cast<AABBCollider*>(c));
 								// temp solution ------------------------------------
 								// if collision normal downwards detected
 								if (manifold.collision_normal_.y_ == 1) {
 									collider->owner_->touch_.touch_bottom_ = true;
+									collider->owner_->touch_obj_.touch_obj_bottom_ = c;
+									if (!c->is_static_) {
+										collider->owner_->bounce_off_others_ = true;
+									}
 								}
 								if (manifold.collision_normal_.y_ == -1) {
 									collider->owner_->touch_.touch_top_ = true;
+									collider->owner_->touch_obj_.touch_obj_top_ = c;
 								}
 								if (manifold.collision_normal_.x_ == 1) {
 									collider->owner_->touch_.touch_left_ = true;
+									collider->owner_->touch_obj_.touch_obj_left_ = c;
 								}
 								if (manifold.collision_normal_.x_ == -1) {
 									collider->owner_->touch_.touch_right_ = true;
+									collider->owner_->touch_obj_.touch_obj_right_ = c;
 								}
 								// --------------------------------------------------
 								ForceCorrect(manifold);
@@ -83,15 +96,19 @@ bool ColliderManager::QueryCollision(Collider* collider)
 								// if collision normal downwards detected
 								if (manifold.collision_normal_.y_ == 1) {
 									collider->owner_->touch_.touch_bottom_ = true;
+									collider->owner_->touch_obj_.touch_obj_bottom_ = c;
 								}
 								if (manifold.collision_normal_.y_ == -1) {
 									collider->owner_->touch_.touch_top_ = true;
+									collider->owner_->touch_obj_.touch_obj_top_ = c;
 								}
 								if (manifold.collision_normal_.x_ == 1) {
 									collider->owner_->touch_.touch_left_ = true;
+									collider->owner_->touch_obj_.touch_obj_left_ = c;
 								}
 								if (manifold.collision_normal_.x_ == -1) {
 									collider->owner_->touch_.touch_right_ = true;
+									collider->owner_->touch_obj_.touch_obj_right_ = c;
 								}
 								// --------------------------------------------------
 								return true;

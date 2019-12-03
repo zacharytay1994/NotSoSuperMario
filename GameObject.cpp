@@ -1,11 +1,12 @@
 #include "GameObject.h"
 #include "constants.h"
 
-GameObject::GameObject(const std::string& path, const int& width, const int& height, const int& cols, D3DXVECTOR2& pos)
+GameObject::GameObject(const std::string& path, const int& width, const int& height, const int& cols, D3DXVECTOR2& pos, std::string t)
 	:
 	position_(pos),
 	sprite_(new Sprite(path, width, height, cols)),
-	hold_(sprite_)
+	hold_(sprite_),
+	type_(t)
 {
 }
 
@@ -25,6 +26,7 @@ GameObject::~GameObject()
 
 void GameObject::Update(const float& frametime)
 {
+	PendRemoval(frametime);
 	ProcessOnGround(frametime);
 	for each (Component * c in components_) {
 		if (c != nullptr) {
@@ -113,6 +115,18 @@ void GameObject::TellComponents(Component::Message msg){
 	for each (Component * c in components_) {
 		if (c != nullptr) {
 			c->ReceiveMessage(msg);
+		}
+	}
+}
+
+void GameObject::PendRemoval(const float& frametime)
+{
+	if (pend_removal_) {
+		if (death_timer_ > 0.0f) {
+			death_timer_ -= frametime;
+		}
+		else {
+			removed_ = true;
 		}
 	}
 }

@@ -3,6 +3,7 @@
 #include <fstream>
 #include <vector>
 
+class ScoreManager;
 class ColliderManager;
 class GameObject;
 class MapGenerator {
@@ -11,5 +12,5 @@ private:
 public:
 	MapGenerator(const std::string& path);
 	~MapGenerator();
-	void GenerateWalls(ColliderManager& cm, std::vector<GameObject*>& golist);
+	void GenerateWalls(ColliderManager& cm, std::vector<GameObject*>& golist, ScoreManager& sm);
 };

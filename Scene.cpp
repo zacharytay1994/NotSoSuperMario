@@ -1,8 +1,12 @@
 #include "Scene.h"
 #include "GameObject.h"
+#include "game.h"
 #include <assert.h>
 
-Scene::Scene()
+
+Scene::Scene(Game* owner)
+	:
+	owner_(owner)
 {
 }
 

@@ -1,5 +1,7 @@
 #include "MapGenerator.h"
 #include "TestObject.h"
+#include "Coin.h"
+#include "Goomba.h"
 
 MapGenerator::MapGenerator(const std::string& path)
 	:
@@ -11,7 +13,7 @@ MapGenerator::~MapGenerator()
 {
 }
 
-void MapGenerator::GenerateWalls(ColliderManager& cm, std::vector<GameObject*>& golist)
+void MapGenerator::GenerateWalls(ColliderManager& cm, std::vector<GameObject*>& golist, ScoreManager& sm)
 {
 	int start_x = 0;
 	int start_y = 0;
@@ -23,6 +25,12 @@ void MapGenerator::GenerateWalls(ColliderManager& cm, std::vector<GameObject*>& 
 			for each (char c in line) {
 				if (c == 'x') {
 					golist.push_back(new TestObject(cm, start_x * cell_size_, start_y * cell_size_));
+				}
+				else if (c == 'c') {
+					golist.push_back(new Coin(cm, Vec2<float>( start_x * cell_size_, start_y * cell_size_ ), &sm));
+				}
+				else if (c == 'g') {
+					golist.push_back(new Goomba(cm, Vec2<float>(start_x * cell_size_, start_y * cell_size_)));
 				}
 				start_x++;
 			}

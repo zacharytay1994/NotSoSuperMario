@@ -96,6 +96,7 @@
     <ClCompile Include="CollisionDetectionComponent.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Flag.cpp" />
+    <ClCompile Include="Font.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Goomba.cpp" />
@@ -104,11 +105,14 @@
     <ClCompile Include="input.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="LevelOne.cpp" />
+    <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="Mario.cpp" />
     <ClCompile Include="NotSoSuperMario.cpp" />
+    <ClCompile Include="pausedMenu.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="spacewar.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TestObject.cpp" />
@@ -126,6 +130,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="flag.h" />
+    <ClInclude Include="Font.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameError.h" />
     <ClInclude Include="GameObject.h" />
@@ -135,11 +140,14 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="LevelOne.h" />
+    <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="Mario.h" />
     <ClInclude Include="NotSoSuperMario.h" />
+    <ClInclude Include="pausedMenu.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="spacewar.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TestObject.h" />

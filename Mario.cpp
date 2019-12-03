@@ -5,16 +5,17 @@
 
 Mario::Mario(Input& input, ColliderManager& cm)
 	:
-	GameObject("pictures\\marioidle.png", 64, 64, 1, D3DXVECTOR2(200 * CAMERA_ZOOM, 100 * CAMERA_ZOOM)),
+	GameObject("pictures\\marioidle.png", 64, 64, 1, D3DXVECTOR2(200 * CAMERA_ZOOM, 100 * CAMERA_ZOOM), "Mario"),
 	running_animation_(new Sprite("pictures\\mariorunsheet.png", 64, 64, 3)),
 	jumping_animation_(new Sprite("pictures\\mariojumping.png", 64, 64, 3))
 {
 	//sprite_.InitializeAnimation(0, 5, SHIP_ANIMATION_DELAY);
 	running_animation_->InitializeAnimation(0, 5, 0.25f);
 	AddComponent(new PhysicsComponent(*this));
-	dynamic_cast<PhysicsComponent*>(GetComponent("PhysicsComponent"))->SetMass(10.0f);
+	phy_ = dynamic_cast<PhysicsComponent*>(GetComponent("PhysicsComponent"));
+	phy_->SetMass(10.0f);
 	AddComponent(new InputComponent(*this, input));
-	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, this, sprite_->GetWidth(), sprite_->GetHeight(), false, true), cm));
+	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, this, sprite_->GetWidth() - 10.0f, sprite_->GetHeight(), false, true), cm));
 }
 
 Mario::~Mario()
@@ -35,6 +36,7 @@ void Mario::Update(const float& frametime)
 	else {
 		sprite_->GetImage().flipHorizontal(true);
 	}
+	ExecuteBounce();
 }
 
 void Mario::Render()
@@ -48,4 +50,12 @@ void Mario::ChildInitialize(Graphics& gfx)
 	running_animation_->GetImage().setScale(CAMERA_ZOOM);
 	jumping_animation_->Initialize(gfx);
 	jumping_animation_->GetImage().setScale(CAMERA_ZOOM);
+}
+
+void Mario::ExecuteBounce()
+{
+	if (bounce_off_others_) {
+		phy_->AddVelocity(Vec2<float>( 0.0f, -1.0f ) * bounce_strength_);
+		bounce_off_others_ = false;
+	}
 }

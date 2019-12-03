@@ -99,9 +99,10 @@ void LevelOne::Initialize()
 	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1400.0f,200.0f }));
 	game_objects_.push_back(new Coin(*input_, collider_manager_, { 400.0f,300.0f }));
 	game_objects_.push_back(new Coin(*input_, collider_manager_, { 500.0f,300.0f }));
-	game_objects_.push_back(new Coin(*input_, collider_manager_, { 600.0f,300.0f }));
-	game_objects_.push_back(new Flag(collider_manager_, { 300.0f, 740.0f },temp));
-	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1400.0f,200.0f }));*/
+	game_objects_.push_back(new Coin(*input_, collider_manager_, { 600.0f,300.0f }));*/
+
+	// Create flag
+	game_objects_.push_back(new Flag(collider_manager_, { 300.0f, 480.0f }, temp));
 
 	// Add scoremanager
 	score_manager_ = new ScoreManager(*graphics_, camera_);

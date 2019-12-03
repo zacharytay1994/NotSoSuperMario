@@ -108,9 +108,11 @@
     <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="Mario.cpp" />
+    <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="NotSoSuperMario.cpp" />
     <ClCompile Include="pausedMenu.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
+    <ClCompile Include="QuestionMarkBlock.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="spacewar.cpp" />
@@ -143,9 +145,11 @@
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="Mario.h" />
+    <ClInclude Include="Mushroom.h" />
     <ClInclude Include="NotSoSuperMario.h" />
     <ClInclude Include="pausedMenu.h" />
     <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="QuestionMarkBlock.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="spacewar.h" />

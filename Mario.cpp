@@ -6,11 +6,21 @@
 Mario::Mario(Input& input, ColliderManager& cm)
 	:
 	GameObject("pictures\\marioidle.png", 64, 64, 1, D3DXVECTOR2(200 * CAMERA_ZOOM, 100 * CAMERA_ZOOM), "Mario"),
-	running_animation_(new Sprite("pictures\\mariorunsheet.png", 64, 64, 3)),
-	jumping_animation_(new Sprite("pictures\\mariojumping.png", 64, 64, 3))
+	normal_idle_(new Sprite("pictures\\marioidle.png", 64, 64, 1)),
+	normal_running_animation_(new Sprite("pictures\\mariorunsheet.png", 64, 64, 3)),
+	normal_jumping_animation_(new Sprite("pictures\\mariojumping.png", 64, 64, 3)),
+
+	super_idle_(new Sprite("pictures\\supermarioidle.png", 64, 128, 1)),
+	super_jumping_(new Sprite("pictures\\supermariojumping.png", 64, 128, 1)),
+	super_running_animation_(new Sprite("pictures\\supermariorunsheet.png", 64, 128, 3)),
+
+	idle_(normal_idle_),
+	jumping_(normal_jumping_animation_),
+	running_animation_(normal_running_animation_)
 {
 	//sprite_.InitializeAnimation(0, 5, SHIP_ANIMATION_DELAY);
-	running_animation_->InitializeAnimation(0, 5, 0.25f);
+	normal_running_animation_->InitializeAnimation(0, 5, 0.25f);
+	super_running_animation_->InitializeAnimation(0, 2, 0.25f);
 	AddComponent(new PhysicsComponent(*this));
 	phy_ = dynamic_cast<PhysicsComponent*>(GetComponent("PhysicsComponent"));
 	phy_->SetMass(10.0f);
@@ -20,10 +30,10 @@ Mario::Mario(Input& input, ColliderManager& cm)
 
 Mario::~Mario()
 {
-	delete running_animation_;
-	running_animation_ = nullptr;
-	delete jumping_animation_;
-	jumping_animation_ = nullptr;
+	delete normal_running_animation_;
+	normal_running_animation_ = nullptr;
+	delete normal_jumping_animation_;
+	normal_jumping_animation_ = nullptr;
 }
 
 void Mario::Update(const float& frametime)
@@ -46,10 +56,19 @@ void Mario::Render()
 
 void Mario::ChildInitialize(Graphics& gfx)
 {
-	running_animation_->Initialize(gfx);
-	running_animation_->GetImage().setScale(CAMERA_ZOOM);
-	jumping_animation_->Initialize(gfx);
-	jumping_animation_->GetImage().setScale(CAMERA_ZOOM);
+	normal_idle_->Initialize(gfx);
+	normal_idle_->GetImage().setScale(CAMERA_ZOOM);
+	normal_running_animation_->Initialize(gfx);
+	normal_running_animation_->GetImage().setScale(CAMERA_ZOOM);
+	normal_jumping_animation_->Initialize(gfx);
+	normal_jumping_animation_->GetImage().setScale(CAMERA_ZOOM);
+
+	super_idle_->Initialize(gfx);
+	super_idle_->GetImage().setScale(CAMERA_ZOOM);
+	super_running_animation_->Initialize(gfx);
+	super_running_animation_->GetImage().setScale(CAMERA_ZOOM);
+	super_jumping_->Initialize(gfx);
+	super_jumping_->GetImage().setScale(CAMERA_ZOOM);
 }
 
 void Mario::ExecuteBounce()

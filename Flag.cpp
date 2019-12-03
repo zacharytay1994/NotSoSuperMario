@@ -11,7 +11,7 @@ Flag::Flag(ColliderManager& cm, const Vec2<float>& position, GameObject* mario)
 	touch = false;
 	flagdown = false;
 	initialFlagHeight = sprite_->GetHeight() * 0.95 - flagflag_->GetHeight();
-	flagrelativeposition = 1;
+	flagrelativeposition = .4;
 }
 
 void Flag::Update(const float& frametime) {
@@ -39,12 +39,11 @@ void Flag::Update(const float& frametime) {
 		mario_->SetPosition(mario_->GetPosition().x, position_.y - (contactdistance * flagrelativeposition));
 		dynamic_cast<PhysicsComponent*>(mario_->GetComponent("PhysicsComponent"))->SetVelocity(Vec2<float>(0.0f, 0.0f));
 
-		if (flagrelativeposition <= 0) {
+		if (flagrelativeposition <= -.57) {
 			flagdown = true;
 			dynamic_cast<PhysicsComponent*>(mario_->GetComponent("PhysicsComponent"))->SetVelocity(Vec2<float>(1.0f, -1.0f) * 300);
 		}
 
-		
 	}
 
 	flagflag_->GetImage().setY(position_.y - (initialFlagHeight * flagrelativeposition) - flagflag_->GetHeight());

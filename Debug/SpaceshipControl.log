@@ -1,51 +1,5 @@
-﻿  TestObject.cpp
+﻿  QuestionMarkBlock.cpp
 cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\TestObject.cpp(10,148): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\TestObject.cpp(10,122): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\TestObject.cpp(18,141): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-  Scene.cpp
-  QuestionMarkBlock.cpp
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\TestObject.cpp(18,119): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
 C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\QuestionMarkBlock.cpp(16,145): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-  NotSoSuperMario.cpp
-  MapGenerator.cpp
 C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\QuestionMarkBlock.cpp(16,122): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(21,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(28,72): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(28,50): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(31,79): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(31,79): warning C4244:         with
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(31,79): warning C4244:         [
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(31,79): warning C4244:             T=float
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(31,79): warning C4244:         ]
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(31,57): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(31,57): warning C4244:         with
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(31,57): warning C4244:         [
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(31,57): warning C4244:             T=float
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(31,57): warning C4244:         ]
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(34,80): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(34,80): warning C4244:         with
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(34,80): warning C4244:         [
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(34,80): warning C4244:             T=float
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(34,80): warning C4244:         ]
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(34,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(34,58): warning C4244:         with
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(34,58): warning C4244:         [
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(34,58): warning C4244:             T=float
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(34,58): warning C4244:         ]
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(37,91): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(37,91): warning C4244:         with
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(37,91): warning C4244:         [
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(37,91): warning C4244:             T=float
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(37,91): warning C4244:         ]
-  MainMenuScreen.cpp
-  LevelOne.cpp
-  Generating Code...
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(37,69): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(37,69): warning C4244:         with
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(37,69): warning C4244:         [
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(37,69): warning C4244:             T=float
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\MapGenerator.cpp(37,69): warning C4244:         ]
-  LINK : C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\Debug\SpaceshipControl.exe not found or not built by the last incremental link; performing full link
-Background.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
   SpaceshipControl.vcxproj -> C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\Debug\SpaceshipControl.exe

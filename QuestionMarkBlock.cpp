@@ -8,11 +8,11 @@ QuestionMarkBlock::QuestionMarkBlock(ColliderManager& cm, const Vec2<float>& pos
 	scene_(&s),
 	used_sprite_(new Sprite("pictures\\emptyquestionmarkblock.png", 64, 64, 1))
 {
-	// Initialize PhysicsComponent & add it to the Coin
+	// Initialize PhysicsComponent & add it to the Question Mark block
 	phy_ = new PhysicsComponent(*this, 0, false);
 	AddComponent(phy_);
 
-	// Initialize CollisionDetectionComponent & add it to the Coin
+	// Initialize CollisionDetectionComponent & add it to the Question Mark block
 	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, this, sprite_->GetWidth() - 1, sprite_->GetHeight(), true, true), cm));
 }
 
@@ -36,7 +36,7 @@ void QuestionMarkBlock::Update(const float& frametime)
 			ChangeSprite(used_sprite_);
 
 			// TODO: Spawn mushroom on top of block
-			scene_->AddObjectToScene(*(new Goomba(*cm_, Vec2<float>(position_.x, position_.y - cell_size_ - 2.0f))));
+			scene_->AddObjectToScene(*(new Mushroom(*cm_, Vec2<float>(position_.x, position_.y - cell_size_), *mario_)));
 		}
 	}
 

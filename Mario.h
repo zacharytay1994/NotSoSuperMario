@@ -7,8 +7,18 @@ class ColliderManager;
 class PhysicsComponent;
 class Mario : public GameObject {
 public:
+	Sprite* normal_idle_;
+	Sprite* normal_running_animation_;
+	Sprite* normal_jumping_animation_;
+
+	Sprite* super_idle_;
+	Sprite* super_jumping_;
+	Sprite* super_running_animation_;
+
+	Sprite* idle_;
 	Sprite* running_animation_;
-	Sprite* jumping_animation_;
+	Sprite* jumping_;
+
 	PhysicsComponent* phy_;
 	bool looking_left = true;
 public:

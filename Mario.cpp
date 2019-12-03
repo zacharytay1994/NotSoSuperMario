@@ -5,7 +5,7 @@
 
 Mario::Mario(Input& input, ColliderManager& cm)
 	:
-	GameObject("pictures\\marioidle.png", 64, 64, 1, D3DXVECTOR2(200 * CAMERA_ZOOM, 100 * CAMERA_ZOOM)),
+	GameObject("pictures\\marioidle.png", 64, 64, 1, D3DXVECTOR2(200 * CAMERA_ZOOM, 100 * CAMERA_ZOOM), "Mario"),
 	normal_idle_(new Sprite("pictures\\marioidle.png", 64, 64, 1)),
 	normal_running_animation_(new Sprite("pictures\\mariorunsheet.png", 64, 64, 3)),
 	normal_jumping_animation_(new Sprite("pictures\\mariojumping.png", 64, 64, 3)),

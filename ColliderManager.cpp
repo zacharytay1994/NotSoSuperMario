@@ -65,18 +65,22 @@ bool ColliderManager::QueryCollision(Collider* collider)
 								// if collision normal downwards detected
 								if (manifold.collision_normal_.y_ == 1) {
 									collider->owner_->touch_.touch_bottom_ = true;
+									collider->owner_->touch_obj_.touch_obj_bottom_ = c;
 									if (!c->is_static_) {
 										collider->owner_->bounce_off_others_ = true;
 									}
 								}
 								if (manifold.collision_normal_.y_ == -1) {
 									collider->owner_->touch_.touch_top_ = true;
+									collider->owner_->touch_obj_.touch_obj_top_ = c;
 								}
 								if (manifold.collision_normal_.x_ == 1) {
 									collider->owner_->touch_.touch_left_ = true;
+									collider->owner_->touch_obj_.touch_obj_left_ = c;
 								}
 								if (manifold.collision_normal_.x_ == -1) {
 									collider->owner_->touch_.touch_right_ = true;
+									collider->owner_->touch_obj_.touch_obj_right_ = c;
 								}
 								// --------------------------------------------------
 								ForceCorrect(manifold);
@@ -92,15 +96,19 @@ bool ColliderManager::QueryCollision(Collider* collider)
 								// if collision normal downwards detected
 								if (manifold.collision_normal_.y_ == 1) {
 									collider->owner_->touch_.touch_bottom_ = true;
+									collider->owner_->touch_obj_.touch_obj_bottom_ = c;
 								}
 								if (manifold.collision_normal_.y_ == -1) {
 									collider->owner_->touch_.touch_top_ = true;
+									collider->owner_->touch_obj_.touch_obj_top_ = c;
 								}
 								if (manifold.collision_normal_.x_ == 1) {
 									collider->owner_->touch_.touch_left_ = true;
+									collider->owner_->touch_obj_.touch_obj_left_ = c;
 								}
 								if (manifold.collision_normal_.x_ == -1) {
 									collider->owner_->touch_.touch_right_ = true;
+									collider->owner_->touch_obj_.touch_obj_right_ = c;
 								}
 								// --------------------------------------------------
 								return true;

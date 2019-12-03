@@ -1,11 +1,12 @@
 #include "GameObject.h"
 #include "constants.h"
 
-GameObject::GameObject(const std::string& path, const int& width, const int& height, const int& cols, D3DXVECTOR2& pos)
+GameObject::GameObject(const std::string& path, const int& width, const int& height, const int& cols, D3DXVECTOR2& pos, std::string t)
 	:
 	position_(pos),
 	sprite_(new Sprite(path, width, height, cols)),
-	hold_(sprite_)
+	hold_(sprite_),
+	type_(t)
 {
 }
 

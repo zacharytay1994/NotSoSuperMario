@@ -21,6 +21,7 @@ public:
 
 	PhysicsComponent* phy_;
 	bool looking_left = true;
+	bool is_big_ = false;
 public:
 	Mario(Input& input, ColliderManager& cm);
 	~Mario();

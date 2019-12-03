@@ -31,6 +31,8 @@ void Mushroom::Update(const float& frametime)
 
 		CollisionDetectionComponent<AABBCollider>* c = dynamic_cast<CollisionDetectionComponent<AABBCollider>*>(mario_->GetComponent("CollisionDetectionComponent"));
 		c->SetColliderHeight(128 * CAMERA_ZOOM);
+
+		mario_->is_big_ = true;
 	}
 }
 

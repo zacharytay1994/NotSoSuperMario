@@ -1,4 +1,5 @@
 #include "QuestionMarkBlock.h"
+#include "LevelOne.h"
 
 QuestionMarkBlock::QuestionMarkBlock(ColliderManager& cm, const Vec2<float>& position, Scene& s, Mario& m)
 	:
@@ -26,8 +27,10 @@ void QuestionMarkBlock::Update(const float& frametime)
 		// Question Mark block should disappear when bottom is collided with
 		float cell_size_ = 64 * CAMERA_ZOOM;
 		D3DXVECTOR2 mario_pos = mario_->GetPosition();
-		if (mario_pos.x + cell_size_ >= position_.x && mario_pos.x <= position_.x + cell_size_ &&
-			mario_pos.y <= position_.y + cell_size_ + 2 && mario_pos.y + cell_size_ + 2 >= position_.y + cell_size_)
+		if (mario_pos.x + mario_->sprite_->GetWidth()/2 >= position_.x && // mario's R >= block's L
+			mario_pos.x <= position_.x + sprite_->GetWidth()/2 && // mario's L <= block's R
+			mario_pos.y - mario_->sprite_->GetHeight()/2 <= position_.y + sprite_->GetHeight()/2 + 2 && // mario's T <= block's B
+			mario_pos.y + mario_->sprite_->GetHeight()/2 >= position_.y) // mario's B >= block's T
 		{
 			// Update used_ flag
 			used_ = true;
@@ -35,8 +38,18 @@ void QuestionMarkBlock::Update(const float& frametime)
 			// Change sprite of block
 			ChangeSprite(used_sprite_);
 
-			// TODO: Spawn mushroom on top of block
-			scene_->AddObjectToScene(*(new Mushroom(*cm_, Vec2<float>(position_.x, position_.y - cell_size_), *mario_)));
+			// Check mario type
+			if (mario_->is_big_) 
+			{
+				// Spawn coin on top of block
+				LevelOne* lvlOne = dynamic_cast<LevelOne*>(scene_);
+				scene_->AddObjectToScene(*(new Coin(*cm_, Vec2<float>(position_.x, position_.y - cell_size_), lvlOne->score_manager_)));
+			}
+			else
+			{
+				// Spawn mushroom on top of block
+				scene_->AddObjectToScene(*(new Mushroom(*cm_, Vec2<float>(position_.x, position_.y - cell_size_), *mario_)));
+			}
 		}
 	}
 

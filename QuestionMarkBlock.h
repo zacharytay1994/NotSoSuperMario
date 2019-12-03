@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Coin.h"
 #include "ColliderManager.h"
 #include "CollisionDetectionComponent.h"
 #include "GameObject.h"

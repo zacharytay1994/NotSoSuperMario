@@ -1,5 +1,0 @@
-﻿  QuestionMarkBlock.cpp
-cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\QuestionMarkBlock.cpp(16,145): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\QuestionMarkBlock.cpp(16,122): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-  SpaceshipControl.vcxproj -> C:\Users\simsh\Google Drive\GPP\NotSoSuperMario\Debug\SpaceshipControl.exe

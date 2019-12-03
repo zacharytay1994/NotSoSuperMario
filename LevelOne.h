@@ -4,6 +4,7 @@
 #include "Camera.h"
 #include "MapGenerator.h"
 #include "Background.h"
+#include "Menu.h"
 
 class LevelOne : public Scene {
 public:
@@ -14,6 +15,8 @@ public:
 	Background background3;
 	Background background2;
 	Background background1;
+	Menu menu;
+
 public:
 	LevelOne();
 	~LevelOne();

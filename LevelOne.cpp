@@ -1,6 +1,7 @@
 #include "LevelOne.h"
 #include "Mario.h"
 #include "TestObject.h"
+#include "Button.h"
 
 LevelOne::LevelOne()
 	:
@@ -8,8 +9,11 @@ LevelOne::LevelOne()
 	background4("pictures\\mountainbackground.png", 1200, 1200, 1, camera_, 0.5f, 0.1f, -300.0f, -400.0f, 10, 1),
 	background3("pictures\\cloudbackground.png", 1200, 1200, 1, camera_, 0.4f, 0.1f, -300.0f, -300.0f, 10, 1),
 	background2("pictures\\rockbackground.png", 1200, 1200, 1, camera_, 0.3f, 0.1f, -300.0f, -200.0f, 10, 1),
-	background1("pictures\\bushesbackground.png", 1200, 700, 1, camera_, 0.2f, 0.1f, -300.0f, 100.0f, 10, 1)
+	background1("pictures\\bushesbackground.png", 1200, 700, 1, camera_, 0.2f, 0.1f, -300.0f, 100.0f, 10, 1),
+	menu({ GAME_WIDTH / 2, GAME_HEIGHT / 2 }, Sprite("pictures\\menuImage.jpg", 1200, 720, 1))
 {
+	menu.addButton(new Button({ 0, 0 }, Sprite("pictures\\buttontest.png", 100, 100, 1)));
+
 }
 
 LevelOne::~LevelOne()
@@ -29,6 +33,7 @@ void LevelOne::Update(const float& frametime)
 	background3.Update(frametime);
 	background2.Update(frametime);
 	background1.Update(frametime);
+	menu.update(*input_);
 }
 
 void LevelOne::ChildRender()
@@ -38,10 +43,12 @@ void LevelOne::ChildRender()
 
 void LevelOne::BackgroundRender()
 {
+	
 	background4.Draw();
 	background3.Draw();
 	background2.Draw();
 	background1.Draw();
+	menu.render();
 }
 
 void LevelOne::Initialize()
@@ -55,6 +62,10 @@ void LevelOne::Initialize()
 	background3.Initialize(*graphics_);
 	background2.Initialize(*graphics_);
 	background1.Initialize(*graphics_);
+
+	menu.MenuInitialise(*graphics_);
+	//menu.getSprite().GetImage().setScale(1);
+
 	/*game_objects_.push_back(new TestObject(collider_manager_, 320, GAME_HEIGHT - 50));
 	for (int i = 1; i < 5; i++) {
 		game_objects_.push_back(new TestObject(collider_manager_, 320 + i * 64, GAME_HEIGHT - 50));

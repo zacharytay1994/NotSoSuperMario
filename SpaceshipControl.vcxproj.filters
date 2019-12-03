@@ -64,6 +64,12 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Button.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vec2.h">
@@ -144,6 +150,12 @@
     <ClInclude Include="Background.h">
       <Filter>Headers\Added\Backgrounds</Filter>
     </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Headers\Added\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Headers\Added\Menu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
@@ -175,6 +187,9 @@
     </Filter>
     <Filter Include="Headers\Added\Backgrounds">
       <UniqueIdentifier>{e6c75a17-1c49-45c8-bc45-d32af05c0a7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Added\Menu">
+      <UniqueIdentifier>{9a600f75-2ad9-435d-8e38-fd904e436efc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

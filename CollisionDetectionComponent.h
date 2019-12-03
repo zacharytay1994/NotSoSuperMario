@@ -42,4 +42,7 @@ public:
 	void ExecuteMessage(const Message& msg) override {
 
 	}
+	Collider* GetCollider() {
+		return collider_;
+	}
 };

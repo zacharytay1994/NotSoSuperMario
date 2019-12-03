@@ -104,6 +104,7 @@
     <ClCompile Include="input.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="LevelOne.cpp" />
+    <ClCompile Include="LevelSelect.cpp" />
     <ClCompile Include="LoadMario.cpp" />
     <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="MapGenerator.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="LevelOne.h" />
+    <ClInclude Include="LevelSelect.h" />
     <ClInclude Include="LoadMario.h" />
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="MapGenerator.h" />

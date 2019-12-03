@@ -2,6 +2,9 @@
 #include "InputComponent.h"
 #include "PhysicsComponent.h"
 #include "CollisionDetectionComponent.h"
+#include <string>
+#include <iostream>
+#include <sstream>
 
 Mario::Mario(Input& input, ColliderManager& cm)
 	:
@@ -29,6 +32,8 @@ Mario::~Mario()
 void Mario::Update(const float& frametime)
 {
 	GameObject::Update(frametime);
+	/*position_.x = 0.0f;
+	position_.y = 0.0f;*/
 	// temp
 	if (looking_left) {
 		sprite_->GetImage().flipHorizontal(false);
@@ -37,6 +42,12 @@ void Mario::Update(const float& frametime)
 		sprite_->GetImage().flipHorizontal(true);
 	}
 	ExecuteBounce();
+	/*D3DXVECTOR2 test = dynamic_cast<CollisionDetectionComponent<AABBCollider>*>(GetComponent("CollisionDetectionComponent"))->GetCollider()->center_point;
+	std::stringstream ss;
+	ss << "COLLIDER: " << test.x << "," << test.y << std::endl;
+	ss << "POSITION: " << position_.x << "," << position_.y << std::endl;
+	ss << "SPRITEPOS: " << sprite_->GetImage().getX() << "," << sprite_->GetImage().getY() << std::endl;*/
+	//OutputDebugString(ss.str().c_str());
 }
 
 void Mario::Render()

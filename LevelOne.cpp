@@ -5,10 +5,10 @@
 #include "TestObject.h"
 #include "MarioGhost.h"
 
-LevelOne::LevelOne(Game* owner)
+LevelOne::LevelOne(Game* owner, const std::string& filename)
 	:
 	Scene(owner),
-	map_generator_("levelone.txt"),
+	map_generator_(filename),
 	background4("pictures\\mountainbackground.png", 1200, 1200, 1, camera_, 0.5f, 0.1f, -300.0f, -400.0f, 10, 1),
 	background3("pictures\\cloudbackground.png", 1200, 1200, 1, camera_, 0.4f, 0.1f, -300.0f, -300.0f, 10, 1),
 	background2("pictures\\rockbackground.png", 1200, 1200, 1, camera_, 0.3f, 0.1f, -300.0f, -200.0f, 10, 1),

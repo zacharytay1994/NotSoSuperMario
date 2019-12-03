@@ -77,7 +77,7 @@ Component* GameObject::GetComponent(std::string type)
 void GameObject::SyncSprite()
 {
 	sprite_->GetImage().setX(position_.x - sprite_->GetImage().getWidth()/2);
-	sprite_->GetImage().setY(position_.y - sprite_->GetImage().getHeight()/2);
+	sprite_->GetImage().setY(position_.y - sprite_->GetImage().getHeight()/4);
 }
 
 void GameObject::ChangeSprite(Sprite* sprite)

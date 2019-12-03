@@ -17,7 +17,7 @@ private:
 	std::vector<int> sprite_flipped_; // 0 = not flipped, 1 = flipped
 	GameObject* mario_;
 	
-	float record_rate_ = 0.001f;
+	float record_rate_ = 0.005f;
 	float record_timer_ = 0.0f;
 public:
 	SaveMario(const std::string& savefile);

@@ -10,7 +10,7 @@ class LoadMario {
 private:
 	std::string file_name_;
 	GameObject* mario_;
-	float record_rate_ = 0.001f;
+	float record_rate_ = 0.005f;
 	float record_timer_ = 0.0f;
 	int position_index_ = 0;
 	int positions_length_ = 0;

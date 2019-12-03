@@ -21,7 +21,7 @@ public:
 	SaveMario save_mario_;
 	LoadMario load_mario_;
 public:
-	LevelOne(Game* owner);
+	LevelOne(Game* owner, const std::string& filename);
 	~LevelOne();
 	void Update(const float& frametime) override;
 	void ChildRender() override;

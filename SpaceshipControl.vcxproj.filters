@@ -88,6 +88,7 @@
     <ClCompile Include="SaveMario.cpp" />
     <ClCompile Include="LoadMario.cpp" />
     <ClCompile Include="MarioGhost.cpp" />
+    <ClCompile Include="LevelSelect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
@@ -120,77 +121,80 @@
     <ClInclude Include="Camera.h">
       <Filter>AddedHeaders</Filter>
     </ClInclude>
-    <ClInclude Include="Coin.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
     <ClInclude Include="Collider.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="ColliderManager.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionDetectionComponent.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionResolutionComponent.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
       <Filter>AddedHeaders</Filter>
     </ClInclude>
     <ClInclude Include="Font.h">
       <Filter>AddedHeaders</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Goomba.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="InputComponent.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelOne.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenuScreen.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="MapGenerator.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Mario.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
     <ClInclude Include="NotSoSuperMario.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsComponent.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreManager.h">
       <Filter>AddedHeaders</Filter>
     </ClInclude>
     <ClInclude Include="Sprite.h">
       <Filter>AddedHeaders</Filter>
     </ClInclude>
-    <ClInclude Include="TestObject.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
     <ClInclude Include="Vec2.h">
       <Filter>AddedHeaders</Filter>
     </ClInclude>
-    <ClInclude Include="SaveMario.h">
-      <Filter>AddedHeaders</Filter>
+    <ClInclude Include="Scene.h">
+      <Filter>AddedHeaders\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="LoadMario.h">
-      <Filter>AddedHeaders</Filter>
+    <ClInclude Include="LevelOne.h">
+      <Filter>AddedHeaders\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuScreen.h">
+      <Filter>AddedHeaders\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin.h">
+      <Filter>AddedHeaders\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Goomba.h">
+      <Filter>AddedHeaders\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="TestObject.h">
+      <Filter>AddedHeaders\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Mario.h">
+      <Filter>AddedHeaders\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="MarioGhost.h">
-      <Filter>AddedHeaders</Filter>
+      <Filter>AddedHeaders\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionDetectionComponent.h">
+      <Filter>AddedHeaders\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionResolutionComponent.h">
+      <Filter>AddedHeaders\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>AddedHeaders\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="InputComponent.h">
+      <Filter>AddedHeaders\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsComponent.h">
+      <Filter>AddedHeaders\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>AddedHeaders\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreManager.h">
+      <Filter>AddedHeaders\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="MapGenerator.h">
+      <Filter>AddedHeaders\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderManager.h">
+      <Filter>AddedHeaders\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadMario.h">
+      <Filter>AddedHeaders\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveMario.h">
+      <Filter>AddedHeaders\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelSelect.h">
+      <Filter>AddedHeaders\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +206,18 @@
     </Filter>
     <Filter Include="Source">
       <UniqueIdentifier>{1e576d65-e856-4114-9336-4e1422d54717}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AddedHeaders\Scenes">
+      <UniqueIdentifier>{fb72b58d-37e0-4f49-af07-56e4ae4280c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AddedHeaders\GameObjects">
+      <UniqueIdentifier>{c5d659da-c20d-4c6f-98ea-18d7f393a386}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AddedHeaders\Components">
+      <UniqueIdentifier>{20bd1d3b-8f79-4bdf-a379-43d89b06bb2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AddedHeaders\Managers">
+      <UniqueIdentifier>{cd7b74ff-4f1f-4f93-a0eb-77fdd1fee4e0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

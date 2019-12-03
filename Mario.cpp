@@ -3,9 +3,11 @@
 #include "PhysicsComponent.h"
 #include "CollisionDetectionComponent.h"
 
+#include <Windows.h>
+
 Mario::Mario(Input& input, ColliderManager& cm)
 	:
-	GameObject("pictures\\marioidle.png", 64, 64, 1, D3DXVECTOR2(200 * CAMERA_ZOOM, 100 * CAMERA_ZOOM)),
+	GameObject("pictures\\marioidle.png", 64, 64, 1, D3DXVECTOR2(200 * CAMERA_ZOOM, 100 * CAMERA_ZOOM), "Mario"),
 	running_animation_(new Sprite("pictures\\mariorunsheet.png", 64, 64, 3)),
 	jumping_animation_(new Sprite("pictures\\mariojumping.png", 64, 64, 3))
 {

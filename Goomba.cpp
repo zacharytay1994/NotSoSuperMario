@@ -4,7 +4,7 @@
 
 Goomba::Goomba(ColliderManager& cm, const Vec2<float>& position)
 	:
-	GameObject("pictures\\testsquare.png", 64, 64, 1, D3DXVECTOR2(position.x_, position.y_)),
+	GameObject("pictures\\testsquare.png", 64, 64, 1, D3DXVECTOR2(position.x_, position.y_), "Goomba"),
 	walking_sprite_(new Sprite("pictures\\goombawalksheet.png", 64, 64, 4)),
 	death_sprite_(new Sprite("pictures\\goombadeath.png", 64, 64, 1))
 {

@@ -3,11 +3,12 @@
 #include "Mario.h"
 #include "Goomba.h"
 #include "TestObject.h"
+#include "Flag.h"
 #include <iostream>
 #include "NotSoSuperMario.h"
 #include "pausedMenu.h"
-using namespace std;
 
+using namespace std;
 
 LevelOne::LevelOne(Game* owner)
 	:
@@ -95,11 +96,13 @@ void LevelOne::Initialize()
 	/*game_objects_.push_back(new Goomba(*input_, collider_manager_, { 800.0f,200.0f }));
 	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1000.0f,200.0f }));
 	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1200.0f,200.0f }));
+	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1400.0f,200.0f }));
+	game_objects_.push_back(new Coin(*input_, collider_manager_, { 400.0f,300.0f }));
+	game_objects_.push_back(new Coin(*input_, collider_manager_, { 500.0f,300.0f }));
+	game_objects_.push_back(new Coin(*input_, collider_manager_, { 600.0f,300.0f }));
+	game_objects_.push_back(new Flag(collider_manager_, { 300.0f, 740.0f },temp));
 	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1400.0f,200.0f }));*/
-	/*game_objects_.push_back(new Coin(collider_manager_, { 400.0f,300.0f }));
-	game_objects_.push_back(new Coin(collider_manager_, { 500.0f,300.0f }));
-	game_objects_.push_back(new Coin(collider_manager_, { 600.0f,300.0f }));*/
-	game_objects_.push_back(new Goomba(collider_manager_, { 1400.0f,200.0f }));
+	/*
 
 	// Add scoremanager
 	score_manager_ = new ScoreManager(*graphics_, camera_);

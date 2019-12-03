@@ -2,6 +2,8 @@
 #include "TestObject.h"
 #include "Coin.h"
 #include "Goomba.h"
+#include "KoopaTroopa.h"
+#include "BouncyPlatform.h"
 
 MapGenerator::MapGenerator(const std::string& path)
 	:
@@ -9,7 +11,7 @@ MapGenerator::MapGenerator(const std::string& path)
 {
 }
 
-MapGenerator::~MapGenerator()
+MapGenerator::~MapGenerator()	
 {
 }
 
@@ -31,6 +33,12 @@ void MapGenerator::GenerateWalls(ColliderManager& cm, std::vector<GameObject*>& 
 				}
 				else if (c == 'g') {
 					golist.push_back(new Goomba(cm, Vec2<float>(start_x * cell_size_, start_y * cell_size_)));
+				}
+				else if (c == 'b') {
+					golist.push_back(new BouncyPlatform(cm, Vec2<float>(start_x * cell_size_, start_y * cell_size_)));
+				}
+				else if (c == 'k') {
+					golist.push_back(new KoopaTroopa(cm, Vec2<float>(start_x * cell_size_, start_y * cell_size_)));
 				}
 				start_x++;
 			}

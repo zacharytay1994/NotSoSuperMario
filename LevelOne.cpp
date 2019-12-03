@@ -6,6 +6,7 @@
 #include <iostream>
 #include "NotSoSuperMario.h"
 #include "pausedMenu.h"
+#include "MainMenuScreen.h"
 using namespace std;
 
 
@@ -35,9 +36,10 @@ void LevelOne::Update(const float& frametime)
 
 	if (!isPaused)
 	{
+
 		if (input_->wasKeyPressed(VK_ESCAPE))
 		{
-			isPaused = true;
+			isPaused = true; 
 		}
 
 		Scene::Update(frametime);
@@ -49,14 +51,30 @@ void LevelOne::Update(const float& frametime)
 		background1.Update(frametime);
 	}
 	if (isPaused)
-
 	{
+		//if (pausedMenu_->isMenuShowed())
+		//{
+		//	pausedMenu_->Update(frametime);
+		//}
 
+		pausedMenu_->Update(frametime);
 
-			if (input_->wasKeyPressed(VK_RETURN))
+		if (input_->wasKeyPressed(VK_RETURN))
+		{
+			if (pausedMenu_->selectionValue() == 0)
 			{
 				isPaused = false;
 			}
+			else if(pausedMenu_ ->selectionValue() == 1)
+			{
+				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelOne(owner_));
+			}
+			else if (pausedMenu_->selectionValue() == 2)
+			{
+				graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
+				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
+			}
+		}
 		
 	}
 	
@@ -69,11 +87,9 @@ void LevelOne::ChildRender()
 	// Draw score
 	score_manager_->Draw();
 	if (isPaused)
-	{
-		
+	{	
 			pausedMenu_->showMenu();
 			pausedMenu_->ChildRender();
-		
 	}
 
 }
@@ -110,7 +126,7 @@ void LevelOne::Initialize()
 	background2.Initialize(*graphics_);
 	background1.Initialize(*graphics_);
 
-	pausedMenu_->Initialize(*graphics_);
+	pausedMenu_->Initialize(*graphics_, input_);
 	
 	
 

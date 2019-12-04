@@ -20,6 +20,8 @@ private:
 	Sprite* used_sprite_;
 
 	bool used_ = false;
+	static constexpr int airtime_ = 30;
+	int curr_frame_;
 public:
 	QuestionMarkBlock(ColliderManager& cm, const Vec2<float>& position, Scene& s, Mario& m);
 	void Update(const float& frametime) override;

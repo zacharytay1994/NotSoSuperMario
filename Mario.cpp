@@ -56,7 +56,7 @@ void Mario::Update(const float& frametime)
 				isDead = true;
 			}
 		}
-		if (touch_.touch_right_)
+		else if (touch_.touch_right_)
 		{
 			if (touch_obj_.touch_obj_right_->owner_->type_ == "Goomba")
 			{
@@ -87,6 +87,8 @@ void Mario::Update(const float& frametime)
 			else
 			{
 				deathAnimationDone = true;
+
+				// set mario outside of screen after the animation is done
 				dying_sprite->GetImage().setX(GAME_WIDTH);
 				dying_sprite->GetImage().setY(GAME_HEIGHT);
 

@@ -5,6 +5,7 @@
 #include "MapGenerator.h"
 #include "Background.h"
 #include "ScoreManager.h"
+#include	"Timer.h"
 
 class Mario;
 class LevelOne : public Scene {
@@ -19,7 +20,10 @@ public:
 	ScoreManager* score_manager_;
 	pausedMenu* pausedMenu_;
 	Mario* mario_;
+	Timer* timer_;
 	bool isPaused;
+	bool isStart = false;
+	std::clock_t startTime;
 public:
 	LevelOne(Game* owner);
 	~LevelOne();

@@ -6,6 +6,7 @@
 #include <iostream>
 #include "NotSoSuperMario.h"
 #include "pausedMenu.h"
+
 using namespace std;
 
 
@@ -18,6 +19,7 @@ LevelOne::LevelOne(Game* owner)
 	background2("pictures\\rockbackground.png", 1200, 1200, 1, camera_, 0.3f, 0.1f, -300.0f, -200.0f, 10, 1),
 	background1("pictures\\bushesbackground.png", 1200, 700, 1, camera_, 0.2f, 0.1f, -300.0f, 100.0f, 10, 1),
 	pausedMenu_(new pausedMenu(&camera_)),
+	timer_(new Timer()),
 	isPaused(false)
 {
 }
@@ -49,13 +51,23 @@ void LevelOne::Update(const float& frametime)
 		background2.Update(frametime);
 		background1.Update(frametime);	
 
+		timer_->Update();
+
 	}
 	else if (isPaused)
 	{
-			if (input_->wasKeyPressed(VK_RETURN))
-			{
-				isPaused = false;
-			}	
+		timer_->StopTimer();
+		timer_->PausedDuration();
+		if (input_->wasKeyPressed(VK_RETURN))
+		{
+			isPaused = false;
+			timer_->ContinueTimer();
+		}
+	}
+
+	if (mario_->isDead)
+	{
+		timer_->StopTimer();
 	}
 	
 }
@@ -98,11 +110,11 @@ void LevelOne::BackgroundRender()
 void LevelOne::Initialize()
 {
 	// Place to initialize and add objects to scene ----------------------------------------
+
 	Mario* temp = new Mario(*input_, collider_manager_);
 	mario_ = temp;
 	camera_.SetTarget(temp);
-	map_generator_.GenerateWalls(collider_manager_, game_objects_, *score_manager_);
-	game_objects_.push_back(temp);
+	
 	/*game_objects_.push_back(new Goomba(*input_, collider_manager_, { 800.0f,200.0f }));
 	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1000.0f,200.0f }));
 	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1200.0f,200.0f }));
@@ -113,7 +125,18 @@ void LevelOne::Initialize()
 	game_objects_.push_back(new Goomba(collider_manager_, { 1400.0f,200.0f }));
 
 	// Add scoremanager
-	score_manager_ = new ScoreManager(*graphics_, camera_);
+	score_manager_ = new ScoreManager(*graphics_, camera_, *timer_);
+
+	if (!isStart)
+	{
+		startTime = clock();
+		timer_->StartTimer(startTime);
+		isStart = true;
+	}
+
+	map_generator_.GenerateWalls(collider_manager_, game_objects_, *score_manager_);
+	game_objects_.push_back(temp);
+
 
 
 	background4.Initialize(*graphics_);

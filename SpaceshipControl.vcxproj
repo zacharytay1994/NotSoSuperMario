@@ -116,6 +116,7 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TestObject.cpp" />
     <ClCompile Include="textureManager.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +151,7 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TestObject.h" />
     <ClInclude Include="textureManager.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

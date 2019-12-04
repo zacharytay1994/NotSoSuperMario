@@ -30,6 +30,7 @@
     <ClCompile Include="textureManager.cpp" />
     <ClCompile Include="winmain.cpp" />
     <ClCompile Include="pausedMenu.cpp" />
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
@@ -64,5 +65,6 @@
     <ClInclude Include="textureManager.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="pausedMenu.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
 </Project>

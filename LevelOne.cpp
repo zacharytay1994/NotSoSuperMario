@@ -3,12 +3,11 @@
 #include "Mario.h"
 #include "Goomba.h"
 #include "TestObject.h"
+#include "Flag.h"
 #include <iostream>
 #include "NotSoSuperMario.h"
 #include "pausedMenu.h"
-
 using namespace std;
-
 
 LevelOne::LevelOne(Game* owner)
 	:
@@ -34,14 +33,10 @@ LevelOne::~LevelOne()
 
 void LevelOne::Update(const float& frametime)
 {
-
 	if (!isPaused && !(mario_ ->deathAnimationDone))
 	{
 		// Do not update the frame when the game is paused or mario is dead
-		if (input_->wasKeyPressed(VK_ESCAPE))
-		{
-			isPaused = true;
-		}
+		if (input_->wasKeyPressed(VK_ESCAPE)) { isPaused = true; }
 
 		Scene::Update(frametime);
 		camera_.Update(frametime);
@@ -52,7 +47,6 @@ void LevelOne::Update(const float& frametime)
 		background1.Update(frametime);	
 
 		timer_->Update();
-
 	}
 	else if (isPaused)
 	{
@@ -69,23 +63,19 @@ void LevelOne::Update(const float& frametime)
 	{
 		timer_->StopTimer();
 	}
-	
 }
 
 void LevelOne::ChildRender()
 {
 	// by default render on Scene.h is called every frame which will render the gameobjects
-
 	// Draw score
 	score_manager_->Draw();
 
 	// If the game is paused, show the paused menu
 	if (isPaused)
 	{
-		
-			pausedMenu_->showMenu();
-			pausedMenu_->ChildRender();
-		
+		pausedMenu_->showMenu();
+		pausedMenu_->ChildRender();	
 	}
 
 	// If mario is dead and the dead animation is done, show the  menu
@@ -110,22 +100,9 @@ void LevelOne::BackgroundRender()
 void LevelOne::Initialize()
 {
 	// Place to initialize and add objects to scene ----------------------------------------
-
 	Mario* temp = new Mario(*input_, collider_manager_);
 	mario_ = temp;
 	camera_.SetTarget(temp);
-	
-	/*game_objects_.push_back(new Goomba(*input_, collider_manager_, { 800.0f,200.0f }));
-	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1000.0f,200.0f }));
-	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1200.0f,200.0f }));
-	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1400.0f,200.0f }));*/
-	/*game_objects_.push_back(new Coin(collider_manager_, { 400.0f,300.0f }));
-	game_objects_.push_back(new Coin(collider_manager_, { 500.0f,300.0f }));
-	game_objects_.push_back(new Coin(collider_manager_, { 600.0f,300.0f }));*/
-	game_objects_.push_back(new Goomba(collider_manager_, { 1400.0f,200.0f }));
-
-	// Add scoremanager
-	score_manager_ = new ScoreManager(*graphics_, camera_, *timer_);
 
 	if (!isStart)
 	{
@@ -134,10 +111,10 @@ void LevelOne::Initialize()
 		isStart = true;
 	}
 
-	map_generator_.GenerateWalls(collider_manager_, game_objects_, *score_manager_);
+	// Add scoremanager
+	score_manager_ = new ScoreManager(*graphics_, camera_, *timer_);
+	map_generator_.GenerateWalls(collider_manager_, game_objects_, *score_manager_, *this, *temp);
 	game_objects_.push_back(temp);
-
-
 
 	background4.Initialize(*graphics_);
 	background3.Initialize(*graphics_);
@@ -145,39 +122,6 @@ void LevelOne::Initialize()
 	background1.Initialize(*graphics_);
 
 	pausedMenu_->Initialize(*graphics_);
-	
-	
-
-	/*game_objects_.push_back(new TestObject(collider_manager_, 320, GAME_HEIGHT - 50));
-	for (int i = 1; i < 5; i++) {
-		game_objects_.push_back(new TestObject(collider_manager_, 320 + i * 64, GAME_HEIGHT - 50));
-		game_objects_.push_back(new TestObject(collider_manager_, 320 - i * 64, GAME_HEIGHT - 50));
-	}
-	game_objects_.push_back(new TestObject(collider_manager_, 320, 50));
-	for (int i = 1; i < 5; i++) {
-		game_objects_.push_back(new TestObject(collider_manager_, 320 + i * 64, 50));
-		game_objects_.push_back(new TestObject(collider_manager_, 320 - i * 64, 50));
-	}
-	game_objects_.push_back(new TestObject(collider_manager_, 50, 240));
-	game_objects_.push_back(new TestObject(collider_manager_, 114, 240));
-	game_objects_.push_back(new TestObject(collider_manager_, 178, 240));
-	for (int i = 1; i < 3; i++) {
-		game_objects_.push_back(new TestObject(collider_manager_, 50, 240 + i * 64));
-		game_objects_.push_back(new TestObject(collider_manager_, 50, 240 - i * 64));
-	}
-	game_objects_.push_back(new TestObject(collider_manager_, GAME_WIDTH - 50, 240));
-	game_objects_.push_back(new TestObject(collider_manager_, GAME_WIDTH - 178, 240));
-	game_objects_.push_back(new TestObject(collider_manager_, GAME_WIDTH - 242, 240));
-	for (int i = 1; i < 3; i++) {
-		game_objects_.push_back(new TestObject(collider_manager_, GAME_WIDTH - 50, 240 + i * 64));
-		game_objects_.push_back(new TestObject(collider_manager_, GAME_WIDTH - 50, 240 - i * 64));
-	}*/
-	
-	/*for (int i = 0; i < 10; i++) {
-		int x = rand() % (GAME_WIDTH-100) + 100;
-		int y = rand() % (GAME_HEIGHT - 100) + 100;
-		game_objects_.push_back(new TestObject(collider_manager_, (float)x, (float)y));
-	}*/
 	// -------------------------------------------------------------------------------------
 	Scene::Initialize();
 }

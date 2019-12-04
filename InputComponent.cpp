@@ -57,7 +57,7 @@ void InputComponent::Update(const float& frametime)
 	else if (!owner_.on_ground_) {
 		Mario* temp = dynamic_cast<Mario*>(&owner_);
 		temp->running_animation_->GetImage().flipHorizontal(false);
-		temp->ChangeSprite(temp->jumping_animation_);
+		temp->ChangeSprite(temp->jumping_);
 	}
 }
 

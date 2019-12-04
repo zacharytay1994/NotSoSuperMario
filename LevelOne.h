@@ -24,6 +24,7 @@ public:
 	bool isPaused;
 	bool isStart = false;
 	std::clock_t startTime;
+	bool levelCompleted = false;
 public:
 	LevelOne(Game* owner);
 	~LevelOne();

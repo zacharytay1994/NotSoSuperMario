@@ -42,4 +42,7 @@ public:
 	void ExecuteMessage(const Message& msg) override {
 
 	}
+	void SetColliderHeight(float h) {
+		dynamic_cast<AABBCollider*>(collider_)->half_height_ = h / 2;
+	}
 };

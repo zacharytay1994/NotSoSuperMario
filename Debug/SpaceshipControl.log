@@ -1,12 +1,3 @@
 ﻿  cl : Command line warning D9035 : option 'Gm' has been deprecated and will be removed in a future release
-  SaveMario.cpp
-  NotSoSuperMario.cpp
-  MainMenuScreen.cpp
-  LoadMario.cpp
-  LevelOne.cpp
-  Generating Code...
-  Compiling...
   LevelSelect.cpp
-  Generating Code...
-C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\SaveMario.cpp(22,20): warning C4018:  '<': signed/unsigned mismatch
   SpaceshipControl.vcxproj -> C:\Users\Zach\Documents\GPP\CodeBase\CodeBase\Debug\SpaceshipControl.exe

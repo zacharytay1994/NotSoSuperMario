@@ -7,6 +7,7 @@
 #include "ScoreManager.h"
 #include "SaveMario.h"
 #include "LoadMario.h"
+#include "Font.h"
 
 class LevelOne : public Scene {
 public:
@@ -20,6 +21,17 @@ public:
 	ScoreManager* score_manager_;
 	SaveMario save_mario_;
 	LoadMario load_mario_;
+
+	// flags
+	bool is_testing_ = false;
+	bool display_options_ = false;
+	Font* options_display_;
+	Scene* held_scene_;
+	bool is_writing_ = false;
+	std::string name_in_ = "";
+	Font* name_display_;
+	bool clear_name_ = true;
+
 public:
 	LevelOne(Game* owner, const std::string& filename);
 	~LevelOne();
@@ -27,4 +39,8 @@ public:
 	void ChildRender() override;
 	void BackgroundRender() override;
 	void Initialize() override;
+	void TestingUpdate();
+	void TestingDraw();
+	void SetTesting(const bool& test, Scene* scene);
+	void RenderWriting();
 };

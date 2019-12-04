@@ -78,7 +78,7 @@ void LevelSelect::UpdateSelectedNames(const bool& some)
 			if (indexed_level < num_levels_ - 1) {
 				indexed_level++;
 				selected_name_ = level_data_array[indexed_level];
-				if (indexed_level + 1 < num_levels_ - 1) {
+				if (indexed_level + 1 < num_levels_) {
 					bottom_name_ = level_data_array[indexed_level + 1];
 				}
 				else {

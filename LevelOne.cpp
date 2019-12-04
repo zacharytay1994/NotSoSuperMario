@@ -4,6 +4,8 @@
 #include "Goomba.h"
 #include "TestObject.h"
 #include "MarioGhost.h"
+#include "NotSoSuperMario.h"
+#include "LevelEditor.h"
 
 LevelOne::LevelOne(Game* owner, const std::string& filename)
 	:
@@ -37,6 +39,7 @@ void LevelOne::Update(const float& frametime)
 	background1.Update(frametime);
 	save_mario_.Update(frametime);
 	load_mario_.Update(frametime);
+	TestingUpdate();
 }
 
 void LevelOne::ChildRender()
@@ -45,6 +48,7 @@ void LevelOne::ChildRender()
 
 	// Draw score
 	score_manager_->Draw();
+	TestingDraw();
 }
 
 void LevelOne::BackgroundRender()
@@ -84,6 +88,10 @@ void LevelOne::Initialize()
 	background2.Initialize(*graphics_);
 	background1.Initialize(*graphics_);
 
+	// initialize fonts
+	options_display_ = new Font("pictures\\Fixedsys16x28.png", *graphics_, camera_);
+	name_display_ = new Font("pictures\\Fixedsys16x28.png", *graphics_, camera_);
+
 	/*game_objects_.push_back(new TestObject(collider_manager_, 320, GAME_HEIGHT - 50));
 	for (int i = 1; i < 5; i++) {
 		game_objects_.push_back(new TestObject(collider_manager_, 320 + i * 64, GAME_HEIGHT - 50));
@@ -116,4 +124,59 @@ void LevelOne::Initialize()
 	}*/
 	// -------------------------------------------------------------------------------------
 	Scene::Initialize();
+}
+
+void LevelOne::TestingUpdate()
+{
+	if (!is_testing_) {
+		return;
+	}
+	if (input_->wasKeyPressed(VK_RETURN)) {
+		display_options_ = true;
+	}
+	if (display_options_) {
+		if (input_->wasKeyPressed('P')) {
+			is_writing_ = true;
+		}
+		else if (input_->wasKeyPressed('C')) {
+			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(held_scene_);
+		}
+	}
+	if (is_writing_) {
+		if (input_->wasKeyPressed(VK_RETURN)) {
+			dynamic_cast<LevelEditor*>(held_scene_)->PublishLevel(name_in_);
+		}
+	}
+}
+
+void LevelOne::TestingDraw()
+{
+	if (!is_testing_) {
+		return;
+	}
+	if (display_options_) {
+		options_display_->DrawTextString("CONGRATS YOU HAVE BEATEN YOUR CREATION!", Vec2<int>(10, GAME_HEIGHT / 2 - 30), *graphics_);
+		options_display_->DrawTextString("C = Continue Editing", Vec2<int>(10, GAME_HEIGHT/2), *graphics_);
+		options_display_->DrawTextString("P = Publish Level", Vec2<int>(10, GAME_HEIGHT / 2 + 30), *graphics_);
+	}
+	RenderWriting();
+}
+
+void LevelOne::SetTesting(const bool& test, Scene* scene)
+{
+	is_testing_ = test;
+	held_scene_ = scene;
+}
+
+void LevelOne::RenderWriting()
+{
+	if (is_writing_) {
+		name_display_->DrawTextString("-- Key In Your Level Name & Enter --", Vec2<int>(10, GAME_HEIGHT / 2 - 120), *graphics_);
+		name_display_->DrawTextString(name_in_, Vec2<int>(10, GAME_HEIGHT / 2 - 150), *graphics_);
+		name_in_ = input_->getTextIn();
+		if (clear_name_ && name_in_ != "") {
+			input_->clearTextIn();
+			clear_name_ = false;
+		}
+	}
 }

@@ -89,6 +89,7 @@
     <ClCompile Include="LoadMario.cpp" />
     <ClCompile Include="MarioGhost.cpp" />
     <ClCompile Include="LevelSelect.cpp" />
+    <ClCompile Include="LevelEditor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
@@ -194,6 +195,9 @@
       <Filter>AddedHeaders\Managers</Filter>
     </ClInclude>
     <ClInclude Include="LevelSelect.h">
+      <Filter>AddedHeaders\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelEditor.h">
       <Filter>AddedHeaders\Scenes</Filter>
     </ClInclude>
   </ItemGroup>

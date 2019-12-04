@@ -3,6 +3,7 @@
 #include "NotSoSuperMario.h"
 #include "LevelOne.h"
 #include "LevelSelect.h"
+#include "LevelEditor.h"
 
 MainMenu::MainMenu(Game* owner)
 	:
@@ -57,5 +58,4 @@ void MainMenu::ChildRender()
 	mainMenuBg.Draw();
 	buttonbackground.Draw();
 	mushicon.Draw();
-
 }

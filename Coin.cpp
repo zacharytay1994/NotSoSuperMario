@@ -21,8 +21,11 @@ void Coin::Update(const float& frametime)
 {
 	GameObject::Update(frametime);
 
-	// Coin should disappear when collided with
-	if (touch_.touch_top_ || touch_.touch_bottom_ || touch_.touch_left_ || touch_.touch_right_)
+	// Coin x Mario: Coin collected
+	if (touch_.touch_top_ && touch_obj_.touch_obj_top_->owner_->type_ == "Mario" || 
+		touch_.touch_bottom_ && touch_obj_.touch_obj_bottom_->owner_->type_ == "Mario" ||
+		touch_.touch_left_ && touch_obj_.touch_obj_left_->owner_->type_ == "Mario" ||
+		touch_.touch_right_ && touch_obj_.touch_obj_right_->owner_->type_ == "Mario")
 	{
 		// Destroy coin
 		removed_ = true;

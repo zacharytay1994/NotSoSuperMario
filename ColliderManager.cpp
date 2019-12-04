@@ -37,7 +37,7 @@ bool ColliderManager::QueryCollision(Collider* collider)
 	collider->owner_->touch_.touch_left_ = false;
 	collider->owner_->touch_.touch_right_ = false;
 	// not the static bodies job to resolve
-	if (collider->is_static_ || collider->owner_->removed_) {
+	if (collider->is_static_ && !collider->is_static_check_ || collider->owner_->removed_) {
 		return false;
 	}
 	// determine this collider type

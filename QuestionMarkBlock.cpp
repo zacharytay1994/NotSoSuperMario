@@ -38,8 +38,8 @@ void QuestionMarkBlock::Update(const float& frametime)
 			// Update used_ flag
 			used_ = true;
 
-			// Apply upward force
-			phy_->AddVelocity(Vec2<float>(0.0f, -50.0f));
+			// Set airtime & halfairtime
+			curr_frame_ = airtime_;
 
 			// Change sprite of block
 			ChangeSprite(used_sprite_);
@@ -58,7 +58,23 @@ void QuestionMarkBlock::Update(const float& frametime)
 			}
 		}
 	}
+	else
+	{
+		if (curr_frame_ > 0)
+		{
+			// Update airtime
+			curr_frame_--;
 
+			// Apply upward force
+			phy_->SetVelocity(Vec2<float>(0.0f, 10.0f * -(curr_frame_ - airtime_ / 2)));
+		}
+		else if (curr_frame_ == 0)
+		{
+			phy_->SetVelocity(Vec2<float>(0.0f, 0.0f));
+			position_.y--;
+			curr_frame_ = -1;
+		}
+	}
 }
 
 void QuestionMarkBlock::Render()

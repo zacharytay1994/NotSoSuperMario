@@ -34,7 +34,7 @@ LevelOne::~LevelOne()
 
 void LevelOne::Update(const float& frametime)
 {
-	if (!isPaused && !(mario_ ->deathAnimationDone))
+	if (!isPaused && !(mario_->deathAnimationDone))
 	{
 		// Do not update the frame when the game is paused or mario is dead
 		if (input_->wasKeyPressed(VK_ESCAPE)) { isPaused = true; }
@@ -76,7 +76,16 @@ void LevelOne::Update(const float& frametime)
 		}
 	}
 
-	if (mario_->isDead) { timer_->StopTimer(); }
+	if (mario_->isDead) 
+	{ 
+		timer_->StopTimer(); 
+
+		if (mario_->deathAnimationDone)
+		{
+			graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
+			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
+		}
+	}
 }
 
 void LevelOne::ChildRender()

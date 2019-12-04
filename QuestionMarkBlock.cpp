@@ -25,24 +25,27 @@ void QuestionMarkBlock::Update(const float& frametime)
 	GameObject::Update(frametime);
 
 	// Check collision if unused
-	if (!used_) 
+	if (!used_)
 	{
 		// Question Mark block should disappear when bottom is collided with
 		float cell_size_ = 64 * CAMERA_ZOOM;
 		D3DXVECTOR2 mario_pos = mario_->GetPosition();
-		if (mario_pos.x + mario_->sprite_->GetWidth()/2 >= position_.x && // mario's R >= block's L
-			mario_pos.x <= position_.x + sprite_->GetWidth()/2 && // mario's L <= block's R
-			mario_pos.y - mario_->sprite_->GetHeight()/2 <= position_.y + sprite_->GetHeight()/2 + 2 && // mario's T <= block's B
-			mario_pos.y + mario_->sprite_->GetHeight()/2 >= position_.y) // mario's B >= block's T
+		if (mario_pos.x + mario_->sprite_->GetWidth() / 2 >= position_.x && // mario's R >= block's L
+			mario_pos.x <= position_.x + sprite_->GetWidth() / 2 && // mario's L <= block's R
+			mario_pos.y - mario_->sprite_->GetHeight() / 2 <= position_.y + sprite_->GetHeight() / 2 + 2 && // mario's T <= block's B
+			mario_pos.y + mario_->sprite_->GetHeight() / 2 >= position_.y) // mario's B >= block's T
 		{
 			// Update used_ flag
 			used_ = true;
+
+			// Apply upward force
+			phy_->AddVelocity(Vec2<float>(0.0f, -50.0f));
 
 			// Change sprite of block
 			ChangeSprite(used_sprite_);
 
 			// Check mario type
-			if (mario_->is_big_) 
+			if (mario_->is_big_)
 			{
 				// Spawn coin on top of block
 				LevelOne* lvlOne = dynamic_cast<LevelOne*>(scene_);

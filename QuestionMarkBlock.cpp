@@ -4,7 +4,7 @@
 QuestionMarkBlock::QuestionMarkBlock(ColliderManager& cm, const Vec2<float>& position, Scene& s, Mario& m)
 	:
 	cm_(&cm),
-	GameObject("pictures\\questionmarkblock.png", 64, 64, 6, D3DXVECTOR2(position.x_, position.y_)),
+	GameObject("pictures\\questionmarkblock.png", 64, 64, 6, D3DXVECTOR2(position.x_, position.y_), "QuestionMarkBlock"),
 	mario_(&m),
 	scene_(&s),
 	used_sprite_(new Sprite("pictures\\emptyquestionmarkblock.png", 64, 64, 1))

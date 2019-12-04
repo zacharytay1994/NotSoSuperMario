@@ -45,8 +45,8 @@ void Mushroom::Update(const float& frametime)
 
 			mario_->is_big_ = true;
 	}
-	else if (touch_.touch_left_ && touch_obj_.touch_obj_left_->owner_->type_ != "Mario" || 
-			 touch_.touch_right_ && touch_obj_.touch_obj_right_->owner_->type_ != "Mario")
+	else if (touch_.touch_left_ && touch_obj_.touch_obj_left_->owner_->type_ != "Mario" && touch_obj_.touch_obj_left_ ->is_simulated_ ||
+			 touch_.touch_right_ && touch_obj_.touch_obj_right_->owner_->type_ != "Mario" && touch_obj_.touch_obj_right_->is_simulated_)
 	{
 		direction_ *= -1.0f;
 	}

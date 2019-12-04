@@ -14,7 +14,7 @@ private:
 	PhysicsComponent* phy_;
 
 	float direction_ = 0.0f;
-	float speed_ = 30.0f;
+	float speed_ = 50.0f;
 public:
 	Mushroom(ColliderManager& cm, const Vec2<float>& position, Mario& m);
 	void Update(const float& frametime) override;

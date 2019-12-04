@@ -4,7 +4,7 @@
 Mushroom::Mushroom(ColliderManager& cm, const Vec2<float>& position, Mario& m)
 	:
 	cm_(&cm),
-	GameObject("pictures\\supermushroom.png", 64, 64, 1, D3DXVECTOR2(position.x_, position.y_)),
+	GameObject("pictures\\supermushroom.png", 48, 48, 1, D3DXVECTOR2(position.x_, position.y_)),
 	mario_(&m)
 {
 	// Initialize PhysicsComponent & add it to the Mushroom
@@ -12,7 +12,7 @@ Mushroom::Mushroom(ColliderManager& cm, const Vec2<float>& position, Mario& m)
 	AddComponent(phy_);
 
 	// Initialize CollisionDetectionComponent & add it to the Mushroom
-	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, this, sprite_->GetWidth() - 4, sprite_->GetHeight(), false, true), cm));
+	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, this, sprite_->GetWidth() - 2, sprite_->GetHeight() - 2, false, true), cm));
 
 	// Calculate direction
 	direction_ = mario_->GetPosition().x > position_.x ? 1.0f : -1.0f;

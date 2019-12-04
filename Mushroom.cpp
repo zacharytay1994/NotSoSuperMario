@@ -9,6 +9,7 @@ Mushroom::Mushroom(ColliderManager& cm, const Vec2<float>& position, Mario& m)
 {
 	// Initialize PhysicsComponent & add it to the Mushroom
 	phy_ = new PhysicsComponent(*this);
+	phy_->AddVelocity(Vec2<float>(0.0f, -200.0f));
 	AddComponent(phy_);
 
 	// Initialize CollisionDetectionComponent & add it to the Mushroom

@@ -62,7 +62,7 @@ void QuestionMarkBlock::Update(const float& frametime)
 	{
 		if (curr_frame_ > 0)
 		{
-			// Update airtime
+			// Update curr_frame_
 			curr_frame_--;
 
 			// Apply upward force

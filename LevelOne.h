@@ -5,7 +5,9 @@
 #include "MapGenerator.h"
 #include "Background.h"
 #include "ScoreManager.h"
+#include	"Timer.h"
 
+class Mario;
 class LevelOne : public Scene {
 public:
 	ColliderManager collider_manager_;
@@ -17,7 +19,11 @@ public:
 	Background background1;
 	ScoreManager* score_manager_;
 	pausedMenu* pausedMenu_;
+	Mario* mario_;
+	Timer* timer_;
 	bool isPaused;
+	bool isStart = false;
+	std::clock_t startTime;
 	bool levelCompleted = false;
 public:
 	LevelOne(Game* owner);

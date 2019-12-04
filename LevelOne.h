@@ -16,6 +16,9 @@ public:
 	Background background2;
 	Background background1;
 	ScoreManager* score_manager_;
+	pausedMenu* pausedMenu_;
+	bool isPaused;
+	bool levelCompleted = false;
 public:
 	LevelOne(Game* owner);
 	~LevelOne();

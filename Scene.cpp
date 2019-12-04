@@ -3,6 +3,7 @@
 #include "game.h"
 #include <assert.h>
 
+
 Scene::Scene(Game* owner)
 	:
 	owner_(owner)
@@ -27,10 +28,19 @@ void Scene::Update(const float& frametime)
 			}
 		}
 	}
+
+	for each (GameObject * g in to_add_) {
+		if (g != nullptr) {
+			g->Initialize(*graphics_);
+			game_objects_.push_back(g);
+		}
+	}
+	to_add_.clear();
 }
 
 void Scene::AddObjectToScene(GameObject& object)
 {
+	to_add_.push_back(&object);
 }
 
 void Scene::Initialize()

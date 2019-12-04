@@ -31,7 +31,6 @@
     <ClCompile Include="winmain.cpp" />
     <ClCompile Include="pausedMenu.cpp" />
     <ClCompile Include="KoopaTroopa.cpp" />
-    <ClCompile Include="BoundaryBlock.cpp" />
     <ClCompile Include="BouncyPlatform.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -68,7 +67,6 @@
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="pausedMenu.h" />
     <ClInclude Include="KoopaTroopa.h" />
-    <ClInclude Include="BoundaryBlock.h" />
     <ClInclude Include="BouncyPlatform.h" />
   </ItemGroup>
 </Project>

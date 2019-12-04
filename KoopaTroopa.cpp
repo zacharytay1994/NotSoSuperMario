@@ -7,31 +7,33 @@
 
 KoopaTroopa::KoopaTroopa(ColliderManager& cm, const Vec2<float>& position)
 	:
-	GameObject("pictures\\testsquare.png", 64, 64, 1, D3DXVECTOR2(position.x_, position.y_)),
+	GameObject("pictures\\testsquare.png", 64, 64, 1, D3DXVECTOR2(position.x_, position.y_), "Koopa"),
 	walking_sprite_(new Sprite("pictures\\kooparunsheet.png", 64, 64, 8)),
 	shellmoving_sprite_(new Sprite("pictures\\koopashellmovingsheet.png", 54, 64, 4)),
 	shellidle_sprite_(new Sprite("pictures\\koopashellidle.png", 54, 64, 1))
+	
 {
 	//walking_sprite_->InitializeAnimation(0, 5, 0.25f);
 	walking_sprite_->InitializeAnimation(0, 7, 0.25f);
-	shellmoving_sprite_->InitializeAnimation(0, 3, 0.25f);
+	shellmoving_sprite_->InitializeAnimation(0, 3, 0.125f);
 
 	PhysicsComponent* temp = new PhysicsComponent(*this);
 	random = rand() % 5+10;
 	timer = random;
 	phy_ = temp;
 	AddComponent(temp);
-	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, this, sprite_->GetWidth() - 10.0f, sprite_->GetHeight(), false, true), cm));
+	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, this, sprite_->GetWidth() - 10.0f, sprite_->GetHeight()-3, false, true), cm));
 	sprite_ = walking_sprite_;
 }
 
 KoopaTroopa::~KoopaTroopa()
 {
 
-}
+}	
 
 void KoopaTroopa::Update(const float& frametime)
 {
+	
 	GameObject::Update(frametime);
 	if (!shellState) {
 		timer = timer - frametime;
@@ -58,11 +60,13 @@ void KoopaTroopa::Update(const float& frametime)
 			direction_.x_ = -1;
 			sprite_->GetImage().flipHorizontal(false);
 			looking_left_ = true;
+			
 		}
 		else if (touch_.touch_right_) {
 			direction_.x_ = 1;
 			sprite_->GetImage().flipHorizontal(true);
 			looking_left_ = false;
+
 		}
 		if (touch_.touch_top_) {
 			
@@ -75,19 +79,38 @@ void KoopaTroopa::Update(const float& frametime)
 	}
 	
 		else {
+			//dynamic_cast<CollisionDetectionComponent<AABBCollider>*>(GetComponent("CollisionDetectionComponent"));
+;
 				// temp
 				
 				if (touch_.touch_left_) {
-					direction_.x_ = -1;
-					sprite_->GetImage().flipHorizontal(false);
+					
 					looking_left_ = true;
 					shellMoving = true;
+					if (touch_obj_.touch_obj_left_->owner_->type_ == "Goomba")
+					{
+						touch_obj_.touch_obj_left_->owner_->removed_ = true;
+					}
+					else {
+						direction_.x_ = -1;
+						sprite_->GetImage().flipHorizontal(false);
+						
+					}
+		
 				}
 				else if (touch_.touch_right_) {
-					direction_.x_ = 1;
-					sprite_->GetImage().flipHorizontal(true);
+			
 					looking_left_ = false;
 					shellMoving = true;
+					
+					if (touch_obj_.touch_obj_right_->owner_->type_ == "Goomba")
+					{
+						touch_obj_.touch_obj_right_->owner_->removed_ = true;
+					}
+					else {
+						direction_.x_ = 1;
+						sprite_->GetImage().flipHorizontal(true);
+					}
 				}
 				if (touch_.touch_top_) {
 					
@@ -97,9 +120,11 @@ void KoopaTroopa::Update(const float& frametime)
 
 				
 				if (!shellMoving) {
+					
 					ChangeSprite(shellidle_sprite_);
 					phy_->AddVelocity(direction_ * 0); }
 				else {
+					shellSpeed_ = shellSpeed_ + 50;
 					ChangeSprite(shellmoving_sprite_);
 					phy_->AddVelocity(direction_ * shellSpeed_); }
 		}

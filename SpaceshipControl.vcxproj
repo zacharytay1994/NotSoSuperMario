@@ -114,7 +114,6 @@
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
-    <ClCompile Include="BoundaryBlock.cpp" />
     <ClCompile Include="spacewar.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TestObject.cpp" />
@@ -138,7 +137,6 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Goomba.h" />
     <ClInclude Include="graphics.h" />
-    <ClInclude Include="BoundaryBlock.h" />
     <ClInclude Include="KoopaTroopa.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />

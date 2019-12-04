@@ -51,17 +51,12 @@ void LevelOne::Update(const float& frametime)
 		background1.Update(frametime);
 	}
 	if (isPaused)
-
 	{
-
-
 			if (input_->wasKeyPressed(VK_RETURN))
 			{
 				isPaused = false;
-			}
-		
+			}	
 	}
-	
 }
 
 void LevelOne::ChildRender()
@@ -72,12 +67,9 @@ void LevelOne::ChildRender()
 	score_manager_->Draw();
 	if (isPaused)
 	{
-		
 			pausedMenu_->showMenu();
 			pausedMenu_->ChildRender();
-		
 	}
-
 }
 
 void LevelOne::BackgroundRender()
@@ -102,7 +94,7 @@ void LevelOne::Initialize()
 	game_objects_.push_back(new Coin(collider_manager_, { 500.0f,300.0f }));
 	game_objects_.push_back(new Coin(collider_manager_, { 600.0f,300.0f }));*/
 	//game_objects_.push_back(new Goomba(collider_manager_, { 1400.0f,200.0f }));
-	game_objects_.push_back(new KoopaTroopa(collider_manager_, { 100.0f,200.0f }));
+	//game_objects_.push_back(new KoopaTroopa(collider_manager_, { 100.0f,200.0f }));
 
 	// Add scoremanager
 	score_manager_ = new ScoreManager(*graphics_, camera_);
@@ -112,7 +104,6 @@ void LevelOne::Initialize()
 	background3.Initialize(*graphics_);
 	background2.Initialize(*graphics_);
 	background1.Initialize(*graphics_);
-
 	pausedMenu_->Initialize(*graphics_);
 	
 	

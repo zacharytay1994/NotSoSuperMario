@@ -8,6 +8,7 @@ class BouncyPlatform : public GameObject
 {
 private:
 	PhysicsComponent * phy_;
+	int timer = 5;
 
 public:
 	//BouncyPlatform(ColliderManager& cm);

@@ -2,12 +2,18 @@
 #include "InputComponent.h"
 #include "PhysicsComponent.h"
 #include "CollisionDetectionComponent.h"
+#include <Windows.h>
+#include <chrono>
+#include <thread>
+
 
 Mario::Mario(Input& input, ColliderManager& cm)
 	:
 	GameObject("pictures\\marioidle.png", 64, 64, 1, D3DXVECTOR2(200 * CAMERA_ZOOM, 100 * CAMERA_ZOOM), "Mario"),
 	running_animation_(new Sprite("pictures\\mariorunsheet.png", 64, 64, 3)),
-	jumping_animation_(new Sprite("pictures\\mariojumping.png", 64, 64, 3))
+	jumping_animation_(new Sprite("pictures\\mariojumping.png", 64, 64, 3)),
+	dying_sprite(new Sprite("pictures\\marioDeath.png", 64, 64, 1))
+	
 {
 	//sprite_.InitializeAnimation(0, 5, SHIP_ANIMATION_DELAY);
 	running_animation_->InitializeAnimation(0, 5, 0.25f);
@@ -28,20 +34,81 @@ Mario::~Mario()
 
 void Mario::Update(const float& frametime)
 {
-	GameObject::Update(frametime);
-	// temp
-	if (looking_left) {
-		sprite_->GetImage().flipHorizontal(false);
+	if (!isDead)
+	{
+		GameObject::Update(frametime);
+
+		// temp
+		if (looking_left)
+		{
+			sprite_->GetImage().flipHorizontal(false);
+		}
+		else
+		{
+			sprite_->GetImage().flipHorizontal(true);
+		}
+
+		// If mario touch goomba with left/right side, mario is dead
+		if (touch_.touch_left_)
+		{
+			if (touch_obj_.touch_obj_left_->owner_->type_ == "Goomba")
+			{
+				isDead = true;
+			}
+		}
+		if (touch_.touch_right_)
+		{
+			if (touch_obj_.touch_obj_right_->owner_->type_ == "Goomba")
+			{
+				isDead = true;
+			}
+		}
+
 	}
-	else {
-		sprite_->GetImage().flipHorizontal(true);
+
+	// When mario is dead, play the mario deadth animation once
+	if (isDead)
+	{
+	
+		if (!deathAnimationDone)
+		{
+			dying_sprite->GetImage().setX(sprite_->GetImage().getX());
+			dying_sprite->GetImage().setY(sprite_->GetImage().getY());
+
+			turn_radius_ += turn_rate_ * frametime;
+
+			deadVel += velocity * frametime;
+			dying_sprite->GetImage().setDegrees(turn_radius_);
+			if (velocity > -1000)
+			{
+				dying_sprite->GetImage().setY(dying_sprite->GetImage().getY() - deadVel);
+				velocity -= 5;
+			}
+			else
+			{
+				deathAnimationDone = true;
+				dying_sprite->GetImage().setX(GAME_WIDTH);
+				dying_sprite->GetImage().setY(GAME_HEIGHT);
+
+			}
+
+			
+
+		}
 	}
 	ExecuteBounce();
 }
 
 void Mario::Render()
 {
-	GameObject::Render();
+	if (!isDead)
+	{
+		GameObject::Render();
+	}
+	else
+	{
+		dying_sprite->Draw();
+	}
 }
 
 void Mario::ChildInitialize(Graphics& gfx)
@@ -50,6 +117,8 @@ void Mario::ChildInitialize(Graphics& gfx)
 	running_animation_->GetImage().setScale(CAMERA_ZOOM);
 	jumping_animation_->Initialize(gfx);
 	jumping_animation_->GetImage().setScale(CAMERA_ZOOM);
+	dying_sprite->Initialize(gfx);
+	dying_sprite->GetImage().setScale(CAMERA_ZOOM);
 }
 
 void Mario::ExecuteBounce()

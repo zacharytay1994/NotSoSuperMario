@@ -6,6 +6,7 @@
 #include "Background.h"
 #include "ScoreManager.h"
 
+class Mario;
 class LevelOne : public Scene {
 public:
 	ColliderManager collider_manager_;
@@ -17,6 +18,7 @@ public:
 	Background background1;
 	ScoreManager* score_manager_;
 	pausedMenu* pausedMenu_;
+	Mario* mario_;
 	bool isPaused;
 public:
 	LevelOne(Game* owner);

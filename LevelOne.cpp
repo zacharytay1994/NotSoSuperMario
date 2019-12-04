@@ -33,8 +33,9 @@ LevelOne::~LevelOne()
 void LevelOne::Update(const float& frametime)
 {
 
-	if (!isPaused)
+	if (!isPaused && !(mario_ ->deathAnimationDone))
 	{
+		// Do not update the frame when the game is paused or mario is dead
 		if (input_->wasKeyPressed(VK_ESCAPE))
 		{
 			isPaused = true;
@@ -46,18 +47,15 @@ void LevelOne::Update(const float& frametime)
 		background4.Update(frametime);
 		background3.Update(frametime);
 		background2.Update(frametime);
-		background1.Update(frametime);
+		background1.Update(frametime);	
+
 	}
-	if (isPaused)
-
+	else if (isPaused)
 	{
-
-
 			if (input_->wasKeyPressed(VK_RETURN))
 			{
 				isPaused = false;
-			}
-		
+			}	
 	}
 	
 }
@@ -68,6 +66,8 @@ void LevelOne::ChildRender()
 
 	// Draw score
 	score_manager_->Draw();
+
+	// If the game is paused, show the paused menu
 	if (isPaused)
 	{
 		
@@ -76,6 +76,15 @@ void LevelOne::ChildRender()
 		
 	}
 
+	// If mario is dead and the dead animation is done, show the  menu
+	if (mario_->isDead)
+	{
+		if (mario_->deathAnimationDone)
+		{
+			pausedMenu_->showMenu();
+			pausedMenu_->ChildRender();
+		}
+	}
 }
 
 void LevelOne::BackgroundRender()
@@ -90,7 +99,9 @@ void LevelOne::Initialize()
 {
 	// Place to initialize and add objects to scene ----------------------------------------
 	Mario* temp = new Mario(*input_, collider_manager_);
+	mario_ = temp;
 	camera_.SetTarget(temp);
+	map_generator_.GenerateWalls(collider_manager_, game_objects_, *score_manager_);
 	game_objects_.push_back(temp);
 	/*game_objects_.push_back(new Goomba(*input_, collider_manager_, { 800.0f,200.0f }));
 	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1000.0f,200.0f }));
@@ -103,7 +114,7 @@ void LevelOne::Initialize()
 
 	// Add scoremanager
 	score_manager_ = new ScoreManager(*graphics_, camera_);
-	map_generator_.GenerateWalls(collider_manager_, game_objects_, *score_manager_);
+
 
 	background4.Initialize(*graphics_);
 	background3.Initialize(*graphics_);

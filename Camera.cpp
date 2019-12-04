@@ -39,6 +39,14 @@ void Camera::SetTarget(GameObject* go)
 	target_ = go;
 }
 
+void Camera::SetCameraBounds(const int& minx, const int& miny, const int& maxx, const int& maxy)
+{
+	min_x_ = minx;
+	min_y_ = miny;
+	max_x_ = maxx;
+	max_y_ = maxy;
+}
+
 void Camera::Update(const float& frametime)
 {
 	SyncTargetPosition();

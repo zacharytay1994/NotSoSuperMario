@@ -18,6 +18,10 @@ private:
 	int x_tile_ = 10;
 	int y_tile_ = 1;
 
+	bool force_update_ = true;
+	float lerp_strength_ = 2.0f;
+	float distance_threshold_ = 10.0f;
+
 	Sprite sprite_;
 	std::stringstream ss;
 public:
@@ -30,4 +34,6 @@ public:
 	
 	void UpdatePosition(const float& x, const float&y);
 	void DrawTiles();
+	void LerpToPosition(const float& frametime);
+	void ForceUpdate(const bool& lerp);
 };

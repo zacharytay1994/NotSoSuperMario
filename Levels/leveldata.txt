@@ -5,3 +5,5 @@ levelfour.txt
 levelfive.txt
 somethingtesting.txt
 testingsomelevel.txt
+testaftermerge.txt
+somelevelawesome.txt

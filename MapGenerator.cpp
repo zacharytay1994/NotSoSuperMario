@@ -17,8 +17,9 @@ MapGenerator::~MapGenerator()
 
 void MapGenerator::GenerateWalls(ColliderManager& cm, std::vector<GameObject*>& golist, ScoreManager& sm, Scene& s, Mario& m)
 {
+	// hard coded start for now, not so important unless making scalable
 	int start_x = 0;
-	int start_y = 0;
+	int start_y = -50;
 	int cell_size_ = 64 * CAMERA_ZOOM;
 	std::ifstream file(map_path_);
 	if (file.is_open()) {
@@ -41,10 +42,18 @@ void MapGenerator::GenerateWalls(ColliderManager& cm, std::vector<GameObject*>& 
 					golist.push_back(new Flag(cm, Vec2<float>(start_x * cell_size_, (start_y - 5.5) * cell_size_), m, s));
 					golist.push_back(new TestObject(cm, start_x * cell_size_, start_y * cell_size_));
 				}
+				else if (c == 'm') {
+					mario_position_ = Vec2<float>(start_x * cell_size_, start_y * cell_size_);
+				}
 				start_x++;
 			}
 			start_x = 0;
 			start_y++;
 		}
 	}
+}
+
+Vec2<float> MapGenerator::GetMarioPosition()
+{
+	return mario_position_;
 }

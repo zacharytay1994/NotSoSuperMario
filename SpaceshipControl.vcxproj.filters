@@ -32,12 +32,8 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TestObject.cpp" />
     <ClCompile Include="textureManager.cpp" />
-    <ClCompile Include="winmain.cpp" />
-<<<<<<< HEAD
-    <ClCompile Include="pausedMenu.cpp" />
     <ClCompile Include="Timer.cpp" />
-=======
->>>>>>> 0d1f8bb0b6eef234786aff55af4a6ebeab39b359
+    <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
@@ -63,22 +59,18 @@
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="Mario.h" />
+    <ClInclude Include="Mushroom.h" />
     <ClInclude Include="NotSoSuperMario.h" />
     <ClInclude Include="pausedMenu.h" />
     <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="QuestionMarkBlock.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="spacewar.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TestObject.h" />
     <ClInclude Include="textureManager.h" />
-    <ClInclude Include="Vec2.h" />
-<<<<<<< HEAD
-    <ClInclude Include="pausedMenu.h" />
     <ClInclude Include="Timer.h" />
-=======
-    <ClInclude Include="QuestionMarkBlock.h" />
-    <ClInclude Include="Mushroom.h" />
->>>>>>> 0d1f8bb0b6eef234786aff55af4a6ebeab39b359
+    <ClInclude Include="Vec2.h" />
   </ItemGroup>
 </Project>

@@ -1,13 +1,14 @@
 #include "Collider.h"
 #include "GameObject.h"
 
-Collider::Collider(D3DXVECTOR2 center, const std::string& type, GameObject* go, const bool& isstatic, const bool& issimulated)
+Collider::Collider(D3DXVECTOR2 center, const std::string& type, GameObject* go, const bool& isstatic, const bool& issimulated, const bool& isstaticcheck)
 	:
 	type_(type),
 	center_point(center),
 	owner_(go),
 	is_static_(isstatic),
-	is_simulated_(issimulated)
+	is_simulated_(issimulated),
+	is_static_check_(isstaticcheck)
 {
 }
 

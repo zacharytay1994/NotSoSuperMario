@@ -33,13 +33,9 @@ LevelOne::~LevelOne()
 
 void LevelOne::Update(const float& frametime)
 {
-
 	if (!isPaused)
 	{
-		if (input_->wasKeyPressed(VK_ESCAPE))
-		{
-			isPaused = true;
-		}
+		if (input_->wasKeyPressed(VK_ESCAPE)) { isPaused = true; }
 
 		Scene::Update(frametime);
 		camera_.Update(frametime);
@@ -49,34 +45,22 @@ void LevelOne::Update(const float& frametime)
 		background2.Update(frametime);
 		background1.Update(frametime);
 	}
-	if (isPaused)
-
+	if (isPaused && input_->wasKeyPressed(VK_RETURN))
 	{
-
-
-			if (input_->wasKeyPressed(VK_RETURN))
-			{
-				isPaused = false;
-			}
-		
+		isPaused = false;
 	}
-	
 }
 
 void LevelOne::ChildRender()
 {
 	// by default render on Scene.h is called every frame which will render the gameobjects
-
 	// Draw score
 	score_manager_->Draw();
 	if (isPaused)
 	{
-		
-			pausedMenu_->showMenu();
-			pausedMenu_->ChildRender();
-		
+		pausedMenu_->showMenu();
+		pausedMenu_->ChildRender();	
 	}
-
 }
 
 void LevelOne::BackgroundRender()
@@ -89,20 +73,10 @@ void LevelOne::BackgroundRender()
 
 void LevelOne::Initialize()
 {
-	// Place to initialize and add objects to scene ----------------------------------------
+	// Place to initialize & add objects to scene ----------------------------------------
 	Mario* temp = new Mario(*input_, collider_manager_);
 	camera_.SetTarget(temp);
 	game_objects_.push_back(temp);
-	/*game_objects_.push_back(new Goomba(*input_, collider_manager_, { 800.0f,200.0f }));
-	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1000.0f,200.0f }));
-	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1200.0f,200.0f }));
-	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1400.0f,200.0f }));
-	game_objects_.push_back(new Coin(*input_, collider_manager_, { 400.0f,300.0f }));
-	game_objects_.push_back(new Coin(*input_, collider_manager_, { 500.0f,300.0f }));
-	game_objects_.push_back(new Coin(*input_, collider_manager_, { 600.0f,300.0f }));*/
-
-	// Create flag
-	game_objects_.push_back(new Flag(collider_manager_, { 6200.0f, 480.0f }, temp));
 
 	// Add scoremanager
 	score_manager_ = new ScoreManager(*graphics_, camera_);
@@ -114,39 +88,6 @@ void LevelOne::Initialize()
 	background1.Initialize(*graphics_);
 
 	pausedMenu_->Initialize(*graphics_);
-	
-	
-
-	/*game_objects_.push_back(new TestObject(collider_manager_, 320, GAME_HEIGHT - 50));
-	for (int i = 1; i < 5; i++) {
-		game_objects_.push_back(new TestObject(collider_manager_, 320 + i * 64, GAME_HEIGHT - 50));
-		game_objects_.push_back(new TestObject(collider_manager_, 320 - i * 64, GAME_HEIGHT - 50));
-	}
-	game_objects_.push_back(new TestObject(collider_manager_, 320, 50));
-	for (int i = 1; i < 5; i++) {
-		game_objects_.push_back(new TestObject(collider_manager_, 320 + i * 64, 50));
-		game_objects_.push_back(new TestObject(collider_manager_, 320 - i * 64, 50));
-	}
-	game_objects_.push_back(new TestObject(collider_manager_, 50, 240));
-	game_objects_.push_back(new TestObject(collider_manager_, 114, 240));
-	game_objects_.push_back(new TestObject(collider_manager_, 178, 240));
-	for (int i = 1; i < 3; i++) {
-		game_objects_.push_back(new TestObject(collider_manager_, 50, 240 + i * 64));
-		game_objects_.push_back(new TestObject(collider_manager_, 50, 240 - i * 64));
-	}
-	game_objects_.push_back(new TestObject(collider_manager_, GAME_WIDTH - 50, 240));
-	game_objects_.push_back(new TestObject(collider_manager_, GAME_WIDTH - 178, 240));
-	game_objects_.push_back(new TestObject(collider_manager_, GAME_WIDTH - 242, 240));
-	for (int i = 1; i < 3; i++) {
-		game_objects_.push_back(new TestObject(collider_manager_, GAME_WIDTH - 50, 240 + i * 64));
-		game_objects_.push_back(new TestObject(collider_manager_, GAME_WIDTH - 50, 240 - i * 64));
-	}*/
-	
-	/*for (int i = 0; i < 10; i++) {
-		int x = rand() % (GAME_WIDTH-100) + 100;
-		int y = rand() % (GAME_HEIGHT - 100) + 100;
-		game_objects_.push_back(new TestObject(collider_manager_, (float)x, (float)y));
-	}*/
 	// -------------------------------------------------------------------------------------
 	Scene::Initialize();
 }

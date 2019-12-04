@@ -38,16 +38,14 @@ LevelOne::~LevelOne()
 
 void LevelOne::Update(const float& frametime)
 {
-	Scene::Update(frametime);
+	/*Scene::Update(frametime);
 	camera_.Update(frametime);
 	graphics_->BindCameraTransform(D3DXVECTOR2(camera_.GetCameraTransform().x_, camera_.GetCameraTransform().y_));
 	background4.Update(frametime);
 	background3.Update(frametime);
 	background2.Update(frametime);
-	background1.Update(frametime);
-	save_mario_.Update(frametime);
-	load_mario_.Update(frametime);
-	TestingUpdate();
+	background1.Update(frametime);*/
+	
 	if (!isPaused)
 	{
 		if (input_->wasKeyPressed(VK_ESCAPE)) { isPaused = true; }
@@ -58,7 +56,10 @@ void LevelOne::Update(const float& frametime)
 		background4.Update(frametime);
 		background3.Update(frametime);
 		background2.Update(frametime);
-		background1.Update(frametime);
+		background1.Update(frametime); 
+		save_mario_.Update(frametime);
+		load_mario_.Update(frametime);
+		TestingUpdate();
 	}
 	if (isPaused && input_->wasKeyPressed(VK_RETURN))
 	{

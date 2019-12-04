@@ -28,6 +28,7 @@ public:
 	float deadVel = 0;
 	float velocity = 250;
 	bool deathAnimationDone = false;
+	int animation_id_ = 0; // 0 = idle, 1 = running, 2 = jumping
 	bool is_big_ = false;
 public:
 	Mario(Input& input, ColliderManager& cm);

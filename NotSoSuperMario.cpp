@@ -43,6 +43,16 @@ void NotSoSuperMario::initialize(HWND hwnd)
 
 void NotSoSuperMario::ChangeScene(Scene* scene)
 {
+	if (has_scene_) {
+		delete current_scene_;
+	}
+	current_scene_ = scene;
+	BindGameDataToScene();
+	current_scene_->Initialize();
+}
+
+void NotSoSuperMario::ChangeSceneNonDelete(Scene* scene)
+{
 	current_scene_ = scene;
 	BindGameDataToScene();
 	current_scene_->Initialize();

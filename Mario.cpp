@@ -5,7 +5,9 @@
 #include <Windows.h>
 #include <chrono>
 #include <thread>
-
+#include <string>
+#include <iostream>
+#include <sstream>
 
 Mario::Mario(Input& input, ColliderManager& cm)
 	:
@@ -73,7 +75,6 @@ void Mario::Update(const float& frametime)
 				isDead = true;
 			}
 		}
-
 	}
 
 	// When mario is dead, play the mario deadth animation once
@@ -109,6 +110,12 @@ void Mario::Update(const float& frametime)
 		}
 	}
 	ExecuteBounce();
+	/*D3DXVECTOR2 test = dynamic_cast<CollisionDetectionComponent<AABBCollider>*>(GetComponent("CollisionDetectionComponent"))->GetCollider()->center_point;
+	std::stringstream ss;
+	ss << "COLLIDER: " << test.x << "," << test.y << std::endl;
+	ss << "POSITION: " << position_.x << "," << position_.y << std::endl;
+	ss << "SPRITEPOS: " << sprite_->GetImage().getX() << "," << sprite_->GetImage().getY() << std::endl;*/
+	//OutputDebugString(ss.str().c_str());
 }
 
 void Mario::Render()

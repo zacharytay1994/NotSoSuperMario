@@ -1,5 +1,4 @@
 #include "Mushroom.h"
-#include <Windows.h>
 
 Mushroom::Mushroom(ColliderManager& cm, const Vec2<float>& position, Mario& m)
 	:

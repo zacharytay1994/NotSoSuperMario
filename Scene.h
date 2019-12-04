@@ -15,7 +15,7 @@ public:
 	std::vector<GameObject*> game_objects_;
 	std::vector<GameObject*> to_add_;
 	bool has_game_data_ = false;
-	bool isPaused = false;
+	//bool isPaused = false;
 public:
 	Scene(Game* owner);
 	virtual ~Scene();

@@ -10,9 +10,9 @@ private:
 	Vec2<float> position_ = { 0.0f, 0.0f };
 	Vec2<float> camera_transform_ = { 0.0f, 0.0f };
 	float min_y_ = 50.0f;
-	float max_y_ = 1600.0f;
+	float max_y_ = 3200.0f;
 	float min_x_ = 50.0f;
-	float max_x_ = 1600.0f;
+	float max_x_ = 3200.0f;
 public:
 	Camera();
 	~Camera();

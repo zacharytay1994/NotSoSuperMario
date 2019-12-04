@@ -41,6 +41,9 @@ void QuestionMarkBlock::Update(const float& frametime)
 			// Set airtime & halfairtime
 			curr_frame_ = airtime_;
 
+			// Set original y
+			original_y_ = position_.y;
+
 			// Change sprite of block
 			ChangeSprite(used_sprite_);
 
@@ -71,7 +74,7 @@ void QuestionMarkBlock::Update(const float& frametime)
 		else if (curr_frame_ == 0)
 		{
 			phy_->SetVelocity(Vec2<float>(0.0f, 0.0f));
-			position_.y--;
+			position_.y = original_y_;
 			curr_frame_ = -1;
 		}
 	}

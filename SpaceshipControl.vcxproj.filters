@@ -32,6 +32,7 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TestObject.cpp" />
     <ClCompile Include="textureManager.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -58,17 +59,18 @@
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="Mario.h" />
+    <ClInclude Include="Mushroom.h" />
     <ClInclude Include="NotSoSuperMario.h" />
     <ClInclude Include="pausedMenu.h" />
     <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="QuestionMarkBlock.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="spacewar.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TestObject.h" />
     <ClInclude Include="textureManager.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Vec2.h" />
-    <ClInclude Include="QuestionMarkBlock.h" />
-    <ClInclude Include="Mushroom.h" />
   </ItemGroup>
 </Project>

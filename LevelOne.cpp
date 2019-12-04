@@ -7,7 +7,7 @@
 #include <iostream>
 #include "NotSoSuperMario.h"
 #include "pausedMenu.h"
-
+#include "MainMenuScreen.h"
 using namespace std;
 
 LevelOne::LevelOne(Game* owner)
@@ -19,6 +19,7 @@ LevelOne::LevelOne(Game* owner)
 	background2("pictures\\rockbackground.png", 1200, 1200, 1, camera_, 0.3f, 0.1f, -300.0f, -200.0f, 10, 1),
 	background1("pictures\\bushesbackground.png", 1200, 700, 1, camera_, 0.2f, 0.1f, -300.0f, 100.0f, 10, 1),
 	pausedMenu_(new pausedMenu(&camera_)),
+	timer_(new Timer()),
 	isPaused(false)
 {
 }
@@ -33,8 +34,9 @@ LevelOne::~LevelOne()
 
 void LevelOne::Update(const float& frametime)
 {
-	if (!isPaused)
+	if (!isPaused && !(mario_ ->deathAnimationDone))
 	{
+		// Do not update the frame when the game is paused or mario is dead
 		if (input_->wasKeyPressed(VK_ESCAPE)) { isPaused = true; }
 
 		Scene::Update(frametime);
@@ -44,11 +46,37 @@ void LevelOne::Update(const float& frametime)
 		background3.Update(frametime);
 		background2.Update(frametime);
 		background1.Update(frametime);
+
+		timer_->Update();
 	}
-	if (isPaused && input_->wasKeyPressed(VK_RETURN))
+
+	if (isPaused)
 	{
-		isPaused = false;
+		pausedMenu_->Update(frametime);
+
+		if (input_->wasKeyPressed(VK_RETURN))
+		{
+			timer_->StopTimer();
+			timer_->PausedDuration();
+
+			if (pausedMenu_->selectionValue() == 0)
+			{
+				isPaused = false;
+				timer_->ContinueTimer();
+			}
+			else if (pausedMenu_->selectionValue() == 1)
+			{
+				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelOne(owner_));
+			}
+			else if (pausedMenu_->selectionValue() == 2)
+			{
+				graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
+				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
+			}
+		}
 	}
+
+	if (mario_->isDead) { timer_->StopTimer(); }
 }
 
 void LevelOne::ChildRender()
@@ -56,10 +84,22 @@ void LevelOne::ChildRender()
 	// by default render on Scene.h is called every frame which will render the gameobjects
 	// Draw score
 	score_manager_->Draw();
+
+	// If the game is paused, show the paused menu
 	if (isPaused)
 	{
 		pausedMenu_->showMenu();
 		pausedMenu_->ChildRender();	
+	}
+
+	// If mario is dead and the dead animation is done, show the  menu
+	if (mario_->isDead)
+	{
+		if (mario_->deathAnimationDone)
+		{
+			pausedMenu_->showMenu();
+			pausedMenu_->ChildRender();
+		}
 	}
 }
 
@@ -73,21 +113,29 @@ void LevelOne::BackgroundRender()
 
 void LevelOne::Initialize()
 {
-	// Place to initialize & add objects to scene ----------------------------------------
+	// Place to initialize and add objects to scene ----------------------------------------
 	Mario* temp = new Mario(*input_, collider_manager_);
+	mario_ = temp;
 	camera_.SetTarget(temp);
-	game_objects_.push_back(temp);
+
+	if (!isStart)
+	{
+		startTime = clock();
+		timer_->StartTimer(startTime);
+		isStart = true;
+	}
 
 	// Add scoremanager
-	score_manager_ = new ScoreManager(*graphics_, camera_);
+	score_manager_ = new ScoreManager(*graphics_, camera_, *timer_);
 	map_generator_.GenerateWalls(collider_manager_, game_objects_, *score_manager_, *this, *temp);
+	game_objects_.push_back(temp);
 
 	background4.Initialize(*graphics_);
 	background3.Initialize(*graphics_);
 	background2.Initialize(*graphics_);
 	background1.Initialize(*graphics_);
 
-	pausedMenu_->Initialize(*graphics_);
+	pausedMenu_->Initialize(*graphics_, input_);
 	// -------------------------------------------------------------------------------------
 	Scene::Initialize();
 }

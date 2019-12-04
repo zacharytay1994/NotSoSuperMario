@@ -60,7 +60,6 @@ void LevelOne::Update(const float& frametime)
 			}
 		
 	}
-	
 }
 
 void LevelOne::ChildRender()
@@ -102,7 +101,7 @@ void LevelOne::Initialize()
 	game_objects_.push_back(new Coin(*input_, collider_manager_, { 600.0f,300.0f }));*/
 
 	// Create flag
-	game_objects_.push_back(new Flag(collider_manager_, { 6200.0f, 480.0f }, temp));
+	//game_objects_.push_back(new Flag(collider_manager_, { 6200.0f, 480.0f }, temp));
 
 	// Add scoremanager
 	score_manager_ = new ScoreManager(*graphics_, camera_);

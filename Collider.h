@@ -25,7 +25,7 @@ public:
 	float half_width_;
 	float half_height_;
 public:
-	AABBCollider(D3DXVECTOR2 center, GameObject* go, const float& width, const float& height, const bool& isstatic, const bool& issimulated);
+	AABBCollider(D3DXVECTOR2 center, GameObject* go, const float& width, const float& height, const bool& isstatic, const bool& issimulated, const bool& isstaticcheck = false);
 	~AABBCollider();
 };
 
@@ -33,6 +33,6 @@ class CircleCollider : public Collider {
 public:
 	float radius_;
 public:
-	CircleCollider(D3DXVECTOR2 center, GameObject* go, const float& radius, const bool& isstatic, const bool& issimulated);
+	CircleCollider(D3DXVECTOR2 center, GameObject* go, const float& radius, const bool& isstatic, const bool& issimulated, const bool& isstaticcheck = false);
 	~CircleCollider();
 };

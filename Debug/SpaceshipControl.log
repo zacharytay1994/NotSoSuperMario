@@ -1,3 +1,0 @@
-﻿  BouncyPlatform.cpp
-Background.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
-  SpaceshipControl.vcxproj -> C:\Users\moshi\Source\Repos\NotSoSuperMario\Debug\SpaceshipControl.exe

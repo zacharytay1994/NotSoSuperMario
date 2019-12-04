@@ -4,11 +4,14 @@
 QuestionMarkBlock::QuestionMarkBlock(ColliderManager& cm, const Vec2<float>& position, Scene& s, Mario& m)
 	:
 	cm_(&cm),
-	GameObject("pictures\\questionmarkblock.png", 64, 64, 1, D3DXVECTOR2(position.x_, position.y_)),
+	GameObject("pictures\\questionmarkblock.png", 64, 64, 6, D3DXVECTOR2(position.x_, position.y_)),
 	mario_(&m),
 	scene_(&s),
 	used_sprite_(new Sprite("pictures\\emptyquestionmarkblock.png", 64, 64, 1))
 {
+	// Initialize sprite
+	sprite_->InitializeAnimation(0, 5, .15f);
+
 	// Initialize PhysicsComponent & add it to the Question Mark block
 	phy_ = new PhysicsComponent(*this, 0, false);
 	AddComponent(phy_);
@@ -65,7 +68,6 @@ void QuestionMarkBlock::ChildInitialize(Graphics& gfx)
 {
 	GameObject::ChildInitialize(gfx);
 
-	sprite_->Initialize(gfx);
 	used_sprite_->Initialize(gfx);
 	used_sprite_->GetImage().setScale(CAMERA_ZOOM);
 }

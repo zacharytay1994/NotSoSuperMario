@@ -35,6 +35,14 @@ void pausedMenu::Update(const float & frametime)
 		}
 	}
 
+	if (y_offset != 0)
+	{
+		if (input_->wasKeyPressed(VK_UP))
+		{
+			y_offset -= 50;
+		}
+	}
+
 	//check selection
 	if (y_offset == 0)
 	{
@@ -48,8 +56,6 @@ void pausedMenu::Update(const float & frametime)
 	{
 		selection = 2;
 	}
-
-
 	 
 }
 

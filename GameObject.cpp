@@ -1,11 +1,12 @@
 #include "GameObject.h"
 #include "constants.h"
 
-GameObject::GameObject(const std::string& path, const int& width, const int& height, const int& cols, D3DXVECTOR2& pos)
+GameObject::GameObject(const std::string& path, const int& width, const int& height, const int& cols, D3DXVECTOR2& pos, std::string t)
 	:
 	position_(pos),
 	sprite_(new Sprite(path, width, height, cols)),
-	hold_(sprite_)
+	hold_(sprite_),
+	type_(t)
 {
 }
 
@@ -76,8 +77,8 @@ Component* GameObject::GetComponent(std::string type)
 
 void GameObject::SyncSprite()
 {
-	sprite_->GetImage().setX(position_.x - sprite_->GetImage().getWidth()/2);
-	sprite_->GetImage().setY(position_.y - sprite_->GetImage().getHeight()/4);
+	sprite_->GetImage().setX(position_.x - sprite_->GetImage().getWidth()/2*CAMERA_ZOOM);
+ 	sprite_->GetImage().setY(position_.y - sprite_->GetImage().getHeight()/2*CAMERA_ZOOM);
 }
 
 void GameObject::ChangeSprite(Sprite* sprite)

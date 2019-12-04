@@ -6,6 +6,12 @@
 #include "MarioGhost.h"
 #include "NotSoSuperMario.h"
 #include "LevelEditor.h"
+#include "Flag.h"
+#include <iostream>
+#include "NotSoSuperMario.h"
+#include "pausedMenu.h"
+
+using namespace std;
 
 LevelOne::LevelOne(Game* owner, const std::string& filename)
 	:
@@ -16,7 +22,9 @@ LevelOne::LevelOne(Game* owner, const std::string& filename)
 	background2("pictures\\rockbackground.png", 1200, 1200, 1, camera_, 0.3f, 0.1f, -300.0f, -200.0f, 10, 1),
 	background1("pictures\\bushesbackground.png", 1200, 700, 1, camera_, 0.2f, 0.1f, -300.0f, 100.0f, 10, 1),
 	save_mario_("levelonerecord.txt"),
-	load_mario_("levelonerecord.txt")
+	load_mario_("levelonerecord.txt"),
+	pausedMenu_(new pausedMenu(&camera_)),
+	isPaused(false)
 {
 }
 
@@ -40,15 +48,35 @@ void LevelOne::Update(const float& frametime)
 	save_mario_.Update(frametime);
 	load_mario_.Update(frametime);
 	TestingUpdate();
+	if (!isPaused)
+	{
+		if (input_->wasKeyPressed(VK_ESCAPE)) { isPaused = true; }
+
+		Scene::Update(frametime);
+		camera_.Update(frametime);
+		graphics_->BindCameraTransform(D3DXVECTOR2(camera_.GetCameraTransform().x_, camera_.GetCameraTransform().y_));
+		background4.Update(frametime);
+		background3.Update(frametime);
+		background2.Update(frametime);
+		background1.Update(frametime);
+	}
+	if (isPaused && input_->wasKeyPressed(VK_RETURN))
+	{
+		isPaused = false;
+	}
 }
 
 void LevelOne::ChildRender()
 {
 	// by default render on Scene.h is called every frame which will render the gameobjects
-
 	// Draw score
 	score_manager_->Draw();
 	TestingDraw();
+	if (isPaused)
+	{
+		pausedMenu_->showMenu();
+		pausedMenu_->ChildRender();	
+	}
 }
 
 void LevelOne::BackgroundRender()
@@ -61,7 +89,7 @@ void LevelOne::BackgroundRender()
 
 void LevelOne::Initialize()
 {
-	// Place to initialize and add objects to scene ----------------------------------------
+	// Place to initialize & add objects to scene ----------------------------------------
 	Mario* temp = new Mario(*input_, collider_manager_);
 	MarioGhost* mario_ghost = new MarioGhost();
 	camera_.SetTarget(temp);
@@ -81,7 +109,7 @@ void LevelOne::Initialize()
 
 	// Add scoremanager
 	score_manager_ = new ScoreManager(*graphics_, camera_);
-	map_generator_.GenerateWalls(collider_manager_, game_objects_, *score_manager_);
+	map_generator_.GenerateWalls(collider_manager_, game_objects_, *score_manager_, *this, *temp);
 
 	background4.Initialize(*graphics_);
 	background3.Initialize(*graphics_);
@@ -122,6 +150,7 @@ void LevelOne::Initialize()
 		int y = rand() % (GAME_HEIGHT - 100) + 100;
 		game_objects_.push_back(new TestObject(collider_manager_, (float)x, (float)y));
 	}*/
+	pausedMenu_->Initialize(*graphics_);
 	// -------------------------------------------------------------------------------------
 	Scene::Initialize();
 }

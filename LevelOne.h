@@ -32,6 +32,9 @@ public:
 	Font* name_display_;
 	bool clear_name_ = true;
 
+	pausedMenu* pausedMenu_;
+	bool isPaused;
+	bool levelCompleted = false;
 public:
 	LevelOne(Game* owner, const std::string& filename);
 	~LevelOne();

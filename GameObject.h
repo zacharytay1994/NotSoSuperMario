@@ -6,11 +6,18 @@
 #include "Sprite.h"
 #include "Component.h"
 
+class Collider;
 struct TouchData {
 	bool touch_bottom_;
 	bool touch_top_;
 	bool touch_right_;
 	bool touch_left_;
+};
+struct TouchObject {
+	Collider* touch_obj_bottom_;
+	Collider* touch_obj_top_;
+	Collider* touch_obj_right_;
+	Collider* touch_obj_left_;
 };
 class GameObject {
 protected:
@@ -21,6 +28,7 @@ public:
 	Sprite* hold_;
 	// temporary fix
 	TouchData touch_ = { false, false, false, false };
+	TouchObject touch_obj_ = { NULL, NULL, NULL, NULL };
 	bool on_ground_ = false;
 	float air_time_ = 0.0f;
 	// "hacky fixes"
@@ -29,8 +37,9 @@ public:
 	bool removed_ = false;
 	bool bounce_off_others_ = false;
 	float bounce_strength_ = 300.0f;
+	std::string type_ = "";
 public:
-	GameObject(const std::string& path, const int& width, const int& height, const int& cols, D3DXVECTOR2& pos);
+	GameObject(const std::string& path, const int& width, const int& height, const int& cols, D3DXVECTOR2& pos, std::string t = "");
 	virtual ~GameObject();
 	virtual void Update(const float& frametime);
 	virtual void Render();

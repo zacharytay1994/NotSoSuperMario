@@ -1,227 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Background.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Coin.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Collider.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="ColliderManager.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionDetectionComponent.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Font.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="game.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Goomba.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="image.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="input.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="InputComponent.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelOne.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenuScreen.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="MapGenerator.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="NotSoSuperMario.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Mario.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsComponent.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreManager.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="spacewar.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="TestObject.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="textureManager.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="winmain.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="SaveMario.cpp" />
-    <ClCompile Include="LoadMario.cpp" />
-    <ClCompile Include="MarioGhost.cpp" />
-    <ClCompile Include="LevelSelect.cpp" />
-    <ClCompile Include="LevelEditor.cpp" />
+    <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Coin.cpp" />
+    <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="ColliderManager.cpp" />
+    <ClCompile Include="CollisionDetectionComponent.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Flag.cpp">
+    <ClCompile Include="Font.cpp" />
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Goomba.cpp" />
+    <ClCompile Include="graphics.cpp" />
+    <ClCompile Include="image.cpp" />
+    <ClCompile Include="input.cpp" />
+    <ClCompile Include="InputComponent.cpp" />
+    <ClCompile Include="LevelOne.cpp" />
+    <ClCompile Include="MainMenuScreen.cpp" />
+    <ClCompile Include="MapGenerator.cpp" />
+    <ClCompile Include="Mario.cpp" />
+    <ClCompile Include="Mushroom.cpp" />
+    <ClCompile Include="NotSoSuperMario.cpp" />
+    <ClCompile Include="pausedMenu.cpp" />
+    <ClCompile Include="PhysicsComponent.cpp" />
+    <ClCompile Include="QuestionMarkBlock.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
+    <ClCompile Include="spacewar.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="TestObject.cpp" />
+    <ClCompile Include="textureManager.cpp" />
+    <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="constants.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="game.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="gameError.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="image.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="input.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="spacewar.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="textureManager.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Background.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Collider.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Font.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="NotSoSuperMario.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Vec2.h">
-      <Filter>AddedHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>AddedHeaders\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelOne.h">
-      <Filter>AddedHeaders\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenuScreen.h">
-      <Filter>AddedHeaders\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Coin.h">
-      <Filter>AddedHeaders\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Goomba.h">
-      <Filter>AddedHeaders\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="TestObject.h">
-      <Filter>AddedHeaders\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Mario.h">
-      <Filter>AddedHeaders\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="MarioGhost.h">
-      <Filter>AddedHeaders\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionDetectionComponent.h">
-      <Filter>AddedHeaders\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionResolutionComponent.h">
-      <Filter>AddedHeaders\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>AddedHeaders\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="InputComponent.h">
-      <Filter>AddedHeaders\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsComponent.h">
-      <Filter>AddedHeaders\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>AddedHeaders\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreManager.h">
-      <Filter>AddedHeaders\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="MapGenerator.h">
-      <Filter>AddedHeaders\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="ColliderManager.h">
-      <Filter>AddedHeaders\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadMario.h">
-      <Filter>AddedHeaders\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveMario.h">
-      <Filter>AddedHeaders\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelSelect.h">
-      <Filter>AddedHeaders\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelEditor.h">
-      <Filter>AddedHeaders\Scenes</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Base">
-      <UniqueIdentifier>{2f03e7a0-53a2-4af9-a41e-6d5999ee995a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="AddedHeaders">
-      <UniqueIdentifier>{fb4b1b8c-0a43-41e7-8a9b-ca4c8cd13db0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source">
-      <UniqueIdentifier>{1e576d65-e856-4114-9336-4e1422d54717}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="AddedHeaders\Scenes">
-      <UniqueIdentifier>{fb72b58d-37e0-4f49-af07-56e4ae4280c7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="AddedHeaders\GameObjects">
-      <UniqueIdentifier>{c5d659da-c20d-4c6f-98ea-18d7f393a386}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="AddedHeaders\Components">
-      <UniqueIdentifier>{20bd1d3b-8f79-4bdf-a379-43d89b06bb2e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="AddedHeaders\Managers">
-      <UniqueIdentifier>{cd7b74ff-4f1f-4f93-a0eb-77fdd1fee4e0}</UniqueIdentifier>
-    </Filter>
+    <ClInclude Include="Background.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Coin.h" />
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="ColliderManager.h" />
+    <ClInclude Include="CollisionDetectionComponent.h" />
+    <ClInclude Include="CollisionResolutionComponent.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="constants.h" />
+    <ClInclude Include="Font.h" />
+    <ClInclude Include="flag.h" />
+    <ClInclude Include="game.h" />
+    <ClInclude Include="gameError.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Goomba.h" />
+    <ClInclude Include="graphics.h" />
+    <ClInclude Include="image.h" />
+    <ClInclude Include="input.h" />
+    <ClInclude Include="InputComponent.h" />
+    <ClInclude Include="LevelOne.h" />
+    <ClInclude Include="MainMenuScreen.h" />
+    <ClInclude Include="MapGenerator.h" />
+    <ClInclude Include="Mario.h" />
+    <ClInclude Include="NotSoSuperMario.h" />
+    <ClInclude Include="pausedMenu.h" />
+    <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="ScoreManager.h" />
+    <ClInclude Include="spacewar.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="TestObject.h" />
+    <ClInclude Include="textureManager.h" />
+    <ClInclude Include="Vec2.h" />
+    <ClInclude Include="QuestionMarkBlock.h" />
+    <ClInclude Include="Mushroom.h" />
   </ItemGroup>
 </Project>

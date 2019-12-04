@@ -165,8 +165,11 @@ class Image
     // Flip image horizontally (mirror)
     virtual void flipHorizontal(bool flip)  {spriteData.flipHorizontal = flip;}
 
+	bool GetFlipHorizontal() { return spriteData.flipHorizontal; }
+
     // Flip image vertically
     virtual void flipVertical(bool flip)    {spriteData.flipVertical = flip;}
+
 
     // Draw Image using color as filter. Default color is WHITE.
     virtual void draw(COLOR_ARGB color = graphicsNS::WHITE);

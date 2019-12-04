@@ -3,6 +3,9 @@
 #include "Mario.h"
 #include "Goomba.h"
 #include "TestObject.h"
+#include "MarioGhost.h"
+#include "NotSoSuperMario.h"
+#include "LevelEditor.h"
 #include "Flag.h"
 #include <iostream>
 #include "NotSoSuperMario.h"
@@ -10,14 +13,16 @@
 #include "MainMenuScreen.h"
 using namespace std;
 
-LevelOne::LevelOne(Game* owner)
+LevelOne::LevelOne(Game* owner, const std::string& filename)
 	:
 	Scene(owner),
-	map_generator_("levelone.txt"),
+	map_generator_(filename),
 	background4("pictures\\mountainbackground.png", 1200, 1200, 1, camera_, 0.5f, 0.1f, -300.0f, -400.0f, 10, 1),
 	background3("pictures\\cloudbackground.png", 1200, 1200, 1, camera_, 0.4f, 0.1f, -300.0f, -300.0f, 10, 1),
 	background2("pictures\\rockbackground.png", 1200, 1200, 1, camera_, 0.3f, 0.1f, -300.0f, -200.0f, 10, 1),
 	background1("pictures\\bushesbackground.png", 1200, 700, 1, camera_, 0.2f, 0.1f, -300.0f, 100.0f, 10, 1),
+	save_mario_("levelonerecord.txt"),
+	load_mario_("levelonerecord.txt"),
 	pausedMenu_(new pausedMenu(&camera_)),
 	timer_(new Timer()),
 	isPaused(false)
@@ -34,7 +39,7 @@ LevelOne::~LevelOne()
 
 void LevelOne::Update(const float& frametime)
 {
-	if (!isPaused && !(mario_ ->deathAnimationDone))
+	if (!isPaused && !(mario_->deathAnimationDone))
 	{
 		// Do not update the frame when the game is paused or mario is dead
 		if (input_->wasKeyPressed(VK_ESCAPE)) { isPaused = true; }
@@ -46,6 +51,9 @@ void LevelOne::Update(const float& frametime)
 		background3.Update(frametime);
 		background2.Update(frametime);
 		background1.Update(frametime);
+		save_mario_.Update(frametime);
+		load_mario_.Update(frametime);
+		TestingUpdate();
 
 		timer_->Update();
 	}
@@ -66,7 +74,7 @@ void LevelOne::Update(const float& frametime)
 			}
 			else if (pausedMenu_->selectionValue() == 1)
 			{
-				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelOne(owner_));
+				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelOne(owner_, "levelone.txt"));
 			}
 			else if (pausedMenu_->selectionValue() == 2)
 			{
@@ -76,7 +84,16 @@ void LevelOne::Update(const float& frametime)
 		}
 	}
 
-	if (mario_->isDead) { timer_->StopTimer(); }
+	if (mario_->isDead) 
+	{ 
+		timer_->StopTimer(); 
+
+		if (mario_->deathAnimationDone)
+		{
+			graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
+			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
+		}
+	}
 }
 
 void LevelOne::ChildRender()
@@ -84,6 +101,7 @@ void LevelOne::ChildRender()
 	// by default render on Scene.h is called every frame which will render the gameobjects
 	// Draw score
 	score_manager_->Draw();
+	TestingDraw();
 
 	// If the game is paused, show the paused menu
 	if (isPaused)
@@ -124,6 +142,11 @@ void LevelOne::Initialize()
 		timer_->StartTimer(startTime);
 		isStart = true;
 	}
+	MarioGhost* mario_ghost = new MarioGhost();
+	save_mario_.BindMario(temp);
+	save_mario_.StartRecording(true);
+	load_mario_.BindMario(mario_ghost);
+	game_objects_.push_back(mario_ghost);
 
 	// Add scoremanager
 	score_manager_ = new ScoreManager(*graphics_, camera_, *timer_);
@@ -136,6 +159,64 @@ void LevelOne::Initialize()
 	background1.Initialize(*graphics_);
 
 	pausedMenu_->Initialize(*graphics_, input_);
+	// initialize fonts
+	options_display_ = new Font("pictures\\Fixedsys16x28.png", *graphics_, camera_);
+	name_display_ = new Font("pictures\\Fixedsys16x28.png", *graphics_, camera_);
 	// -------------------------------------------------------------------------------------
 	Scene::Initialize();
+}
+
+void LevelOne::TestingUpdate()
+{
+	if (!is_testing_) {
+		return;
+	}
+	if (input_->wasKeyPressed(VK_RETURN)) {
+		display_options_ = true;
+	}
+	if (display_options_) {
+		if (input_->wasKeyPressed('P')) {
+			is_writing_ = true;
+		}
+		else if (input_->wasKeyPressed('C')) {
+			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(held_scene_);
+		}
+	}
+	if (is_writing_) {
+		if (input_->wasKeyPressed(VK_RETURN)) {
+			dynamic_cast<LevelEditor*>(held_scene_)->PublishLevel(name_in_);
+		}
+	}
+}
+
+void LevelOne::TestingDraw()
+{
+	if (!is_testing_) {
+		return;
+	}
+	if (display_options_) {
+		options_display_->DrawTextString("CONGRATS YOU HAVE BEATEN YOUR CREATION!", Vec2<int>(10, GAME_HEIGHT / 2 - 30), *graphics_);
+		options_display_->DrawTextString("C = Continue Editing", Vec2<int>(10, GAME_HEIGHT/2), *graphics_);
+		options_display_->DrawTextString("P = Publish Level", Vec2<int>(10, GAME_HEIGHT / 2 + 30), *graphics_);
+	}
+	RenderWriting();
+}
+
+void LevelOne::SetTesting(const bool& test, Scene* scene)
+{
+	is_testing_ = test;
+	held_scene_ = scene;
+}
+
+void LevelOne::RenderWriting()
+{
+	if (is_writing_) {
+		name_display_->DrawTextString("-- Key In Your Level Name & Enter --", Vec2<int>(10, GAME_HEIGHT / 2 - 120), *graphics_);
+		name_display_->DrawTextString(name_in_, Vec2<int>(10, GAME_HEIGHT / 2 - 150), *graphics_);
+		name_in_ = input_->getTextIn();
+		if (clear_name_ && name_in_ != "") {
+			input_->clearTextIn();
+			clear_name_ = false;
+		}
+	}
 }

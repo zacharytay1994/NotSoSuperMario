@@ -3,12 +3,12 @@
 #include "Mario.h"
 #include "Goomba.h"
 #include "TestObject.h"
+#include "Flag.h"
 #include <iostream>
 #include "NotSoSuperMario.h"
 #include "pausedMenu.h"
 #include "MainMenuScreen.h"
 using namespace std;
-
 
 LevelOne::LevelOne(Game* owner)
 	:
@@ -19,6 +19,7 @@ LevelOne::LevelOne(Game* owner)
 	background2("pictures\\rockbackground.png", 1200, 1200, 1, camera_, 0.3f, 0.1f, -300.0f, -200.0f, 10, 1),
 	background1("pictures\\bushesbackground.png", 1200, 700, 1, camera_, 0.2f, 0.1f, -300.0f, 100.0f, 10, 1),
 	pausedMenu_(new pausedMenu(&camera_)),
+	timer_(new Timer()),
 	isPaused(false)
 {
 }
@@ -33,14 +34,10 @@ LevelOne::~LevelOne()
 
 void LevelOne::Update(const float& frametime)
 {
-
-	if (!isPaused)
+	if (!isPaused && !(mario_ ->deathAnimationDone))
 	{
-
-		if (input_->wasKeyPressed(VK_ESCAPE))
-		{
-			isPaused = true; 
-		}
+		// Do not update the frame when the game is paused or mario is dead
+		if (input_->wasKeyPressed(VK_ESCAPE)) { isPaused = true; }
 
 		Scene::Update(frametime);
 		camera_.Update(frametime);
@@ -49,23 +46,25 @@ void LevelOne::Update(const float& frametime)
 		background3.Update(frametime);
 		background2.Update(frametime);
 		background1.Update(frametime);
+
+		timer_->Update();
 	}
+
 	if (isPaused)
 	{
-		//if (pausedMenu_->isMenuShowed())
-		//{
-		//	pausedMenu_->Update(frametime);
-		//}
-
 		pausedMenu_->Update(frametime);
 
 		if (input_->wasKeyPressed(VK_RETURN))
 		{
+			timer_->StopTimer();
+			timer_->PausedDuration();
+
 			if (pausedMenu_->selectionValue() == 0)
 			{
 				isPaused = false;
+				timer_->ContinueTimer();
 			}
-			else if(pausedMenu_ ->selectionValue() == 1)
+			else if (pausedMenu_->selectionValue() == 1)
 			{
 				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelOne(owner_));
 			}
@@ -75,23 +74,33 @@ void LevelOne::Update(const float& frametime)
 				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
 			}
 		}
-		
 	}
-	
+
+	if (mario_->isDead) { timer_->StopTimer(); }
 }
 
 void LevelOne::ChildRender()
 {
 	// by default render on Scene.h is called every frame which will render the gameobjects
-
 	// Draw score
 	score_manager_->Draw();
+
+	// If the game is paused, show the paused menu
 	if (isPaused)
-	{	
-			pausedMenu_->showMenu();
-			pausedMenu_->ChildRender();
+	{
+		pausedMenu_->showMenu();
+		pausedMenu_->ChildRender();	
 	}
 
+	// If mario is dead and the dead animation is done, show the  menu
+	if (mario_->isDead)
+	{
+		if (mario_->deathAnimationDone)
+		{
+			pausedMenu_->showMenu();
+			pausedMenu_->ChildRender();
+		}
+	}
 }
 
 void LevelOne::BackgroundRender()
@@ -106,20 +115,20 @@ void LevelOne::Initialize()
 {
 	// Place to initialize and add objects to scene ----------------------------------------
 	Mario* temp = new Mario(*input_, collider_manager_);
+	mario_ = temp;
 	camera_.SetTarget(temp);
-	game_objects_.push_back(temp);
-	/*game_objects_.push_back(new Goomba(*input_, collider_manager_, { 800.0f,200.0f }));
-	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1000.0f,200.0f }));
-	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1200.0f,200.0f }));
-	game_objects_.push_back(new Goomba(*input_, collider_manager_, { 1400.0f,200.0f }));*/
-	/*game_objects_.push_back(new Coin(collider_manager_, { 400.0f,300.0f }));
-	game_objects_.push_back(new Coin(collider_manager_, { 500.0f,300.0f }));
-	game_objects_.push_back(new Coin(collider_manager_, { 600.0f,300.0f }));*/
-	game_objects_.push_back(new Goomba(collider_manager_, { 1400.0f,200.0f }));
+
+	if (!isStart)
+	{
+		startTime = clock();
+		timer_->StartTimer(startTime);
+		isStart = true;
+	}
 
 	// Add scoremanager
-	score_manager_ = new ScoreManager(*graphics_, camera_);
-	map_generator_.GenerateWalls(collider_manager_, game_objects_, *score_manager_);
+	score_manager_ = new ScoreManager(*graphics_, camera_, *timer_);
+	map_generator_.GenerateWalls(collider_manager_, game_objects_, *score_manager_, *this, *temp);
+	game_objects_.push_back(temp);
 
 	background4.Initialize(*graphics_);
 	background3.Initialize(*graphics_);
@@ -127,39 +136,6 @@ void LevelOne::Initialize()
 	background1.Initialize(*graphics_);
 
 	pausedMenu_->Initialize(*graphics_, input_);
-	
-	
-
-	/*game_objects_.push_back(new TestObject(collider_manager_, 320, GAME_HEIGHT - 50));
-	for (int i = 1; i < 5; i++) {
-		game_objects_.push_back(new TestObject(collider_manager_, 320 + i * 64, GAME_HEIGHT - 50));
-		game_objects_.push_back(new TestObject(collider_manager_, 320 - i * 64, GAME_HEIGHT - 50));
-	}
-	game_objects_.push_back(new TestObject(collider_manager_, 320, 50));
-	for (int i = 1; i < 5; i++) {
-		game_objects_.push_back(new TestObject(collider_manager_, 320 + i * 64, 50));
-		game_objects_.push_back(new TestObject(collider_manager_, 320 - i * 64, 50));
-	}
-	game_objects_.push_back(new TestObject(collider_manager_, 50, 240));
-	game_objects_.push_back(new TestObject(collider_manager_, 114, 240));
-	game_objects_.push_back(new TestObject(collider_manager_, 178, 240));
-	for (int i = 1; i < 3; i++) {
-		game_objects_.push_back(new TestObject(collider_manager_, 50, 240 + i * 64));
-		game_objects_.push_back(new TestObject(collider_manager_, 50, 240 - i * 64));
-	}
-	game_objects_.push_back(new TestObject(collider_manager_, GAME_WIDTH - 50, 240));
-	game_objects_.push_back(new TestObject(collider_manager_, GAME_WIDTH - 178, 240));
-	game_objects_.push_back(new TestObject(collider_manager_, GAME_WIDTH - 242, 240));
-	for (int i = 1; i < 3; i++) {
-		game_objects_.push_back(new TestObject(collider_manager_, GAME_WIDTH - 50, 240 + i * 64));
-		game_objects_.push_back(new TestObject(collider_manager_, GAME_WIDTH - 50, 240 - i * 64));
-	}*/
-	
-	/*for (int i = 0; i < 10; i++) {
-		int x = rand() % (GAME_WIDTH-100) + 100;
-		int y = rand() % (GAME_HEIGHT - 100) + 100;
-		game_objects_.push_back(new TestObject(collider_manager_, (float)x, (float)y));
-	}*/
 	// -------------------------------------------------------------------------------------
 	Scene::Initialize();
 }

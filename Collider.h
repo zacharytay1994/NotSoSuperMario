@@ -11,10 +11,11 @@ public:
 	GameObject* owner_;
 	bool is_static_ = false; // meaning infinite mass
 	bool is_simulated_ = true; // meaning collider body is to be resolved
+	bool is_static_check_ = false; // infinite mass, but collision is still checked
 	bool resolved_ = false;
 public:
 	Collider() = default;
-	Collider(D3DXVECTOR2 center, const std::string& type, GameObject* go, const bool& isstatic, const bool& issimulated);
+	Collider(D3DXVECTOR2 center, const std::string& type, GameObject* go, const bool& isstatic, const bool& issimulated, const bool& isstaticcheck = false);
 	virtual ~Collider();
 	bool DetectCollision(Collider& collider);
 };
@@ -24,7 +25,7 @@ public:
 	float half_width_;
 	float half_height_;
 public:
-	AABBCollider(D3DXVECTOR2 center, GameObject* go, const float& width, const float& height, const bool& isstatic, const bool& issimulated);
+	AABBCollider(D3DXVECTOR2 center, GameObject* go, const float& width, const float& height, const bool& isstatic, const bool& issimulated, const bool& isstaticcheck = false);
 	~AABBCollider();
 };
 
@@ -32,6 +33,6 @@ class CircleCollider : public Collider {
 public:
 	float radius_;
 public:
-	CircleCollider(D3DXVECTOR2 center, GameObject* go, const float& radius, const bool& isstatic, const bool& issimulated);
+	CircleCollider(D3DXVECTOR2 center, GameObject* go, const float& radius, const bool& isstatic, const bool& issimulated, const bool& isstaticcheck = false);
 	~CircleCollider();
 };

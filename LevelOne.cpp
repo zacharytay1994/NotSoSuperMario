@@ -27,7 +27,8 @@ LevelOne::LevelOne(Game* owner, const std::string& filename)
 	load_mario_("levelonerecord.txt"),
 	pausedMenu_(new pausedMenu(&camera_)),
 	timer_(new Timer()),
-	isPaused(false)
+	isPaused(false),
+	filename_(filename)
 {
 }
 
@@ -76,7 +77,7 @@ void LevelOne::Update(const float& frametime)
 			}
 			else if (pausedMenu_->selectionValue() == 1)
 			{
-				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelOne(owner_, "levelone.txt"));
+				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelOne(owner_, filename_));
 			}
 			else if (pausedMenu_->selectionValue() == 2)
 			{

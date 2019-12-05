@@ -22,6 +22,10 @@ private:
 	float lerp_strength_ = 2.0f;
 	float distance_threshold_ = 10.0f;
 
+	float scroll_range_ = 200.0f;
+	float scroll_rate_ = 20.0f;
+	float scroll_counter_ = 0.0f;
+
 	Sprite sprite_;
 	std::stringstream ss;
 public:
@@ -36,4 +40,8 @@ public:
 	void DrawTiles();
 	void LerpToPosition(const float& frametime);
 	void ForceUpdate(const bool& lerp);
+	void SetLerpStrength(const float& strength);
+	void SetPosition(const float& x, const float& y);
+	void SetScrollRate(const float& scroll);
+	void ScrollBackground(const float& frametime);
 };

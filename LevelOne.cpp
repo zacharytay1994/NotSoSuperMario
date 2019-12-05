@@ -98,7 +98,7 @@ void LevelOne::Initialize()
 
 	// Add scoremanager
 	score_manager_ = new ScoreManager(*graphics_, camera_);
-	map_generator_.GenerateWalls(collider_manager_, game_objects_, *score_manager_);
+	map_generator_.GenerateWalls(collider_manager_, game_objects_, *score_manager_, *this, *temp);
 
 	background4.Initialize(*graphics_);
 	background3.Initialize(*graphics_);

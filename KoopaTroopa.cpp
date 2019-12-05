@@ -33,7 +33,6 @@ KoopaTroopa::~KoopaTroopa()
 
 void KoopaTroopa::Update(const float& frametime)
 {
-	
 	GameObject::Update(frametime);
 	if (!shellState) {
 		timer = timer - frametime;
@@ -120,11 +119,9 @@ void KoopaTroopa::Update(const float& frametime)
 
 				
 				if (!shellMoving) {
-					
 					ChangeSprite(shellidle_sprite_);
 					phy_->AddVelocity(direction_ * 0); }
 				else {
-					shellSpeed_ = shellSpeed_ + 50;
 					ChangeSprite(shellmoving_sprite_);
 					phy_->AddVelocity(direction_ * shellSpeed_); }
 		}

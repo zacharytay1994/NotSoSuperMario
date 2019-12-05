@@ -32,6 +32,9 @@
     <ClCompile Include="pausedMenu.cpp" />
     <ClCompile Include="KoopaTroopa.cpp" />
     <ClCompile Include="BouncyPlatform.cpp" />
+    <ClCompile Include="Flag.cpp" />
+    <ClCompile Include="Mushroom.cpp" />
+    <ClCompile Include="QuestionMarkBlock.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
@@ -68,5 +71,8 @@
     <ClInclude Include="pausedMenu.h" />
     <ClInclude Include="KoopaTroopa.h" />
     <ClInclude Include="BouncyPlatform.h" />
+    <ClInclude Include="flag.h" />
+    <ClInclude Include="Mushroom.h" />
+    <ClInclude Include="QuestionMarkBlock.h" />
   </ItemGroup>
 </Project>

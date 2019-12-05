@@ -58,7 +58,7 @@ bool ColliderManager::QueryCollision(Collider* collider)
 						if (AABBvsAABB(*dynamic_cast<AABBCollider*>(collider), *dynamic_cast<AABBCollider*>(c))) {
 							//collider->resolved_ = true;
 							// if this and other collider is simulated, resolve collision
-							if (collider->is_simulated_ && c->is_simulated_) {
+							if (collider->is_simulated_ && c->is_simulated_ && !collider->is_static_check_) {
 								// generate manifold
 								CollisionManifold manifold = AABBvsAABBManifold(*dynamic_cast<AABBCollider*>(collider), *dynamic_cast<AABBCollider*>(c));
 								// temp solution ------------------------------------

@@ -24,7 +24,7 @@ bool Collider::DetectCollision(Collider& collider)
 
 AABBCollider::AABBCollider(D3DXVECTOR2 center, GameObject* go, const float& width, const float& height, const bool& isstatic, const bool& issimulated, const bool& isstaticcheck)
 	:
-	Collider(center, "AABB", go, isstatic, issimulated),
+	Collider(center, "AABB", go, isstatic, issimulated, isstaticcheck),
 	half_width_(width/2),
 	half_height_(height/2)
 {
@@ -36,7 +36,7 @@ AABBCollider::~AABBCollider()
 
 CircleCollider::CircleCollider(D3DXVECTOR2 center, GameObject* go, const float& radius, const bool& isstatic, const bool& issimulated, const bool& isstaticcheck)
 	:
-	Collider(center, "Circle", go, isstatic, issimulated),
+	Collider(center, "Circle", go, isstatic, issimulated, isstaticcheck),
 	radius_(radius)
 {
 }

@@ -41,6 +41,8 @@ public:
 	bool isStart = false;
 	std::clock_t startTime;
 	bool levelCompleted = false;
+
+	std::string filename_;
 public:
 	LevelOne(Game* owner, const std::string& filename);
 	~LevelOne();

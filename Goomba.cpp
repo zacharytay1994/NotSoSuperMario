@@ -35,6 +35,7 @@ void Goomba::Update(const float& frametime)
 		sprite_->GetImage().flipHorizontal(true);
 		looking_left_ = false;
 	}
+
 	if (touch_.touch_top_) {
 		pend_removal_ = true;
 		ChangeSprite(death_sprite_);
@@ -44,6 +45,7 @@ void Goomba::Update(const float& frametime)
 	if (!pend_removal_) {
 		phy_->AddVelocity(direction_ * speed_);
 	}
+	
 }
 
 void Goomba::Render()

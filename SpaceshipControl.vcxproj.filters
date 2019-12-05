@@ -8,7 +8,6 @@
     <ClCompile Include="ColliderManager.cpp" />
     <ClCompile Include="CollisionDetectionComponent.cpp" />
     <ClCompile Include="Component.cpp" />
-    <ClCompile Include="Flag.cpp">
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -21,21 +20,26 @@
     <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="Mario.cpp" />
-    <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="NotSoSuperMario.cpp" />
-    <ClCompile Include="pausedMenu.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
-    <ClCompile Include="QuestionMarkBlock.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="spacewar.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TestObject.cpp" />
     <ClCompile Include="textureManager.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="winmain.cpp" />
+    <ClCompile Include="pausedMenu.cpp" />
+    <ClCompile Include="KoopaTroopa.cpp" />
+    <ClCompile Include="BouncyPlatform.cpp" />
+    <ClCompile Include="Flag.cpp" />
+    <ClCompile Include="Mushroom.cpp" />
+    <ClCompile Include="QuestionMarkBlock.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
+    <ClInclude Include="BouncyPlatform.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Coin.h" />
     <ClInclude Include="Collider.h" />
@@ -44,8 +48,8 @@
     <ClInclude Include="CollisionResolutionComponent.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="constants.h" />
-    <ClInclude Include="Font.h" />
     <ClInclude Include="flag.h" />
+    <ClInclude Include="Font.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameError.h" />
     <ClInclude Include="GameObject.h" />
@@ -54,21 +58,23 @@
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="InputComponent.h" />
+    <ClInclude Include="KoopaTroopa.h" />
     <ClInclude Include="LevelOne.h" />
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="Mario.h" />
+    <ClInclude Include="Mushroom.h" />
     <ClInclude Include="NotSoSuperMario.h" />
     <ClInclude Include="pausedMenu.h" />
     <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="QuestionMarkBlock.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="spacewar.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TestObject.h" />
     <ClInclude Include="textureManager.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Vec2.h" />
-    <ClInclude Include="QuestionMarkBlock.h" />
-    <ClInclude Include="Mushroom.h" />
   </ItemGroup>
 </Project>

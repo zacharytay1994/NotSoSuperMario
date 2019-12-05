@@ -63,15 +63,18 @@ void Mario::Update(const float& frametime)
 		// If mario touch goomba with left/right side, mario is dead
 		if (!isInvicible)
 		{
+
 			if (touch_.touch_left_)
+
 			{
 				if (touch_obj_.touch_obj_left_->owner_->type_ == "Goomba")
 				{
 					isTouchedGoomba = true;
 				}
 			}
-			else if (touch_.touch_right_)
-			{
+
+		else if (touch_.touch_right_)
+		{
 				if (touch_obj_.touch_obj_right_->owner_->type_ == "Goomba")
 				{
 					isTouchedGoomba = true;
@@ -161,7 +164,7 @@ void Mario::Render()
 	{
 		GameObject::Render();
 	}
-	else if (isDead)
+	else if (isTouchedGoomba)
 	{
 		dying_sprite->Draw();
 	}

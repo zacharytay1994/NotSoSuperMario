@@ -106,14 +106,19 @@
     <ClCompile Include="input.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="KoopaTroopa.cpp" />
+    <ClCompile Include="LevelEditor.cpp" />
     <ClCompile Include="LevelOne.cpp" />
+    <ClCompile Include="LevelSelect.cpp" />
+    <ClCompile Include="LoadMario.cpp" />
     <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="MapGenerator.cpp" />
     <ClCompile Include="Mario.cpp" />
+    <ClCompile Include="MarioGhost.cpp" />
     <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="NotSoSuperMario.cpp" />
     <ClCompile Include="pausedMenu.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
+    <ClCompile Include="SaveMario.cpp" />
     <ClCompile Include="QuestionMarkBlock.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
@@ -121,6 +126,7 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TestObject.cpp" />
     <ClCompile Include="textureManager.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -145,14 +151,19 @@
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="InputComponent.h" />
+    <ClInclude Include="LevelEditor.h" />
     <ClInclude Include="LevelOne.h" />
+    <ClInclude Include="LevelSelect.h" />
+    <ClInclude Include="LoadMario.h" />
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="Mario.h" />
+    <ClInclude Include="MarioGhost.h" />
     <ClInclude Include="Mushroom.h" />
     <ClInclude Include="NotSoSuperMario.h" />
     <ClInclude Include="pausedMenu.h" />
     <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="SaveMario.h" />
     <ClInclude Include="QuestionMarkBlock.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ScoreManager.h" />
@@ -160,6 +171,7 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TestObject.h" />
     <ClInclude Include="textureManager.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

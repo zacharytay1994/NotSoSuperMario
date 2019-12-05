@@ -5,6 +5,7 @@
 #include "KoopaTroopa.h"
 #include "BouncyPlatform.h"
 #include "QuestionMarkBlock.h"
+#include "flag.h"
 
 MapGenerator::MapGenerator(const std::string& path)
 	:
@@ -43,6 +44,10 @@ void MapGenerator::GenerateWalls(ColliderManager& cm, std::vector<GameObject*>& 
 				}
 				else if (c == 'k') {
 					golist.push_back(new KoopaTroopa(cm, Vec2<float>(start_x * cell_size_, start_y * cell_size_)));
+				}
+				else if (c == 'f') {
+					golist.push_back(new Flag(cm, Vec2<float>(start_x * cell_size_, (start_y - 5.5) * cell_size_), m, s));
+					golist.push_back(new TestObject(cm, start_x * cell_size_, start_y * cell_size_));
 				}
 				start_x++;
 			}

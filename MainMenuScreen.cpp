@@ -2,6 +2,8 @@
 #include "constants.h"
 #include "NotSoSuperMario.h"
 #include "LevelOne.h"
+#include "LevelSelect.h"
+#include "LevelEditor.h"
 
 MainMenu::MainMenu(Game* owner)
 	:
@@ -46,7 +48,7 @@ void MainMenu::Update(const float& frametime)
 	}
 	if (!is_down_) {
 		if (input_->wasKeyPressed(VK_RETURN)) {
-			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelOne(owner_));
+			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelSelect(owner_)/*new LevelOne(owner_, "Levels/levelone.txt")*/);
 		}
 	}
 }
@@ -56,5 +58,4 @@ void MainMenu::ChildRender()
 	mainMenuBg.Draw();
 	buttonbackground.Draw();
 	mushicon.Draw();
-
 }

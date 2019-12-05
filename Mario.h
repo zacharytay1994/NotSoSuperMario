@@ -17,10 +17,18 @@ public:
 
 	Sprite* idle_;
 	Sprite* running_animation_;
-	Sprite* jumping_;
+	Sprite * jumping_;
 
+	Sprite* dying_sprite;
 	PhysicsComponent* phy_;
 	bool looking_left = true;
+	bool isDead = false;
+	float turn_radius_ = 0.0f;
+	float turn_rate_ = 250.0f;
+	float deadVel = 0;
+	float velocity = 250;
+	bool deathAnimationDone = false;
+	int animation_id_ = 0; // 0 = idle, 1 = running, 2 = jumping
 	bool is_big_ = false;
 public:
 	Mario(Input& input, ColliderManager& cm);

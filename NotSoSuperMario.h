@@ -5,6 +5,7 @@ class Scene;
 class NotSoSuperMario : public Game {
 private:
 	Scene* current_scene_;
+	bool has_scene_ = false;
 public:
 	NotSoSuperMario();
 	~NotSoSuperMario();
@@ -15,5 +16,6 @@ public:
 	void initialize(HWND hwnd);
 
 	void ChangeScene(Scene* scene);
+	void ChangeSceneNonDelete(Scene* scene);
 	void BindGameDataToScene();
 };

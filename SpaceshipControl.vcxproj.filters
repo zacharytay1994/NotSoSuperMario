@@ -28,6 +28,7 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TestObject.cpp" />
     <ClCompile Include="textureManager.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="winmain.cpp" />
     <ClCompile Include="pausedMenu.cpp" />
     <ClCompile Include="KoopaTroopa.cpp" />
@@ -38,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
+    <ClInclude Include="BouncyPlatform.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Coin.h" />
     <ClInclude Include="Collider.h" />
@@ -46,6 +48,7 @@
     <ClInclude Include="CollisionResolutionComponent.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="constants.h" />
+    <ClInclude Include="flag.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameError.h" />
@@ -55,24 +58,23 @@
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="InputComponent.h" />
+    <ClInclude Include="KoopaTroopa.h" />
     <ClInclude Include="LevelOne.h" />
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="MapGenerator.h" />
     <ClInclude Include="Mario.h" />
+    <ClInclude Include="Mushroom.h" />
     <ClInclude Include="NotSoSuperMario.h" />
+    <ClInclude Include="pausedMenu.h" />
     <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="QuestionMarkBlock.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="spacewar.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TestObject.h" />
     <ClInclude Include="textureManager.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Vec2.h" />
-    <ClInclude Include="pausedMenu.h" />
-    <ClInclude Include="KoopaTroopa.h" />
-    <ClInclude Include="BouncyPlatform.h" />
-    <ClInclude Include="flag.h" />
-    <ClInclude Include="Mushroom.h" />
-    <ClInclude Include="QuestionMarkBlock.h" />
   </ItemGroup>
 </Project>

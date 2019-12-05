@@ -7,9 +7,9 @@ Leaderboard::Leaderboard(Graphics& gfx, Camera& camera, std::string filename)
 	namesprite_(Sprite("pictures\\leaderboard-bg-name.png",832,640,1)),
 	camera_(&camera),
 	font_(new Font("pictures\\Fixedsys16x28.png", gfx, camera, 0.75)),
-	filename_(filename.substr(0, filename.length()-4) + "-leaderboard.txt")
+	
+	filename_("Leaderboard" + filename.substr(6, filename.length()-10) + "-leaderboard.txt")
 {
-
 }
 
 Leaderboard::~Leaderboard()
@@ -39,7 +39,7 @@ void Leaderboard::Initialize(Graphics& gfx, Input* input)
 		zerozero_.x_ + toptensprite_.GetWidth()/12*8,
 		zerozero_.y_ + toptensprite_.GetWidth()/8);
 	playernamepos_ = Vec2<int>(
-		zerozero_.x_ + namesprite_.GetWidth()/2,
+		zerozero_.x_ + namesprite_.GetWidth()/6,
 		zerozero_.y_ + namesprite_.GetHeight()/4*3
 		);
 }
@@ -116,13 +116,27 @@ void Leaderboard::InsertPlayer(std::string name, float score) {
 	for (int i = 1; i <= 10; i-=-1)
 	{
 		std::stringstream ss;
-		ss << i << "\n";
-		placingTxt_ += ss.str();
+
+		if (!scoreQueue_.empty() || !inserted) {
+			ss << i << "\n";
+			placingTxt_ += ss.str();
+		}
 
 		ss.str("");
 		ss.clear();
 		ss.precision(3);
 		ss << std::fixed;
+
+		if (scoreQueue_.empty()) {
+			if (!inserted) {
+				ss << score << "\n";
+				scoreTxt_ += ss.str();
+				nameTxt_ += name + "\n";
+				savefile << name + "," + ss.str();
+				inserted = true;
+			}
+			break;
+		}
 
 		if (score < scoreQueue_.front() && !inserted) {
 			ss << score << "\n";
@@ -138,11 +152,10 @@ void Leaderboard::InsertPlayer(std::string name, float score) {
 			scoreQueue_.pop();
 			nameQueue_.pop();
 		}
-		if (scoreQueue_.empty()) {
-			break;
-		}
+
 	}
 	savefile.close();
+	top10shown_ = true;
 }
 
 void Leaderboard::InsertScore(float score) {

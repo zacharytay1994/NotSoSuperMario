@@ -36,8 +36,8 @@ public:
 	std::string name_in_ = "";
 	Font* name_display_;
 	bool clear_name_ = true;
-	bool levelCompleted = false;
 	bool showleaderboard_ = false;
+	bool levelCompleted = false;
 
 	Leaderboard* leaderboard_;
 	pausedMenu* pausedMenu_;
@@ -46,7 +46,6 @@ public:
 	bool isPaused;
 	bool isStart = false;
 	std::clock_t startTime;
-	bool levelCompleted = false;
 	bool state_recorded_ = false;
 	float loaded_high_score_ = 0.0f;
 	std::string filename_;

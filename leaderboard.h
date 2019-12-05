@@ -42,6 +42,7 @@ private:
 public:
 	Leaderboard(Graphics& gfx, Camera& camera, std::string filename);
 	~Leaderboard();
+	bool top10shown_ = false;
 	void Initialize(Graphics& gfx, Input* input_);
 	void Render();
 	void Update(const float& frametime);

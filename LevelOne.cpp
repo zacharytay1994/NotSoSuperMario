@@ -61,16 +61,20 @@ void LevelOne::Update(const float& frametime)
 		timer_->Update();
 	}
 
-	// delet dis
-	if (input_->wasKeyPressed(VK_SHIFT)) {
-		showleaderboard_ = !showleaderboard_;
+	if (levelCompleted && !showleaderboard_ && !is_testing_) {
+		showleaderboard_ = true;
 	}
 
 	if (showleaderboard_) {
 		if (!leaderboard_->HasScore()) {
-			leaderboard_->InsertScore(30.0f);
+			leaderboard_->InsertScore(score_manager_->GetScore());
+		}
+		if (input_->wasKeyPressed(VK_RETURN) && leaderboard_->top10shown_) {
+			graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
+			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
 		}
 		leaderboard_->Update(frametime);
+
 	}
 
 	if (isPaused)

@@ -20,6 +20,7 @@ public:
 	void UpdateCameraTransform();
 	Vec2<float> GetCameraTransform();
 	void SetTarget(GameObject* go);
+	void SetCameraBounds(const int& minx, const int& miny, const int& maxx, const int& maxy);
 
 	void Update(const float& frametime);
 	Vec2<float> GetPosition();

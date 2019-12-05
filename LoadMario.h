@@ -19,10 +19,11 @@ private:
 	std::vector<int> sprite_flip_;
 	bool loaded_ = false;
 public:
-	LoadMario(const std::string& file);
+	LoadMario();
 	~LoadMario();
 	void BindMario(GameObject* mario);
 	void ExecuteMovement(const float& frametime);
 	void Update(const float& frametime);
-	void ReadPositions();
+	bool ReadPositions();
+	void SetFilename(const std::string& filename);
 };

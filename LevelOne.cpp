@@ -20,12 +20,11 @@ LevelOne::LevelOne(Game* owner, const std::string& filename)
 	:
 	Scene(owner),
 	map_generator_(filename),
-	background4("pictures\\mountainbackground.png", 1200, 1200, 1, camera_, 0.5f, 0.1f, -300.0f, -400.0f, 10, 1),
-	background3("pictures\\cloudbackground.png", 1200, 1200, 1, camera_, 0.4f, 0.1f, -300.0f, -300.0f, 10, 1),
-	background2("pictures\\rockbackground.png", 1200, 1200, 1, camera_, 0.3f, 0.1f, -300.0f, -200.0f, 10, 1),
-	background1("pictures\\bushesbackground.png", 1200, 700, 1, camera_, 0.2f, 0.1f, -300.0f, 100.0f, 10, 1),
-	save_mario_("levelonerecord.txt"),
-	load_mario_("levelonerecord.txt"),
+	current_level_(filename),
+	background4("pictures\\mountainbackground.png", 1200, 1200, 1, camera_, 0.5f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 1),
+	background3("pictures\\cloudbackground.png", 1200, 1200, 1, camera_, 0.4f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 1),
+	background2("pictures\\rockbackground.png", 1200, 1200, 1, camera_, 0.3f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 1),
+	background1("pictures\\bushesbackground.png", 1200, 700, 1, camera_, 0.2f, 0.1f, -300.0f, -650.0f * CAMERA_ZOOM, 10, 1),
 	pausedMenu_(new pausedMenu(&camera_)),
 	timer_(new Timer()),
 	isPaused(false),
@@ -90,7 +89,7 @@ void LevelOne::Update(const float& frametime)
 			}
 			else if (pausedMenu_->selectionValue() == 1)
 			{
-				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelOne(owner_, filename_));
+				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelOne(owner_, current_level_));
 			}
 			else if (pausedMenu_->selectionValue() == 2)
 			{
@@ -107,9 +106,27 @@ void LevelOne::Update(const float& frametime)
 
 		if (mario_->deathAnimationDone)
 		{
-			graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
-			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
+			if (!is_testing_) {
+				graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
+				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
+			}
+			else {
+				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(held_scene_);
+			}
 		}
+	}
+
+	// win actions
+	if (levelCompleted && !is_testing_ && !state_recorded_) {
+		if (score_manager_->GetScore() < loaded_high_score_) {
+			WriteHighScore(score_manager_->GetScore());
+			save_mario_.WritePositionToFile();
+		}
+		state_recorded_ = true;
+	}
+
+	if (mario_->GetPosition().y > 50) {
+		mario_->isDead = true;
 	}
 }
 
@@ -156,6 +173,7 @@ void LevelOne::Initialize()
 	Mario* temp = new Mario(*input_, collider_manager_);
 	mario_ = temp;
 	camera_.SetTarget(temp);
+	camera_.SetCameraBounds(50, -64 * CAMERA_ZOOM * 50 - 100, 1600, -250);
 
 	if (!isStart)
 	{
@@ -173,6 +191,7 @@ void LevelOne::Initialize()
 	score_manager_ = new ScoreManager(*graphics_, camera_, *timer_);
 	map_generator_.GenerateWalls(collider_manager_, game_objects_, *score_manager_, *this, *temp);
 	game_objects_.push_back(temp);
+	temp->SetPosition(map_generator_.GetMarioPosition().x_, map_generator_.GetMarioPosition().y_);
 
 
 	leaderboard_ = new Leaderboard(*graphics_, camera_, filename_),
@@ -190,6 +209,8 @@ void LevelOne::Initialize()
 	options_display_ = new Font("pictures\\Fixedsys16x28.png", *graphics_, camera_);
 	name_display_ = new Font("pictures\\Fixedsys16x28.png", *graphics_, camera_);
 	// -------------------------------------------------------------------------------------
+	// initializing ghost and score
+	InitGhostData();
 	Scene::Initialize();
 }
 
@@ -198,7 +219,7 @@ void LevelOne::TestingUpdate()
 	if (!is_testing_) {
 		return;
 	}
-	if (input_->wasKeyPressed(VK_RETURN)) {
+	if (levelCompleted) {
 		display_options_ = true;
 	}
 	if (display_options_) {
@@ -207,6 +228,10 @@ void LevelOne::TestingUpdate()
 		}
 		else if (input_->wasKeyPressed('C')) {
 			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(held_scene_);
+		}
+		else if (input_->wasKeyPressed(VK_ESCAPE)) {
+			graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
+			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
 		}
 	}
 	if (is_writing_) {
@@ -225,6 +250,7 @@ void LevelOne::TestingDraw()
 		options_display_->DrawTextString("CONGRATS YOU HAVE BEATEN YOUR CREATION!", Vec2<int>(10, GAME_HEIGHT / 2 - 30), *graphics_);
 		options_display_->DrawTextString("C = Continue Editing", Vec2<int>(10, GAME_HEIGHT/2), *graphics_);
 		options_display_->DrawTextString("P = Publish Level", Vec2<int>(10, GAME_HEIGHT / 2 + 30), *graphics_);
+		options_display_->DrawTextString("E = Exit to Main Menu", Vec2<int>(10, GAME_HEIGHT / 2 + 60), *graphics_);
 	}
 	RenderWriting();
 }
@@ -246,4 +272,33 @@ void LevelOne::RenderWriting()
 			clear_name_ = false;
 		}
 	}
+}
+
+void LevelOne::InitGhostData()
+{
+	// get file name
+	std::string name = current_level_.substr(current_level_.find("/") + 1, current_level_.find(".") - current_level_.find("/") - 1);
+	// Get existing highscore
+	std::ifstream high_score_file("ScoreRecords/" + name + "highscore.txt");
+	std::string line;
+	if (high_score_file.is_open()) {
+		while (std::getline(high_score_file, line)) {
+			loaded_high_score_ = (float)std::stoi(line) / 1000.0f;
+		}
+		score_manager_->SetScoreToBeat(loaded_high_score_);
+	}
+	// Get ghost record file
+	load_mario_.SetFilename("ScoreRecords/" + name + "ghost.txt");
+	load_mario_.ReadPositions();
+	save_mario_.SetFilename("ScoreRecords/" + name + "ghost.txt");
+}
+
+void LevelOne::WriteHighScore(const float& score)
+{
+	std::string name = current_level_.substr(current_level_.find("/") + 1, current_level_.find(".") - current_level_.find("/") - 1);
+	std::ofstream high_score_file("ScoreRecords/" + name + "highscore.txt");
+	if (high_score_file.is_open()) {
+		high_score_file << score * 1000;
+	}
+	high_score_file.close();
 }

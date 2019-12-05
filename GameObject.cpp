@@ -89,7 +89,7 @@ void GameObject::ChangeSprite(Sprite* sprite)
 void GameObject::ProcessOnGround(const float& frametime)
 {
 	if (!touch_.touch_bottom_) {
-		air_time_ += frametime;
+		air_time_ += 0.006f;
 	}
 	else {
 		air_time_ = 0.0f;

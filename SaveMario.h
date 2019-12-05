@@ -19,12 +19,15 @@ private:
 	
 	float record_rate_ = 0.005f;
 	float record_timer_ = 0.0f;
+
+	bool bound_ = false;
 public:
-	SaveMario(const std::string& savefile);
+	SaveMario();
 	~SaveMario();
 	void WritePositionToFile();
 	void AppendPositionToArray();
 	void Update(const float& frametime);
 	void BindMario(GameObject* mario);
 	void StartRecording(const bool& record);
+	void SetFilename(const std::string& name);
 };

@@ -1,6 +1,7 @@
 #include "LevelEditor.h"
 #include "NotSoSuperMario.h"
 #include "LevelOne.h"
+#include "MainMenuScreen.h"
 #include <string>
 #include <sstream>
 #include <iostream>
@@ -9,7 +10,9 @@
 LevelEditor::LevelEditor(Game* owner)
 	:
 	Scene(owner),
-	tile_(new Sprite("Pictures\\editorempty.png", 32, 32, 4))
+	tile_(new Sprite("Pictures\\editorempty.png", 16, 16, 9)),
+	background1("pictures\\editorbackground.png", 1200, 751, 1, cam_, 0.2f, 0.1f, -300.0f, -650.0f * CAMERA_ZOOM, 10, 10),
+	legend_("pictures\\editorlegend.png", 640, 480, 1, cam_, 1.0f, 1.0f, -150, -100, 1, 1)
 {
 }
 
@@ -33,10 +36,21 @@ void LevelEditor::Update(const float& frametime)
 	graphics_->BindCameraTransform(D3DXVECTOR2(cam_.GetCameraTransform().x_, cam_.GetCameraTransform().y_));
 	cam_.Update(frametime);
 	
+	background1.Update(frametime);
+	legend_.Update(frametime);
+	legend_.LerpToPosition(frametime);
+
+	// back to main menu
+	if (input_->wasKeyPressed(VK_ESCAPE)) {
+		graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
+		dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
+	}
 }
 
 void LevelEditor::ChildRender()
 {
+	background1.Draw();
+	legend_.Draw();
 	RenderTiles();
 	DrawAllScreenStuff();
 }
@@ -51,12 +65,16 @@ void LevelEditor::Initialize()
 	InitializeGrid();
 	camera_drag_.Initialize(*graphics_);
 	cam_.SetTarget(&camera_drag_);
+	cam_.SetCameraBounds(50, 50, 16 * 50, 16 * 50);
 
 	// initializing font
 	currently_selected_block_ = new Font("pictures\\Fixedsys16x28.png", *graphics_, cam_);
 	legend_text_ = new Font("pictures\\Fixedsys16x28.png", *graphics_, cam_);
 	comment_text_ = new Font("pictures\\Fixedsys16x28.png", *graphics_, cam_);
 	font_initialized_ = true;
+	background1.Initialize(*graphics_);
+	legend_.Initialize(*graphics_);
+	legend_.ForceUpdate(false);
 	Scene::Initialize();
 }
 
@@ -72,8 +90,10 @@ void LevelEditor::InitializeGrid()
 void LevelEditor::GetGridCoordinatesMouse()
 {
 	 // mouse position
-	int mouse_x = input_->getMouseX() - cam_.GetCameraTransform().x_;
-	int mouse_y = input_->getMouseY() - cam_.GetCameraTransform().y_;
+	Vec2<float> updated_dimensions = Vec2<float>(0.0f, 0.0f);
+	graphics_->GetWindowRectangle(updated_dimensions);
+	int mouse_x = (int)(((float)input_->getMouseX() / updated_dimensions.x_) * (float)GAME_WIDTH) - cam_.GetCameraTransform().x_;
+	int mouse_y = (int)(((float)input_->getMouseY() / updated_dimensions.y_) * (float)GAME_HEIGHT) - cam_.GetCameraTransform().y_;
 
 	 // coordinates
 	int cell_x = int((float)mouse_x / ((float)grid_width_ * cell_size_) * grid_width_);
@@ -100,6 +120,21 @@ void LevelEditor::RenderTiles()
 				break;
 			case BlockTypes::Flag:
 				tile_->GetImage().setCurrentFrame(3);
+				break;
+			case BlockTypes::Coin:
+				tile_->GetImage().setCurrentFrame(4);
+				break;
+			case BlockTypes::Goomba:
+				tile_->GetImage().setCurrentFrame(5);
+				break;
+			case BlockTypes::Kappa:
+				tile_->GetImage().setCurrentFrame(6);
+				break;
+			case BlockTypes::Question:
+				tile_->GetImage().setCurrentFrame(7);
+				break;
+			case BlockTypes::Bouncy:
+				tile_->GetImage().setCurrentFrame(8);
 				break;
 			}
 			tile_->GetImage().setX(x * cell_size_);
@@ -148,9 +183,29 @@ void LevelEditor::UpdateCurrentlySelectedTile()
 		current_block_ = BlockTypes::Flag;
 		block_name_ = "Flag";
 	}
-	if (input_->wasKeyPressed(VK_RETURN)) {
-		WriteToTesting();
+	else if (input_->wasKeyPressed('C')) {
+		current_block_ = BlockTypes::Coin;
+		block_name_ = "Coin";
 	}
+	else if (input_->wasKeyPressed('G')) {
+		current_block_ = BlockTypes::Goomba;
+		block_name_ = "Goomba";
+	}
+	else if (input_->wasKeyPressed('K')) {
+		current_block_ = BlockTypes::Kappa;
+		block_name_ = "Koopa Troopa";
+	}
+	else if (input_->wasKeyPressed('Q')) {
+		current_block_ = BlockTypes::Question;
+		block_name_ = "? Block";
+	}
+	else if (input_->wasKeyPressed('B')) {
+		current_block_ = BlockTypes::Bouncy;
+		block_name_ = "Bouncy Block";
+	}
+	/*if (input_->wasKeyPressed(VK_RETURN)) {
+		WriteToTesting();
+	}*/
 	if (input_->wasKeyPressed('T')) {
 		// trigger test checks
 		TriggerTest();
@@ -165,15 +220,15 @@ void LevelEditor::DrawAllScreenStuff()
 {
 	if (font_initialized_) {
 		// Draw currently selected block
-		currently_selected_block_->DrawTextString("Currently Selected: " + block_name_, Vec2<int>(10, 10), *graphics_);
+		currently_selected_block_->DrawTextString("Currently Selected: " + block_name_, Vec2<int>(10, GAME_HEIGHT - 60), *graphics_);
 		// Draw legend
-		int legend_x = 10;
+		/*int legend_x = 10;
 		int legend_y = 40;
 		int legend_increment = 30;
 		legend_text_->DrawTextString("Click on:", Vec2<int>(legend_x, legend_y + legend_increment * 0), *graphics_);
 		legend_text_->DrawTextString("Test (T)", Vec2<int>(legend_x, legend_y + legend_increment * 1), *graphics_);
 		legend_text_->DrawTextString("Empty (E)", Vec2<int>(legend_x, legend_y + legend_increment * 2), *graphics_);
-		legend_text_->DrawTextString("Block (B)", Vec2<int>(legend_x, legend_y + legend_increment * 3), *graphics_);
+		legend_text_->DrawTextString("Block (B)", Vec2<int>(legend_x, legend_y + legend_increment * 3), *graphics_);*/
 		// Draw comment
 		comment_text_->DrawTextString("Note: " + comment_string_, Vec2<int>(10,  GAME_HEIGHT - 30), *graphics_);
 	}
@@ -182,6 +237,9 @@ void LevelEditor::DrawAllScreenStuff()
 void LevelEditor::PlaceTileOnScreen()
 {
 	if (input_->getMouseLButton()) {
+		if (current_grid_coordinates_.x_ > grid_width_ - 1 || current_grid_coordinates_.x_ < 0 || current_grid_coordinates_.y_ > grid_height_ - 1 || current_grid_coordinates_.y_ < 0) {
+			return;
+		}
 		// remove old mario if exists
 		if (current_block_ == BlockTypes::Mario && mario_initialized_) {
 			grid_[mario_position_.x_ * grid_width_ + mario_position_.y_] = BlockTypes::Empty;
@@ -239,6 +297,21 @@ void LevelEditor::WriteToTesting()
 				case BlockTypes::Flag:
 					c = 'f';
 					break;
+				case BlockTypes::Coin:
+					c = 'c';
+					break;
+				case BlockTypes::Goomba:
+					c = 'g';
+					break;
+				case BlockTypes::Kappa:
+					c = 'k';
+					break;
+				case BlockTypes::Question:
+					c = 'q';
+					break;
+				case BlockTypes::Bouncy:
+					c = 'b';
+					break;
 				}
 				editor_file << c;
 			}
@@ -289,6 +362,21 @@ void LevelEditor::PublishLevel(const std::string& name)
 				case BlockTypes::Flag:
 					c = 'f';
 					break;
+				case BlockTypes::Coin:
+					c = 'c';
+					break;
+				case BlockTypes::Goomba:
+					c = 'g';
+					break;
+				case BlockTypes::Kappa:
+					c = 'k';
+					break;
+				case BlockTypes::Question:
+					c = 'q';
+					break;
+				case BlockTypes::Bouncy:
+					c = 's';
+					break;
 				}
 				new_file << c;
 			}
@@ -302,4 +390,16 @@ void LevelEditor::PublishLevel(const std::string& name)
 		level_data << "\n" + name + ".txt";
 	}
 	level_data.close();
+	// create new score save
+	std::ofstream new_score_file("ScoreRecords/" + name + "highscore.txt");
+	if (new_score_file.is_open()) {
+		new_score_file << 1000000;
+	}
+	new_score_file.close();
+	// create new ghost file
+	std::ofstream new_ghost_file("ScoreRecords/" + name + "ghost.txt");
+	if (new_ghost_file.is_open()) {
+		new_ghost_file << "none";
+	}
+	new_ghost_file.close();
 }

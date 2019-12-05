@@ -284,6 +284,18 @@ void Graphics::BindCameraTransform(D3DXVECTOR2& transform)
 	camera_transform_ = transform;
 }
 
+bool Graphics::GetWindowRectangle(Vec2<float>& dimensions)
+{
+	RECT rect_ref;
+	if (GetClientRect(hwnd, &rect_ref)) {
+		float width = rect_ref.right - rect_ref.left;
+		float height = rect_ref.bottom - rect_ref.top;
+		dimensions = { width, height };
+		return true;
+	}
+	return false;
+}
+
 //=============================================================================
 // Reset the graphics device
 //=============================================================================

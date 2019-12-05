@@ -1,7 +1,3 @@
 levelone.txt
-leveltwo.txt
-levelthree.txt
-levelfour.txt
-levelfive.txt
-somethingtesting.txt
-testingsomelevel.txt
+testing ghost level.txt
+robinbeatthis.txt

@@ -1,4 +1,5 @@
 #include "Background.h"
+#include "Vec2.h"
 
 Background::Background(const std::string& path, const int& width, const int& height, const int& cols, Camera& camera,
 	const float& xscroll, const float& yscroll, const float& xoffset, const float& yoffset, const int& xtiling, const int& ytiling)
@@ -38,8 +39,10 @@ void Background::Initialize(Graphics& gfx)
 
 void Background::UpdatePosition(const float& x, const float& y)
 {
-	sprite_.GetImage().setX(camera_.GetPosition().x_ * x_scroll_ + x_offset_ + x);
-	sprite_.GetImage().setY(camera_.GetPosition().y_ * y_scroll_ + y_offset_ + y);
+	if (force_update_) {
+		sprite_.GetImage().setX(camera_.GetPosition().x_ * x_scroll_ + x_offset_ + x);
+		sprite_.GetImage().setY(camera_.GetPosition().y_ * y_scroll_ + y_offset_ + y);
+	}
 }
 
 void Background::DrawTiles()
@@ -50,4 +53,24 @@ void Background::DrawTiles()
 			sprite_.Draw();
 		}
 	}
+}
+
+void Background::LerpToPosition(const float& frametime)
+{
+	// get current position
+	Vec2<float> current_pos = { sprite_.GetImage().getX() + sprite_.GetWidth()/2, sprite_.GetImage().getY() + sprite_.GetHeight()/2 };
+	// get camera position
+	Vec2<float> camera_pos = { camera_.GetPosition().x_ + x_offset_, camera_.GetPosition().y_ + y_offset_ };
+	// get vector to camera
+	Vec2<float> vec_to_cam = camera_pos - current_pos;
+	// lerp to position if above threshold
+	if (vec_to_cam.MagnitudeSq() > distance_threshold_ * distance_threshold_) {
+		sprite_.GetImage().setX(sprite_.GetImage().getX() + vec_to_cam.x_ * lerp_strength_ * frametime);
+		sprite_.GetImage().setY(sprite_.GetImage().getY() + vec_to_cam.y_ * lerp_strength_ * frametime);
+	}
+}
+
+void Background::ForceUpdate(const bool& lerp)
+{
+	force_update_ = lerp;
 }

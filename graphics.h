@@ -14,6 +14,7 @@
 #include <d3dx9.h>
 #include "constants.h"
 #include "gameError.h"
+#include "Vec2.h"
 
 // DirectX pointer types
 #define LP_TEXTURE  LPDIRECT3DTEXTURE9
@@ -215,6 +216,7 @@ public:
     }
 
 	void BindCameraTransform(D3DXVECTOR2& transform);
+	bool GetWindowRectangle(Vec2<float>& dimensions);
 };
 
 #endif

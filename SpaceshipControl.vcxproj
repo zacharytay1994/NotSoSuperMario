@@ -89,6 +89,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="BouncyPlatform.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Coin.cpp" />
     <ClCompile Include="Collider.cpp" />
@@ -104,6 +105,7 @@
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="InputComponent.cpp" />
+    <ClCompile Include="KoopaTroopa.cpp" />
     <ClCompile Include="LevelEditor.cpp" />
     <ClCompile Include="LevelOne.cpp" />
     <ClCompile Include="LevelSelect.cpp" />
@@ -129,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
+    <ClInclude Include="BouncyPlatform.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Coin.h" />
     <ClInclude Include="Collider.h" />
@@ -144,6 +147,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Goomba.h" />
     <ClInclude Include="graphics.h" />
+    <ClInclude Include="KoopaTroopa.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="InputComponent.h" />

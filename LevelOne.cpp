@@ -1,16 +1,18 @@
-#include "LevelOne.h"
 #include "Coin.h"
-#include "Mario.h"
+#include "Flag.h"
 #include "Goomba.h"
-#include "TestObject.h"
+#include "KoopaTroopa.h"
+#include "LevelEditor.h"
+#include "LevelOne.h"
+#include "MainMenuScreen.h"
+#include "Mario.h"
 #include "MarioGhost.h"
 #include "NotSoSuperMario.h"
-#include "LevelEditor.h"
-#include "Flag.h"
-#include <iostream>
-#include "NotSoSuperMario.h"
 #include "pausedMenu.h"
-#include "MainMenuScreen.h"
+#include "TestObject.h"
+
+#include <iostream>
+
 using namespace std;
 
 LevelOne::LevelOne(Game* owner, const std::string& filename)
@@ -159,6 +161,7 @@ void LevelOne::Initialize()
 	background1.Initialize(*graphics_);
 
 	pausedMenu_->Initialize(*graphics_, input_);
+
 	// initialize fonts
 	options_display_ = new Font("pictures\\Fixedsys16x28.png", *graphics_, camera_);
 	name_display_ = new Font("pictures\\Fixedsys16x28.png", *graphics_, camera_);

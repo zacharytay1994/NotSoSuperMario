@@ -2,12 +2,10 @@
 #include "GameObject.h"
 #include "MarioGhost.h"
 
-LoadMario::LoadMario(const std::string& file)
-	:
-	file_name_(file)
+LoadMario::LoadMario()
 {
-	ReadPositions();
-	positions_length_ = positions_.size();
+	/*ReadPositions();
+	positions_length_ = positions_.size();*/
 }
 
 LoadMario::~LoadMario()
@@ -17,7 +15,7 @@ LoadMario::~LoadMario()
 void LoadMario::BindMario(GameObject* mario)
 {
 	mario_ = mario;
-	loaded_ = true;
+	mario_->SetPosition(-1000.0f, -1000.0f);
 }
 
 void LoadMario::ExecuteMovement(const float& frametime)
@@ -66,12 +64,16 @@ void LoadMario::Update(const float& frametime)
 	}
 }
 
-void LoadMario::ReadPositions()
+bool LoadMario::ReadPositions()
 {
 	std::ifstream save_file(file_name_);
 	if (save_file.is_open()) {
 		std::string line;
 		while (std::getline(save_file, line)) {
+			if (line == "none") {
+				loaded_ = false;
+				return false;
+			}
 			// Get position 
 			const int position_s = line.find("s");
 			const int comma_pos = line.find(",");
@@ -89,5 +91,13 @@ void LoadMario::ReadPositions()
 			sprite_flip_.push_back(animation_flip);
 		}
 	}
+	loaded_ = true;
+	positions_length_ = positions_.size();
+	return true;
+}
+
+void LoadMario::SetFilename(const std::string& filename)
+{
+	file_name_ = filename;
 }
 

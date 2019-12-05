@@ -43,6 +43,9 @@ public:
 	bool isStart = false;
 	std::clock_t startTime;
 	bool levelCompleted = false;
+	bool state_recorded_ = false;
+
+	float loaded_high_score_ = 0.0f;
 public:
 	LevelOne(Game* owner, const std::string& filename);
 	~LevelOne();
@@ -54,5 +57,8 @@ public:
 	void TestingDraw();
 	void SetTesting(const bool& test, Scene* scene);
 	void RenderWriting();
-	void SetCurrentLevel(const std::string& level);
+
+	// saving and loading ghost
+	void InitGhostData();
+	void WriteHighScore(const float& score);
 };

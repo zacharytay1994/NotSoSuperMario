@@ -112,7 +112,6 @@ void LevelSelect::UpdateSelectedNames(const bool& some)
 		}
 		if (input_->wasKeyPressed(VK_RETURN) && ready_) {
 			LevelOne* temp = new LevelOne(owner_, level_folder_ + selected_name_);
-			temp->SetCurrentLevel(level_folder_ + selected_name_);
 			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(temp);
 		}
 	}

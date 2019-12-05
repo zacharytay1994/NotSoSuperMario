@@ -17,12 +17,11 @@ LevelOne::LevelOne(Game* owner, const std::string& filename)
 	:
 	Scene(owner),
 	map_generator_(filename),
+	current_level_(filename),
 	background4("pictures\\mountainbackground.png", 1200, 1200, 1, camera_, 0.5f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 1),
 	background3("pictures\\cloudbackground.png", 1200, 1200, 1, camera_, 0.4f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 1),
 	background2("pictures\\rockbackground.png", 1200, 1200, 1, camera_, 0.3f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 1),
 	background1("pictures\\bushesbackground.png", 1200, 700, 1, camera_, 0.2f, 0.1f, -300.0f, -650.0f * CAMERA_ZOOM, 10, 1),
-	save_mario_("levelonerecord.txt"),
-	load_mario_("levelonerecord.txt"),
 	pausedMenu_(new pausedMenu(&camera_)),
 	timer_(new Timer()),
 	isPaused(false)
@@ -99,6 +98,19 @@ void LevelOne::Update(const float& frametime)
 			}
 		}
 	}
+
+	// win actions
+	if (levelCompleted && !is_testing_ && !state_recorded_) {
+		if (score_manager_->GetScore() < loaded_high_score_) {
+			WriteHighScore(score_manager_->GetScore());
+			save_mario_.WritePositionToFile();
+		}
+		state_recorded_ = true;
+	}
+
+	if (mario_->GetPosition().y > 50) {
+		mario_->isDead = true;
+	}
 }
 
 void LevelOne::ChildRender()
@@ -170,6 +182,8 @@ void LevelOne::Initialize()
 	options_display_ = new Font("pictures\\Fixedsys16x28.png", *graphics_, camera_);
 	name_display_ = new Font("pictures\\Fixedsys16x28.png", *graphics_, camera_);
 	// -------------------------------------------------------------------------------------
+	// initializing ghost and score
+	InitGhostData();
 	Scene::Initialize();
 }
 
@@ -233,7 +247,31 @@ void LevelOne::RenderWriting()
 	}
 }
 
-void LevelOne::SetCurrentLevel(const std::string& level)
+void LevelOne::InitGhostData()
 {
-	current_level_ = level;
+	// get file name
+	std::string name = current_level_.substr(current_level_.find("/") + 1, current_level_.find(".") - current_level_.find("/") - 1);
+	// Get existing highscore
+	std::ifstream high_score_file("ScoreRecords/" + name + "highscore.txt");
+	std::string line;
+	if (high_score_file.is_open()) {
+		while (std::getline(high_score_file, line)) {
+			loaded_high_score_ = (float)std::stoi(line) / 1000.0f;
+		}
+		score_manager_->SetScoreToBeat(loaded_high_score_);
+	}
+	// Get ghost record file
+	load_mario_.SetFilename("ScoreRecords/" + name + "ghost.txt");
+	load_mario_.ReadPositions();
+	save_mario_.SetFilename("ScoreRecords/" + name + "ghost.txt");
+}
+
+void LevelOne::WriteHighScore(const float& score)
+{
+	std::string name = current_level_.substr(current_level_.find("/") + 1, current_level_.find(".") - current_level_.find("/") - 1);
+	std::ofstream high_score_file("ScoreRecords/" + name + "highscore.txt");
+	if (high_score_file.is_open()) {
+		high_score_file << score * 1000;
+	}
+	high_score_file.close();
 }

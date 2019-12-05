@@ -3,9 +3,7 @@
 #include "Mario.h"
 #include "Vec2.h"
 
-SaveMario::SaveMario(const std::string& savefile)
-	:
-	file_name_(savefile)
+SaveMario::SaveMario()
 {
 }
 
@@ -16,6 +14,9 @@ SaveMario::~SaveMario()
 
 void SaveMario::WritePositionToFile()
 {
+	if (!bound_) {
+		return;
+	}
 	std::ofstream save_file;
 	
 	save_file.open(file_name_);
@@ -57,4 +58,10 @@ void SaveMario::BindMario(GameObject* mario)
 void SaveMario::StartRecording(const bool& record)
 {
 	recording_ = record;
+}
+
+void SaveMario::SetFilename(const std::string& name)
+{
+	file_name_ = name;
+	bound_ = true;
 }

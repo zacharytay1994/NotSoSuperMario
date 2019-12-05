@@ -362,6 +362,21 @@ void LevelEditor::PublishLevel(const std::string& name)
 				case BlockTypes::Flag:
 					c = 'f';
 					break;
+				case BlockTypes::Coin:
+					c = 'c';
+					break;
+				case BlockTypes::Goomba:
+					c = 'g';
+					break;
+				case BlockTypes::Kappa:
+					c = 'k';
+					break;
+				case BlockTypes::Question:
+					c = 'q';
+					break;
+				case BlockTypes::Bouncy:
+					c = 's';
+					break;
 				}
 				new_file << c;
 			}
@@ -375,4 +390,16 @@ void LevelEditor::PublishLevel(const std::string& name)
 		level_data << "\n" + name + ".txt";
 	}
 	level_data.close();
+	// create new score save
+	std::ofstream new_score_file("ScoreRecords/" + name + "highscore.txt");
+	if (new_score_file.is_open()) {
+		new_score_file << 1000000;
+	}
+	new_score_file.close();
+	// create new ghost file
+	std::ofstream new_ghost_file("ScoreRecords/" + name + "ghost.txt");
+	if (new_ghost_file.is_open()) {
+		new_ghost_file << "none";
+	}
+	new_ghost_file.close();
 }

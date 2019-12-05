@@ -106,6 +106,7 @@
     <ClCompile Include="input.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="KoopaTroopa.cpp" />
+    <ClCompile Include="leaderboard.cpp" />
     <ClCompile Include="LevelEditor.cpp" />
     <ClCompile Include="LevelOne.cpp" />
     <ClCompile Include="LevelSelect.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="InputComponent.h" />
+    <ClInclude Include="leaderboard.h" />
     <ClInclude Include="LevelEditor.h" />
     <ClInclude Include="LevelOne.h" />
     <ClInclude Include="LevelSelect.h" />

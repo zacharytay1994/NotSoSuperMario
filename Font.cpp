@@ -1,11 +1,13 @@
 #include "Font.h"
 
-Font::Font(const std::string& filename, Graphics& gfx, Camera& camera, DWORD chroma)
+Font::Font(const std::string& filename, Graphics& gfx, Camera& camera, float fontscale, DWORD chroma)
 	:
 	font_sprite_(new Sprite(filename, glyph_width_, glyph_height_, 32)),
-	camera_(&camera)
+	camera_(&camera),
+	fontscale_(fontscale)
 {
 	font_sprite_->Initialize(gfx);
+	
 }
 
 void Font::DrawTextString(const std::string& text, const Vec2<int>& pos, Graphics& gfx) const
@@ -20,7 +22,7 @@ void Font::DrawTextString(const std::string& text, const Vec2<int>& pos, Graphic
 			// carriage return
 			curPos.x_ = pos.x_;
 			// line feed
-			curPos.y_ += glyph_height_;
+			curPos.y_ += glyph_height_ * fontscale_;
 			// we don't want to advance the character position right for a newline
 			continue;
 		}
@@ -33,9 +35,10 @@ void Font::DrawTextString(const std::string& text, const Vec2<int>& pos, Graphic
 			font_sprite_->SetX(curPos.x_ - camera_transform.x_);
 			font_sprite_->SetY(curPos.y_ - camera_transform.y_);
 			font_sprite_->SetCurrentFrame(frame_number);
+			font_sprite_->GetImage().setScale(fontscale_);
 			font_sprite_->Draw();
 		}
 		// advance screen pos for next character
-		curPos.x_ += glyph_width_;
+		curPos.x_ += glyph_width_*fontscale_;
 	}
-}
+}	

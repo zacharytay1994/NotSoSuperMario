@@ -86,7 +86,7 @@ void LevelOne::Update(const float& frametime)
 		}
 	}
 
-	if (mario_->isDead) 
+	if (mario_->isTouchedGoomba && !mario_->is_big_)
 	{ 
 		timer_->StopTimer(); 
 
@@ -112,7 +112,7 @@ void LevelOne::Update(const float& frametime)
 	}
 
 	if (mario_->GetPosition().y > 50) {
-		mario_->isDead = true;
+		mario_->isTouchedGoomba = true;
 	}
 }
 
@@ -131,7 +131,7 @@ void LevelOne::ChildRender()
 	}
 
 	// If mario is dead and the dead animation is done, show the  menu
-	if (mario_->isDead)
+	if (mario_->isTouchedGoomba)
 	{
 		if (mario_->deathAnimationDone)
 		{

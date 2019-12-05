@@ -36,6 +36,11 @@
     <ClCompile Include="Flag.cpp" />
     <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="QuestionMarkBlock.cpp" />
+    <ClCompile Include="LevelEditor.cpp" />
+    <ClCompile Include="LevelSelect.cpp" />
+    <ClCompile Include="LoadMario.cpp" />
+    <ClCompile Include="MarioGhost.cpp" />
+    <ClCompile Include="SaveMario.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
@@ -76,5 +81,10 @@
     <ClInclude Include="textureManager.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vec2.h" />
+    <ClInclude Include="LevelEditor.h" />
+    <ClInclude Include="LevelSelect.h" />
+    <ClInclude Include="LoadMario.h" />
+    <ClInclude Include="MarioGhost.h" />
+    <ClInclude Include="SaveMario.h" />
   </ItemGroup>
 </Project>

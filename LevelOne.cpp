@@ -1,16 +1,19 @@
-#include "LevelOne.h"
 #include "Coin.h"
-#include "Mario.h"
+#include "Flag.h"
 #include "Goomba.h"
-#include "TestObject.h"
+#include "KoopaTroopa.h"
+#include "LevelEditor.h"
+#include "LevelOne.h"
+#include "MainMenuScreen.h"
+#include "Mario.h"
 #include "MarioGhost.h"
 #include "NotSoSuperMario.h"
-#include "LevelEditor.h"
-#include "Flag.h"
-#include <iostream>
-#include "NotSoSuperMario.h"
 #include "pausedMenu.h"
-#include "MainMenuScreen.h"
+#include "leaderboard.h"
+#include "TestObject.h"
+
+#include <iostream>
+
 using namespace std;
 
 LevelOne::LevelOne(Game* owner, const std::string& filename)
@@ -25,7 +28,8 @@ LevelOne::LevelOne(Game* owner, const std::string& filename)
 	background1("pictures\\bushesbackground.png", 1200, 700, 1, camera_, 0.2f, 0.1f, -300.0f, -650.0f * CAMERA_ZOOM, 10, 1),
 	pausedMenu_(new pausedMenu(&camera_)),
 	timer_(new Timer()),
-	isPaused(false)
+	isPaused(false),
+	filename_(filename)
 {
 }
 
@@ -61,6 +65,22 @@ void LevelOne::Update(const float& frametime)
 		TestingUpdate();
 
 		timer_->Update();
+	}
+
+	// Stop timer when level is completer
+	if (levelCompleted) { timer_->StopTimer(); }
+
+	if (levelCompleted && !showleaderboard_ && !is_testing_) { showleaderboard_ = true; }
+
+	if (showleaderboard_) {
+		if (!leaderboard_->HasScore()) {
+			leaderboard_->InsertScore(score_manager_->GetScore());
+		}
+		if (input_->wasKeyPressed(VK_RETURN) && leaderboard_->top10shown_) {
+			graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
+			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
+		}
+		leaderboard_->Update(frametime);
 	}
 
 	if (isPaused)
@@ -113,9 +133,10 @@ void LevelOne::Update(const float& frametime)
 				}
 			}
 		}
+
 	}
 
-	if (mario_->isDead) 
+	if (mario_->isTouchedGoomba && !mario_->is_big_)
 	{ 
 		timer_->StopTimer(); 
 
@@ -141,7 +162,7 @@ void LevelOne::Update(const float& frametime)
 	}
 
 	if (mario_->GetPosition().y > 50) {
-		mario_->isDead = true;
+		mario_->isTouchedGoomba = true;
 	}
 }
 
@@ -160,13 +181,17 @@ void LevelOne::ChildRender()
 	}
 
 	// If mario is dead and the dead animation is done, show the  menu
-	if (mario_->isDead)
+	if (mario_->isTouchedGoomba)
 	{
 		if (mario_->deathAnimationDone)
 		{
 			pausedMenu_->showMenu();
 			pausedMenu_->ChildRender(is_testing_);
 		}
+	}
+
+	if (showleaderboard_) {
+		leaderboard_->Render();
 	}
 }
 
@@ -207,18 +232,24 @@ void LevelOne::Initialize()
 	game_objects_.push_back(temp);
 	temp->SetPosition(map_generator_.GetMarioPosition().x_, map_generator_.GetMarioPosition().y_);
 
+	leaderboard_ = new Leaderboard(*graphics_, camera_, filename_);
+
+	// Initialize backgrounds
 	background5.Initialize(*graphics_);
 	background4.Initialize(*graphics_);
 	background3.Initialize(*graphics_);
 	background2.Initialize(*graphics_);
 	background1.Initialize(*graphics_);
 
+
 	pausedMenu_->Initialize(*graphics_, input_);
-	// initialize fonts
+	leaderboard_->Initialize(*graphics_, input_);
+
+	// Initialize fonts
 	options_display_ = new Font("pictures\\Fixedsys16x28.png", *graphics_, camera_);
 	name_display_ = new Font("pictures\\Fixedsys16x28.png", *graphics_, camera_);
 	// -------------------------------------------------------------------------------------
-	// initializing ghost and score
+	// Initializing ghost and score
 	InitGhostData();
 	Scene::Initialize();
 }

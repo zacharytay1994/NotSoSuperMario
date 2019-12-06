@@ -39,6 +39,8 @@ public:
 	bool clear_name_ = true;
 	bool showleaderboard_ = false;
 	bool levelCompleted = false;
+	bool is_dead_sound_played_ = false;
+	bool is_theme_song_played_ = false;
 
 	Leaderboard* leaderboard_;
 	pausedMenu* pausedMenu_;

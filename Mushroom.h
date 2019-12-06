@@ -16,6 +16,7 @@ private:
 	float direction_ = 0.0f;
 	float speed_ = 50.0f;
 	bool isTouchedMushroom = false;
+	bool is_growing_sound_played_ = false;
 
 public:
 	Mushroom(ColliderManager& cm, const Vec2<float>& position, Mario& m);

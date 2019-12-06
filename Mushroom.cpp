@@ -1,5 +1,5 @@
 #include "Mushroom.h"
-
+#include <mmsystem.h>
 Mushroom::Mushroom(ColliderManager& cm, const Vec2<float>& position, Mario& m)
 	:
 	cm_(&cm),
@@ -43,6 +43,11 @@ void Mushroom::Update(const float& frametime)
 
 	if (isTouchedMushroom)
 	{
+		if (!is_growing_sound_played_)
+		{
+			PlaySound("sounds\\smb_powerup.wav", NULL, SND_FILENAME || SND_ASYNC);
+			is_growing_sound_played_ = true;
+		}
 		removed_ = true;
 		mario_->isAnimComplete = false;
 

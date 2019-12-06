@@ -35,7 +35,7 @@
     <ClCompile Include="BouncyPlatform.cpp" />
     <ClCompile Include="Flag.cpp" />
     <ClCompile Include="Mushroom.cpp" />
-    <ClCompile Include="QuestionMarkBlock.cpp" /> 
+    <ClCompile Include="QuestionMarkBlock.cpp" />
     <ClCompile Include="leaderboard.cpp" />
     <ClCompile Include="LevelEditor.cpp" />
     <ClCompile Include="LevelSelect.cpp" />
@@ -88,5 +88,6 @@
     <ClInclude Include="LoadMario.h" />
     <ClInclude Include="MarioGhost.h" />
     <ClInclude Include="SaveMario.h" />
+    <ClInclude Include="AudioEngine.h" />
   </ItemGroup>
 </Project>

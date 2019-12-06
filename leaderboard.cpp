@@ -94,9 +94,14 @@ void Leaderboard::ReadLeaderboard()
 			scoreQueue_.push(std::stof(line.substr(commaindex + 1, line.length())));
 			lastline = line;
 		}
-		currentIsTop10_ = 
-			currentscore_ < std::stof(lastline.substr(commaindex + 1, lastline.length())) ||
-			scoreQueue_.size() < 10;
+		if (line.length() > 0) {
+			currentIsTop10_ =
+				currentscore_ < std::stof(lastline.substr(commaindex + 1, lastline.length())) ||
+				scoreQueue_.size() < 10;
+		}
+		else {
+			currentIsTop10_ = true;
+		}
 		if (currentIsTop10_) {
 			input_->clearTextIn();
 		} else {

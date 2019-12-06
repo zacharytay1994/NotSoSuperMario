@@ -26,6 +26,7 @@ void Goomba::Update(const float& frametime)
 {
 	GameObject::Update(frametime);
 	// temp
+
 	if (touch_.touch_left_) {
 		direction_.x_ = -1;
 		sprite_->GetImage().flipHorizontal(false);
@@ -66,9 +67,9 @@ void Goomba::Update(const float& frametime)
 		}
 	}
 	// walk
-	if (!pend_removal_) {
-		phy_->AddVelocity(direction_ * speed_);
-	}
+
+	phy_->AddVelocity(direction_ * speed_);
+	
 	
 }
 

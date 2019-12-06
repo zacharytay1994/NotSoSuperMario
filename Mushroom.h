@@ -15,7 +15,6 @@ private:
 
 	float direction_ = 0.0f;
 	float speed_ = 50.0f;
-
 	bool isTouchedMushroom = false;
 
 public:

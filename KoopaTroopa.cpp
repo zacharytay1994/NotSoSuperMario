@@ -13,7 +13,6 @@ KoopaTroopa::KoopaTroopa(ColliderManager& cm, const Vec2<float>& position)
 	shellidle_sprite_(new Sprite("pictures\\koopashellidle.png", 54, 64, 1))
 	
 {
-	//walking_sprite_->InitializeAnimation(0, 5, 0.25f);
 	walking_sprite_->InitializeAnimation(0, 7, 0.25f);
 	shellmoving_sprite_->InitializeAnimation(0, 3, 0.125f);
 
@@ -67,10 +66,12 @@ void KoopaTroopa::Update(const float& frametime)
 			looking_left_ = false;
 
 		}
-		if (touch_.touch_top_) {
-			
-			shellState = true;
+		if (touch_.touch_top_)
+		{
+			if (touch_obj_.touch_obj_top_->owner_->type_ == "Mario")
+				shellState = true;
 		}
+		
 
 
 		// walk
@@ -142,4 +143,14 @@ void KoopaTroopa::ChildInitialize(Graphics& gfx)
 	walking_sprite_->GetImage().setScale(CAMERA_ZOOM);
 
 	
+}
+
+bool KoopaTroopa::GetShellState()
+{
+	return shellState;
+}
+
+bool KoopaTroopa::GetShellMovingState()
+{
+	return shellMoving;
 }

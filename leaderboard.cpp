@@ -6,7 +6,7 @@ Leaderboard::Leaderboard(Graphics& gfx, Camera& camera, std::string filename)
 	toptensprite_(Sprite("pictures\\leaderboard-bg.png",832,640,1)),
 	namesprite_(Sprite("pictures\\leaderboard-bg-name.png",832,640,1)),
 	camera_(&camera),
-	font_(new Font("pictures\\Fixedsys16x28.png", gfx, camera, 0.75)),
+	font_(new Font("pictures\\Fixedsys16x28b.png", gfx, camera, 0.75)),
 	
 	filename_("Leaderboard" + filename.substr(6, filename.length()-10) + "-leaderboard.txt")
 	

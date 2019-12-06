@@ -16,7 +16,7 @@ private:
 	Vec2<float> acceleration = {0.0f, 0.0f};
 	float mass;
 	float inv_mass_;
-	float restitution_ = 0.2f;
+	float restitution_ = 0;
 	float linear_drag_ = 10.0f;
 	bool hasGravity;
 

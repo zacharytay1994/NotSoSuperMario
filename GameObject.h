@@ -36,6 +36,8 @@ public:
 	bool pend_removal_ = false;
 	bool removed_ = false;
 	bool bounce_off_others_ = false;
+	bool start_air_time_ = false;
+	bool instant_air_ = false;
 	float bounce_strength_ = 300.0f;
 	std::string type_ = "";
 public:

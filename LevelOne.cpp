@@ -44,6 +44,7 @@ LevelOne::~LevelOne()
 
 void LevelOne::Update(const float& frametime)
 {
+
 	if (!isPaused && !(mario_->deathAnimationDone))
 	{
 		// Do not update the frame when the game is paused or mario is dead
@@ -142,6 +143,11 @@ void LevelOne::Update(const float& frametime)
 
 	if (mario_->is_dead_)
 	{ 
+		if (!is_dead_sound_played_)
+		{
+			PlaySound("sounds\\smb_mariodie.wav", NULL, SND_FILENAME || SND_ASYNC);
+			is_dead_sound_played_ = true;
+		}
 		timer_->StopTimer(); 
 
 		if (mario_->deathAnimationDone)

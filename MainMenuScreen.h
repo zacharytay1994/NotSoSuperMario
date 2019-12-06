@@ -32,6 +32,8 @@ private:
 	int index_ = 1;
 	float walking_speed_ = -20.0f;
 	float walking_speed_2_ = 20.0f;
+	bool is_select_sound_played_ = false;
+	bool is_sound_initialized = false;
 public:
 	MainMenu(Game* owner);
 	~MainMenu();

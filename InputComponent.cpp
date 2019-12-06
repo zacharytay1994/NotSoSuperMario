@@ -2,6 +2,10 @@
 #include "GameObject.h"
 #include "PhysicsComponent.h"
 #include "Mario.h"
+#include <Windows.h>
+#include <xaudio2.h>
+#include "AudioEngine.h"
+#include <mmsystem.h>
 
 InputComponent::InputComponent(GameObject& owner, Input& input)
 	:
@@ -18,6 +22,7 @@ void InputComponent::Update(const float& frametime)
 {
 	Component::Update(frametime);
 	bool input_flag = false;
+
 	if (input_.isKeyDown(SHIP_RIGHT_KEY)) {
 		input_flag = true;
 		//owner_.SetPosition(owner_.GetPosiiton().x + 1, owner_.GetPosiiton().y);
@@ -28,6 +33,7 @@ void InputComponent::Update(const float& frametime)
 		temp->looking_left = false;
 		temp->ChangeSprite(temp->running_animation_);
 		temp->animation_id_ = 1;
+
 	}
 	if (input_.isKeyDown(SHIP_LEFT_KEY)) {
 		input_flag = true;
@@ -44,7 +50,11 @@ void InputComponent::Update(const float& frametime)
 		input_flag = true;
 		/*std::vector<float> params = { -100.0f };
 		owner_.TellComponents({ ComponentTypes::Physics, 1, params });*/
+		
+	
 		dynamic_cast<PhysicsComponent*>(owner_.GetComponent("PhysicsComponent"))->AddVelocity(Vec2<float>(0.0f, -1.0f) * 30.0f);
+
+
 	}
 	if (input_.wasKeyPressed(SHIP_DOWN_KEY)) {
 		input_flag = true;
@@ -62,6 +72,24 @@ void InputComponent::Update(const float& frametime)
 		temp->running_animation_->GetImage().flipHorizontal(false);
 		temp->ChangeSprite(temp->jumping_);
 	}
+
+	//if (input_.wasKeyPressed(VK_UP) && owner_.on_ground_)
+	//{
+	//	if (input_.wasKeyPressed(VK_UP))
+	//	{
+	//		PlaySound("sounds\\Mario-jump-sound.wav", NULL, SND_FILENAME || SND_ASYNC);
+	//	}
+	//}
+
+	//if (owner_.on_ground_ && dynamic_cast<PhysicsComponent*>(owner_.GetComponent("PhysicsComponent"))->GetVelocity != 0)
+	//{
+	//	PlaySound("sounds\\Mario-jump-sound.wav", NULL, SND_FILENAME || SND_ASYNC);
+	//}
+
+
+
+
+
 }
 
 void InputComponent::Draw()

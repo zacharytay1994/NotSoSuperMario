@@ -79,6 +79,15 @@ void MainMenu::Initialize()
 	pseudokoopa_.GetImage().setY(GAME_HEIGHT - 104);
 	pseudokoopa_.GetImage().flipHorizontal(true);
 	Scene::Initialize();
+
+	if (!is_sound_initialized)
+	{
+		PlaySound("sounds\\smb_coin.wav", NULL, SND_FILENAME || SND_ASYNC);
+		PlaySound("sounds\\smb_jump-super.wav", NULL, SND_FILENAME || SND_ASYNC);
+		PlaySound("sounds\smb_mariodie.wav", NULL, SND_FILENAME || SND_ASYNC);
+		PlaySound("sounds\\smb_powerup.wav", NULL, SND_FILENAME || SND_ASYNC);
+		is_sound_initialized = true;
+	}
 }
 
 void MainMenu::Update(const float& frametime)
@@ -86,13 +95,21 @@ void MainMenu::Update(const float& frametime)
 	Scene::Update(frametime);
 	if (index_ <= 3) {
 		if (input_->wasKeyPressed(SHIP_DOWN_KEY)) {
+			is_select_sound_played_ = false;
+			if (!is_select_sound_played_)
+			{
+				PlaySound("sounds\\smb_coin.wav", NULL, SND_FILENAME || SND_ASYNC);
+				is_select_sound_played_ = true;
+			}
 			mushicon.GetImage().setY(mushicon.GetImage().getY() + 32.0f);
 			//is_down_ = true;
 			index_++;
 		}
 	}
 	if (index_ >= 2) {
+		is_select_sound_played_ = false;
 		if (input_->wasKeyPressed(SHIP_UP_KEY)) {
+			PlaySound("sounds\\smb_coin.wav", NULL, SND_FILENAME || SND_ASYNC);
 			mushicon.GetImage().setY(mushicon.GetImage().getY() - 32.0f);
 			//is_down_ = false;
 			index_--;

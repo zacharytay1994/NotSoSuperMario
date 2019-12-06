@@ -46,7 +46,7 @@ Mario::~Mario()
 
 void Mario::Update(const float& frametime)
 {
-	if (!isDead)
+	if (!isTouchedGoomba)
 	{
 		GameObject::Update(frametime);
 
@@ -61,53 +61,89 @@ void Mario::Update(const float& frametime)
 		}
 
 		// If mario touch goomba with left/right side, mario is dead
-		if (touch_.touch_left_)
+		if (!isInvicible)
 		{
-			if (touch_obj_.touch_obj_left_->owner_->type_ == "Goomba")
+
+			if (touch_.touch_left_)
+
 			{
-				isDead = true;
+				if (touch_obj_.touch_obj_left_->owner_->type_ == "Goomba")
+				{
+					isTouchedGoomba = true;
+				}
 			}
-		}
+
 		else if (touch_.touch_right_)
 		{
-			if (touch_obj_.touch_obj_right_->owner_->type_ == "Goomba")
-			{
-				isDead = true;
+				if (touch_obj_.touch_obj_right_->owner_->type_ == "Goomba")
+				{
+					isTouchedGoomba = true;
+				}
 			}
 		}
 	}
 
 	// When mario is dead, play the mario deadth animation once
-	if (isDead)
+
+	if (!is_big_)
 	{
-	
-		if (!deathAnimationDone)
+		if (isTouchedGoomba)
 		{
-			dying_sprite->GetImage().setX(sprite_->GetImage().getX());
-			dying_sprite->GetImage().setY(sprite_->GetImage().getY());
 
-			turn_radius_ += turn_rate_ * frametime;
 
-			deadVel += velocity * frametime;
-			dying_sprite->GetImage().setDegrees(turn_radius_);
-			if (velocity > -1000)
+			if (!deathAnimationDone)
 			{
-				dying_sprite->GetImage().setY(dying_sprite->GetImage().getY() - deadVel);
-				velocity -= 5;
+				dying_sprite->GetImage().setX(sprite_->GetImage().getX());
+				dying_sprite->GetImage().setY(sprite_->GetImage().getY());
+
+				turn_radius_ += turn_rate_ * frametime;
+
+				deadVel += velocity * frametime;
+				dying_sprite->GetImage().setDegrees(turn_radius_);
+				if (velocity > -1000)
+				{
+					dying_sprite->GetImage().setY(dying_sprite->GetImage().getY() - deadVel);
+					velocity -= 5;
+				}
+				else
+				{
+					deathAnimationDone = true;
+
+					// set mario outside of screen after the animation is done
+					dying_sprite->GetImage().setX(GAME_WIDTH);
+					dying_sprite->GetImage().setY(GAME_HEIGHT);
+
+				}
 			}
-			else
-			{
-				deathAnimationDone = true;
-
-				// set mario outside of screen after the animation is done
-				dying_sprite->GetImage().setX(GAME_WIDTH);
-				dying_sprite->GetImage().setY(GAME_HEIGHT);
-
-			}
-
-			
-
 		}
+
+	}
+	else
+	{
+			if (isTouchedGoomba)
+			{
+				ChangeSprite(normal_idle_);
+				hold_ = normal_idle_;
+				running_animation_ = normal_running_animation_;
+				jumping_ = normal_jumping_animation_;
+				is_big_ = false;
+				isInvicible = true;
+				CollisionDetectionComponent<AABBCollider>* c = dynamic_cast<CollisionDetectionComponent<AABBCollider>*>(GetComponent("CollisionDetectionComponent"));
+				c->SetColliderHeight(64 * CAMERA_ZOOM);
+				checkOneSec = true;
+				isTouchedGoomba = false;
+				
+			}
+	
+	}
+	if (checkOneSec)
+	{
+		oneSec = oneSec - frametime;
+	}
+	if (oneSec < 0)
+	{
+		isInvicible = false;
+		checkOneSec = false;
 	}
 	ExecuteBounce();
 	/*D3DXVECTOR2 test = dynamic_cast<CollisionDetectionComponent<AABBCollider>*>(GetComponent("CollisionDetectionComponent"))->GetCollider()->center_point;
@@ -120,11 +156,15 @@ void Mario::Update(const float& frametime)
 
 void Mario::Render()
 {
-	if (!isDead)
+	if (!isTouchedGoomba)
 	{
 		GameObject::Render();
 	}
-	else
+	else if (is_big_)
+	{
+		GameObject::Render();
+	}
+	else if (isTouchedGoomba)
 	{
 		dying_sprite->Draw();
 	}

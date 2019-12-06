@@ -102,7 +102,7 @@ void MainMenu::Update(const float& frametime)
 	case 1:
 		button_to_render_ = &buttonbackground;
 		if (input_->wasKeyPressed(VK_RETURN)) {
-			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelSelect(owner_)/*new LevelOne(owner_, "Levels/levelone.txt")*/);
+			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelSelect(owner_));
 		}
 		break;
 	case 2:

@@ -22,7 +22,8 @@ public:
 	Sprite* dying_sprite;
 	PhysicsComponent* phy_;
 	bool looking_left = true;
-	bool isDead = false;
+	bool isTouchedGoomba = false;
+	bool isInvicible = false;
 	float turn_radius_ = 0.0f;
 	float turn_rate_ = 250.0f;
 	float deadVel = 0;
@@ -30,6 +31,8 @@ public:
 	bool deathAnimationDone = false;
 	int animation_id_ = 0; // 0 = idle, 1 = running, 2 = jumping
 	bool is_big_ = false;
+	float oneSec = 0.5f;
+	bool checkOneSec = false;;
 public:
 	Mario(Input& input, ColliderManager& cm);
 	~Mario();

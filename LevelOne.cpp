@@ -140,7 +140,7 @@ void LevelOne::Update(const float& frametime)
 
 	}
 
-	if (mario_->isTouchedGoomba && !mario_->is_big_)
+	if (mario_->is_dead_)
 	{ 
 		timer_->StopTimer(); 
 

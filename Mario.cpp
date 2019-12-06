@@ -2,6 +2,7 @@
 #include "InputComponent.h"
 #include "PhysicsComponent.h"
 #include "CollisionDetectionComponent.h"
+#include "KoopaTroopa.h"
 #include <Windows.h>
 #include <chrono>
 #include <thread>
@@ -24,11 +25,14 @@ Mario::Mario(Input& input, ColliderManager& cm)
 
 	idle_(normal_idle_),
 	jumping_(normal_jumping_animation_),
-	running_animation_(normal_running_animation_)
+	running_animation_(normal_running_animation_),
+
+	growing_animation_(new Sprite("pictures\\marioGrowing.png", 64, 128, 5))
 {
 	//sprite_.InitializeAnimation(0, 5, SHIP_ANIMATION_DELAY);
 	normal_running_animation_->InitializeAnimation(0, 5, 0.25f);
 	super_running_animation_->InitializeAnimation(0, 2, 0.25f);
+	growing_animation_->InitializeAnimation(0, 4, 0.25f);
 	AddComponent(new PhysicsComponent(*this));
 	phy_ = dynamic_cast<PhysicsComponent*>(GetComponent("PhysicsComponent"));
 	phy_->SetMass(10.0f);
@@ -71,13 +75,43 @@ void Mario::Update(const float& frametime)
 				{
 					isTouchedGoomba = true;
 				}
+
+				else if (touch_obj_.touch_obj_left_->owner_->type_ == "Koopa")
+				{
+					if (dynamic_cast<KoopaTroopa*>(touch_obj_.touch_obj_left_->owner_)->GetShellState())
+					{
+						if (dynamic_cast<KoopaTroopa*>(touch_obj_.touch_obj_left_->owner_)->GetShellMovingState())
+						{
+							isTouchedGoomba = true;
+						}
+					}
+					else
+					{
+						isTouchedGoomba = true;
+					}
+				}
+
 			}
 
-		else if (touch_.touch_right_)
-		{
+			else if (touch_.touch_right_)
+			{
 				if (touch_obj_.touch_obj_right_->owner_->type_ == "Goomba")
 				{
 					isTouchedGoomba = true;
+				}
+				else if (touch_obj_.touch_obj_right_->owner_->type_ == "Koopa")
+				{
+					if (dynamic_cast<KoopaTroopa*>(touch_obj_.touch_obj_right_->owner_)->GetShellState())
+					{
+						if (dynamic_cast<KoopaTroopa*>(touch_obj_.touch_obj_right_->owner_)->GetShellMovingState())
+						{
+							isTouchedGoomba = true;
+						}
+					}
+					else
+					{
+						isTouchedGoomba = true;
+					}
 				}
 			}
 		}
@@ -89,7 +123,7 @@ void Mario::Update(const float& frametime)
 	{
 		if (isTouchedGoomba)
 		{
-
+			is_dead_ = true;
 
 			if (!deathAnimationDone)
 			{
@@ -108,7 +142,7 @@ void Mario::Update(const float& frametime)
 				else
 				{
 					deathAnimationDone = true;
-
+					
 					// set mario outside of screen after the animation is done
 					dying_sprite->GetImage().setX(GAME_WIDTH);
 					dying_sprite->GetImage().setY(GAME_HEIGHT);
@@ -117,24 +151,49 @@ void Mario::Update(const float& frametime)
 			}
 		}
 
+
+		
+		
+		/*D3DXVECTOR2 test = dynamic_cast<CollisionDetectionComponent<AABBCollider>*>(GetComponent("CollisionDetectionComponent"))->GetCollider()->center_point;
+		std::stringstream ss;
+		ss << "COLLIDER: " << test.x << "," << test.y << std::endl;
+		ss << "POSITION: " << position_.x << "," << position_.y << std::endl;
+		ss << "SPRITEPOS: " << sprite_->GetImage().getX() << "," << sprite_->GetImage().getY() << std::endl;*/
+		//OutputDebugString(ss.str().c_str());
 	}
 	else
 	{
-			if (isTouchedGoomba)
-			{
-				ChangeSprite(normal_idle_);
-				hold_ = normal_idle_;
-				running_animation_ = normal_running_animation_;
-				jumping_ = normal_jumping_animation_;
-				is_big_ = false;
-				isInvicible = true;
-				CollisionDetectionComponent<AABBCollider>* c = dynamic_cast<CollisionDetectionComponent<AABBCollider>*>(GetComponent("CollisionDetectionComponent"));
-				c->SetColliderHeight(64 * CAMERA_ZOOM);
-				checkOneSec = true;
-				isTouchedGoomba = false;
-				
-			}
-	
+		if (!isAnimComplete)
+		{
+			hold_ = growing_animation_;
+		}
+		if (hold_->GetImage().getAnimationComplete())
+		{
+
+			ChangeSprite(super_idle_);
+			hold_ = super_idle_;
+			running_animation_ = super_running_animation_;
+			jumping_ = super_jumping_;
+			isAnimComplete = true;
+
+		}
+
+
+		if (isTouchedGoomba)
+		{
+			ChangeSprite(normal_idle_);
+			hold_ = normal_idle_;
+			running_animation_ = normal_running_animation_;
+			jumping_ = normal_jumping_animation_;
+			is_big_ = false;
+			isInvicible = true;
+			CollisionDetectionComponent<AABBCollider>* c = dynamic_cast<CollisionDetectionComponent<AABBCollider>*>(GetComponent("CollisionDetectionComponent"));
+			c->SetColliderHeight(64 * CAMERA_ZOOM);
+			checkOneSec = true;
+			isTouchedGoomba = false;
+
+		}
+
 	}
 	if (checkOneSec)
 	{
@@ -144,15 +203,11 @@ void Mario::Update(const float& frametime)
 	{
 		isInvicible = false;
 		checkOneSec = false;
+		oneSec = 1;
 	}
 	ExecuteBounce();
-	/*D3DXVECTOR2 test = dynamic_cast<CollisionDetectionComponent<AABBCollider>*>(GetComponent("CollisionDetectionComponent"))->GetCollider()->center_point;
-	std::stringstream ss;
-	ss << "COLLIDER: " << test.x << "," << test.y << std::endl;
-	ss << "POSITION: " << position_.x << "," << position_.y << std::endl;
-	ss << "SPRITEPOS: " << sprite_->GetImage().getX() << "," << sprite_->GetImage().getY() << std::endl;*/
-	//OutputDebugString(ss.str().c_str());
 }
+
 
 void Mario::Render()
 {
@@ -188,6 +243,9 @@ void Mario::ChildInitialize(Graphics& gfx)
 	super_running_animation_->GetImage().setScale(CAMERA_ZOOM);
 	super_jumping_->Initialize(gfx);
 	super_jumping_->GetImage().setScale(CAMERA_ZOOM);
+
+	growing_animation_->Initialize(gfx);
+	growing_animation_->GetImage().setScale(CAMERA_ZOOM);
 }
 
 void Mario::ExecuteBounce()

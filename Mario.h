@@ -15,6 +15,8 @@ public:
 	Sprite* super_jumping_;
 	Sprite* super_running_animation_;
 
+	Sprite* growing_animation_;
+
 	Sprite* idle_;
 	Sprite* running_animation_;
 	Sprite * jumping_;
@@ -33,6 +35,8 @@ public:
 	bool is_big_ = false;
 	float oneSec = 0.5f;
 	bool checkOneSec = false;;
+	bool isAnimComplete = false;
+	bool is_dead_ = false;
 public:
 	Mario(Input& input, ColliderManager& cm);
 	~Mario();

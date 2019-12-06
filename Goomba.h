@@ -9,6 +9,7 @@ class Goomba : public GameObject {
 private:
 	Sprite* walking_sprite_;
 	Sprite* death_sprite_;
+	Sprite* idle_sprite_;
 	bool looking_left_ = false;
 	PhysicsComponent* phy_;
 	Vec2<float> direction_ = { -1.0f, 0.0f };

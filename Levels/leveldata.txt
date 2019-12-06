@@ -8,3 +8,6 @@ testing no4.txt
 leade.txt
 
 some.txt
+kuppagoomba.txt
+somethingkoop.txt
+earlevel.txt

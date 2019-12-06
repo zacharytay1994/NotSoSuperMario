@@ -15,6 +15,7 @@ private:
 	int columns_;
 	bool initialized_ = false;
 public:
+	Sprite() = default;
 	Sprite(const std::string& path, const int& width, const int& height, const int& columns);
 	~Sprite();
 	bool Initialize(Graphics& graphics);

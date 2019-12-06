@@ -44,7 +44,9 @@ void MapGenerator::GenerateWalls(ColliderManager& cm, std::vector<GameObject*>& 
 					golist.push_back(new BouncyPlatform(cm, Vec2<float>(start_x * cell_size_, start_y * cell_size_)));
 				}
 				else if (c == 'k') {
-					golist.push_back(new KoopaTroopa(cm, Vec2<float>(start_x * cell_size_, start_y * cell_size_)));
+					KoopaTroopa* temp = new KoopaTroopa(cm, Vec2<float>(start_x * cell_size_, start_y * cell_size_));
+					golist.push_back(temp);
+					//sentient.push_back(temp);
 				}
 				else if (c == 'f') {
 					golist.push_back(new Flag(cm, Vec2<float>(start_x * cell_size_, (start_y - 5.5) * cell_size_), m, s));

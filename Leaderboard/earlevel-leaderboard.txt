@@ -1,0 +1,3 @@
+somethingstrange,2.842
+zacharytay,2.947
+tree,2.949

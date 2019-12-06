@@ -21,7 +21,7 @@ KoopaTroopa::KoopaTroopa(ColliderManager& cm, const Vec2<float>& position)
 	timer = random;
 	phy_ = temp;
 	AddComponent(temp);
-	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, this, sprite_->GetWidth() - 10.0f, sprite_->GetHeight()-3, false, true), cm));
+	AddComponent(new CollisionDetectionComponent<AABBCollider>(*this, new AABBCollider(position_, this, sprite_->GetWidth() - 10.0f, sprite_->GetHeight() - 3.0f, false, true), cm));
 	sprite_ = walking_sprite_;
 }
 
@@ -90,6 +90,7 @@ void KoopaTroopa::Update(const float& frametime)
 					if (touch_obj_.touch_obj_left_->owner_->type_ == "Goomba")
 					{
 						touch_obj_.touch_obj_left_->owner_->removed_ = true;
+						//AddGoombaSprite();
 					}
 					else {
 						direction_.x_ = -1;
@@ -106,6 +107,7 @@ void KoopaTroopa::Update(const float& frametime)
 					if (touch_obj_.touch_obj_right_->owner_->type_ == "Goomba")
 					{
 						touch_obj_.touch_obj_right_->owner_->removed_ = true;
+						//AddGoombaSprite();
 					}
 					else {
 						direction_.x_ = 1;
@@ -126,10 +128,12 @@ void KoopaTroopa::Update(const float& frametime)
 					ChangeSprite(shellmoving_sprite_);
 					phy_->AddVelocity(direction_ * shellSpeed_); }
 		}
+	UpdateGoombaSprites(frametime);
 	}
 
 void KoopaTroopa::Render()
 {
+	//DrawGoombaSprites();
 	GameObject::Render();
 }
 
@@ -141,7 +145,7 @@ void KoopaTroopa::ChildInitialize(Graphics& gfx)
 	shellmoving_sprite_->GetImage().setScale(CAMERA_ZOOM);
 	walking_sprite_->Initialize(gfx);
 	walking_sprite_->GetImage().setScale(CAMERA_ZOOM);
-
+	gfx_ = &gfx;
 	
 }
 
@@ -153,4 +157,47 @@ bool KoopaTroopa::GetShellState()
 bool KoopaTroopa::GetShellMovingState()
 {
 	return shellMoving;
+}
+
+void KoopaTroopa::AddGoombaSprite()
+{
+	Sprite* temp = new Sprite("pictures\\goombawalksheet.png", 64, 64, 4);
+	temp->Initialize(*gfx_);
+	temp->GetImage().setX(position_.x);
+	temp->GetImage().setY(position_.y);
+	temp->GetImage().setScale(CAMERA_ZOOM);
+	goomba_sprites_.push_back(*temp);
+}
+
+void KoopaTroopa::UpdateGoombaSprites(const float& frametime)
+{
+	// loop through goombas
+	for (int i = 0; i < goomba_sprites_.size(); i++) {
+		// fly it up
+		if (goomba_sprites_[i].GetImage().getRadians() < 1.571f) {
+			goomba_sprites_[i].GetImage().setY(goomba_sprites_[i].GetImage().getY() - drop_speed_ * frametime);
+		}
+		else {
+			drop_speed_ += 500.0f * frametime;
+			goomba_sprites_[i].GetImage().setY(goomba_sprites_[i].GetImage().getY() + drop_speed_ * frametime);
+		}
+		// check if goomba rotation > certain amount, 270 degrees
+		if (goomba_sprites_[i].GetImage().getRadians() > 15.652f) {
+			// remove sprite
+			Sprite* temp = &goomba_sprites_[i];
+			goomba_sprites_.erase(goomba_sprites_.begin() + i);
+			delete temp;
+		}
+		else {
+			// spin it
+			goomba_sprites_[i].GetImage().setRadians(goomba_sprites_[i].GetImage().getRadians() + 10.0f * frametime);
+		}
+	}
+}
+
+void KoopaTroopa::DrawGoombaSprites()
+{
+	for (int i = 0; i < goomba_sprites_.size(); i++) {
+		goomba_sprites_[i].Draw();
+	}
 }

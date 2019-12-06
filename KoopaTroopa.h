@@ -3,6 +3,7 @@
 #include "Vec2.h"
 #include <cstdlib>
 
+class Graphics;
 class Input;
 class ColliderManager;
 class PhysicsComponent;
@@ -21,6 +22,10 @@ private:
 	float speed_ = 25.0f;
 	float shellSpeed_ = 150.0f;
 	bool shellMoving = false;
+	// goomba death animation container
+	std::vector<Sprite> goomba_sprites_;
+	float drop_speed_ = 100.0f;
+	Graphics* gfx_;
 
 public:
 	KoopaTroopa(ColliderManager& cm, const Vec2<float>& position);
@@ -30,4 +35,7 @@ public:
 	void ChildInitialize(Graphics& gfx) override;
 	bool GetShellState();
 	bool GetShellMovingState();
+	void AddGoombaSprite();
+	void UpdateGoombaSprites(const float& frametime);
+	void DrawGoombaSprites();
 };

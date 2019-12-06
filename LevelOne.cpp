@@ -46,7 +46,7 @@ LevelOne::~LevelOne()
 void LevelOne::Update(const float& frametime)
 {
 	// press r to restart level
-	if (input_->wasKeyPressed('R')) {
+	if (input_->wasKeyPressed('R') && !showleaderboard_ && !is_testing_) {
 		LevelOne* temp = new LevelOne(owner_, current_level_);
 		if (is_testing_) {
 			temp->SetTesting(true, held_scene_);

@@ -51,6 +51,7 @@ void MainMenu::Update(const float& frametime)
 			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelSelect(owner_));
 		}
 	}
+
 }
 
 void MainMenu::ChildRender()

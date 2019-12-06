@@ -9,6 +9,7 @@ Leaderboard::Leaderboard(Graphics& gfx, Camera& camera, std::string filename)
 	font_(new Font("pictures\\Fixedsys16x28.png", gfx, camera, 0.75)),
 	
 	filename_("Leaderboard" + filename.substr(6, filename.length()-10) + "-leaderboard.txt")
+	
 {
 }
 
@@ -51,10 +52,12 @@ void Leaderboard::Render()
 		font_->DrawTextString(placingTxt_, placingpos_, *gfx_);
 		font_->DrawTextString(nameTxt_, namepos_, *gfx_);
 		font_->DrawTextString(scoreTxt_, scorepos_, *gfx_);
+		font_->DrawTextString(filename_, { 10,50 }, *gfx_);
 	}
 	else{
 		namesprite_.Draw();
 		font_->DrawTextString(playername_, playernamepos_, *gfx_);
+		font_->DrawTextString(filename_, { 10,50 }, *gfx_);
 	}
 }
 
@@ -80,7 +83,9 @@ void Leaderboard::Update(const float& frametime)
 
 void Leaderboard::ReadLeaderboard()
 {
+	
 	std::ifstream file(filename_);
+	
 	if (file.is_open()) {
 		std::string line;
 		std::string lastline;
@@ -168,9 +173,10 @@ void Leaderboard::InsertPlayer(std::string name, float score) {
 
 void Leaderboard::InsertScore(float score) {
 	currentscore_ = score;
+	isShowing_ = true;
 	ReadLeaderboard();
 }
 
-bool Leaderboard::HasScore() {
-	return currentscore_ != -431602080;
+bool Leaderboard::IsShowing() {
+	return isShowing_;
 }

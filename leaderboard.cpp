@@ -6,9 +6,10 @@ Leaderboard::Leaderboard(Graphics& gfx, Camera& camera, std::string filename)
 	toptensprite_(Sprite("pictures\\leaderboard-bg.png",832,640,1)),
 	namesprite_(Sprite("pictures\\leaderboard-bg-name.png",832,640,1)),
 	camera_(&camera),
-	font_(new Font("pictures\\Fixedsys16x28.png", gfx, camera, 0.75)),
+	font_(new Font("pictures\\Fixedsys16x28b.png", gfx, camera, 0.75)),
 	
 	filename_("Leaderboard" + filename.substr(6, filename.length()-10) + "-leaderboard.txt")
+	
 {
 }
 
@@ -80,7 +81,9 @@ void Leaderboard::Update(const float& frametime)
 
 void Leaderboard::ReadLeaderboard()
 {
+	
 	std::ifstream file(filename_);
+	
 	if (file.is_open()) {
 		std::string line;
 		std::string lastline;
@@ -168,9 +171,10 @@ void Leaderboard::InsertPlayer(std::string name, float score) {
 
 void Leaderboard::InsertScore(float score) {
 	currentscore_ = score;
+	isShowing_ = true;
 	ReadLeaderboard();
 }
 
-bool Leaderboard::HasScore() {
-	return currentscore_ != -431602080;
+bool Leaderboard::IsShowing() {
+	return isShowing_;
 }

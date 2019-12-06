@@ -18,7 +18,7 @@ void InputComponent::Update(const float& frametime)
 {
 	Component::Update(frametime);
 	bool input_flag = false;
-	if (input_.isKeyDown(SHIP_RIGHT_KEY)) {
+	if (input_.isKeyDown(SHIP_RIGHT_KEY) || input_.isKeyDown('D')) {
 		input_flag = true;
 		//owner_.SetPosition(owner_.GetPosiiton().x + 1, owner_.GetPosiiton().y);
 		/*std::vector<float> params = { 100.0f };
@@ -29,7 +29,7 @@ void InputComponent::Update(const float& frametime)
 		temp->ChangeSprite(temp->running_animation_);
 		temp->animation_id_ = 1;
 	}
-	if (input_.isKeyDown(SHIP_LEFT_KEY)) {
+	if (input_.isKeyDown(SHIP_LEFT_KEY) || input_.isKeyDown('A')) {
 		input_flag = true;
 		//owner_.SetPosition(owner_.GetPosiiton().x - 1, owner_.GetPosiiton().y);
 		/*std::vector<float> params = { -100.0f };
@@ -40,13 +40,13 @@ void InputComponent::Update(const float& frametime)
 		temp->ChangeSprite(temp->running_animation_);
 		temp->animation_id_ = 1;
 	}
-	if (input_.isKeyDown(SHIP_UP_KEY) && owner_.on_ground_) {
+	if ((input_.isKeyDown(SHIP_UP_KEY) || input_.isKeyDown('W')) && owner_.on_ground_) {
 		input_flag = true;
 		/*std::vector<float> params = { -100.0f };
 		owner_.TellComponents({ ComponentTypes::Physics, 1, params });*/
 		dynamic_cast<PhysicsComponent*>(owner_.GetComponent("PhysicsComponent"))->AddVelocity(Vec2<float>(0.0f, -1.0f) * 30.0f);
 	}
-	if (input_.wasKeyPressed(SHIP_DOWN_KEY)) {
+	if (input_.wasKeyPressed(SHIP_DOWN_KEY) || input_.wasKeyPressed('S')) {
 		input_flag = true;
 		/*std::vector<float> params = { 100.0f };
 		owner_.TellComponents({ ComponentTypes::Physics, 1, params });*/

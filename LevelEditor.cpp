@@ -171,7 +171,7 @@ void LevelEditor::UpdateCurrentlySelectedTile()
 		current_block_ = BlockTypes::Empty;
 		block_name_ = "Empty";
 	}
-	else if (input_->wasKeyPressed('B')) {
+	else if (input_->wasKeyPressed('W')) {
 		current_block_ = BlockTypes::Block;
 		block_name_ = "Block";
 	}

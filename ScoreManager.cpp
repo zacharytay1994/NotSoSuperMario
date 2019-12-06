@@ -22,7 +22,7 @@ void ScoreManager::Draw()
 	total_score_ = timer_->Duration() - score_;
 
 	font_->DrawTextString(ss.str(), Vec2<int>(10.0f, 10.0f), *gfx);
-	font_->DrawTextString(ss1.str(), Vec2<int>(300.0f, 10.0f), *gfx);
+	font_->DrawTextString(ss1.str() + " -Restart (R)", Vec2<int>(300.0f, 10.0f), *gfx);
 }
 
 void ScoreManager::IncrementScore() { score_++; }

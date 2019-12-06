@@ -52,12 +52,10 @@ void Leaderboard::Render()
 		font_->DrawTextString(placingTxt_, placingpos_, *gfx_);
 		font_->DrawTextString(nameTxt_, namepos_, *gfx_);
 		font_->DrawTextString(scoreTxt_, scorepos_, *gfx_);
-		font_->DrawTextString(filename_, { 10,50 }, *gfx_);
 	}
 	else{
 		namesprite_.Draw();
 		font_->DrawTextString(playername_, playernamepos_, *gfx_);
-		font_->DrawTextString(filename_, { 10,50 }, *gfx_);
 	}
 }
 

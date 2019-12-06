@@ -74,3 +74,28 @@ void Background::ForceUpdate(const bool& lerp)
 {
 	force_update_ = lerp;
 }
+
+void Background::SetLerpStrength(const float& strength)
+{
+	lerp_strength_ = strength;
+}
+
+void Background::SetPosition(const float& x, const float& y)
+{
+	sprite_.GetImage().setX(x);
+	sprite_.GetImage().setY(y);
+}
+
+void Background::SetScrollRate(const float& scroll)
+{
+	scroll_rate_ = scroll;
+}
+
+void Background::ScrollBackground(const float& frametime)
+{
+	if (scroll_counter_ > scroll_range_ || scroll_counter_ < -scroll_range_) {
+		scroll_rate_ *= -1;
+	}
+	scroll_counter_ += scroll_rate_ * frametime;
+	x_offset_ += scroll_rate_ * frametime;
+}

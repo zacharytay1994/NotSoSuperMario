@@ -17,6 +17,7 @@ public:
 	ColliderManager collider_manager_;
 	Camera camera_;
 	MapGenerator map_generator_;
+	Background background5;
 	Background background4;
 	Background background3;
 	Background background2;

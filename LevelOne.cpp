@@ -18,6 +18,7 @@ LevelOne::LevelOne(Game* owner, const std::string& filename)
 	Scene(owner),
 	map_generator_(filename),
 	current_level_(filename),
+	background5("pictures\\editorbackground.png", 1200, 751, 1, camera_, 0.2f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 10),
 	background4("pictures\\mountainbackground.png", 1200, 1200, 1, camera_, 0.5f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 1),
 	background3("pictures\\cloudbackground.png", 1200, 1200, 1, camera_, 0.4f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 1),
 	background2("pictures\\rockbackground.png", 1200, 1200, 1, camera_, 0.3f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 1),
@@ -50,8 +51,13 @@ void LevelOne::Update(const float& frametime)
 		background3.Update(frametime);
 		background2.Update(frametime);
 		background1.Update(frametime);
+
+		// Update editor's background if the level is being tested
+		if (is_testing_) { background5.Update(frametime); }
+
 		save_mario_.Update(frametime);
 		load_mario_.Update(frametime);
+
 		TestingUpdate();
 
 		timer_->Update();
@@ -170,6 +176,9 @@ void LevelOne::BackgroundRender()
 	background3.Draw();
 	background2.Draw();
 	background1.Draw();
+
+	// Draw editor's background above everything if the level is being tested
+	if (is_testing_) { background5.Draw(); };
 }
 
 void LevelOne::Initialize()
@@ -198,6 +207,7 @@ void LevelOne::Initialize()
 	game_objects_.push_back(temp);
 	temp->SetPosition(map_generator_.GetMarioPosition().x_, map_generator_.GetMarioPosition().y_);
 
+	background5.Initialize(*graphics_);
 	background4.Initialize(*graphics_);
 	background3.Initialize(*graphics_);
 	background2.Initialize(*graphics_);

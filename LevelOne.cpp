@@ -61,9 +61,10 @@ void LevelOne::Update(const float& frametime)
 		timer_->Update();
 	}
 
-	if (levelCompleted && !showleaderboard_ && !is_testing_) {
-		showleaderboard_ = true;
-	}
+	// Stop timer when level is completer
+	if (levelCompleted) { timer_->StopTimer(); }
+
+	if (levelCompleted && !showleaderboard_ && !is_testing_) { showleaderboard_ = true; }
 
 	if (showleaderboard_) {
 		if (!leaderboard_->HasScore()) {
@@ -74,7 +75,6 @@ void LevelOne::Update(const float& frametime)
 			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
 		}
 		leaderboard_->Update(frametime);
-
 	}
 
 	if (isPaused)

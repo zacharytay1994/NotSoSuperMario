@@ -35,7 +35,13 @@
     <ClCompile Include="BouncyPlatform.cpp" />
     <ClCompile Include="Flag.cpp" />
     <ClCompile Include="Mushroom.cpp" />
-    <ClCompile Include="QuestionMarkBlock.cpp" />
+    <ClCompile Include="QuestionMarkBlock.cpp" /> 
+    <ClCompile Include="leaderboard.cpp" />
+    <ClCompile Include="LevelEditor.cpp" />
+    <ClCompile Include="LevelSelect.cpp" />
+    <ClCompile Include="LoadMario.cpp" />
+    <ClCompile Include="MarioGhost.cpp" />
+    <ClCompile Include="SaveMario.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
@@ -59,6 +65,7 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="KoopaTroopa.h" />
+    <ClInclude Include="leaderboard.h" />
     <ClInclude Include="LevelOne.h" />
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="MapGenerator.h" />
@@ -76,5 +83,10 @@
     <ClInclude Include="textureManager.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vec2.h" />
+    <ClInclude Include="LevelEditor.h" />
+    <ClInclude Include="LevelSelect.h" />
+    <ClInclude Include="LoadMario.h" />
+    <ClInclude Include="MarioGhost.h" />
+    <ClInclude Include="SaveMario.h" />
   </ItemGroup>
 </Project>

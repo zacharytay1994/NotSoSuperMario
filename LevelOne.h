@@ -9,6 +9,7 @@
 #include "SaveMario.h"
 #include "LoadMario.h"
 #include "Font.h"
+#include "leaderboard.h"
 #include <string>
 
 class Mario;
@@ -17,6 +18,7 @@ public:
 	ColliderManager collider_manager_;
 	Camera camera_;
 	MapGenerator map_generator_;
+	Background background5;
 	Background background4;
 	Background background3;
 	Background background2;
@@ -35,16 +37,17 @@ public:
 	std::string name_in_ = "";
 	Font* name_display_;
 	bool clear_name_ = true;
+	bool showleaderboard_ = false;
+	bool levelCompleted = false;
 
+	Leaderboard* leaderboard_;
 	pausedMenu* pausedMenu_;
 	Mario* mario_;
 	Timer* timer_;
 	bool isPaused;
 	bool isStart = false;
 	std::clock_t startTime;
-	bool levelCompleted = false;
 	bool state_recorded_ = false;
-
 	float loaded_high_score_ = 0.0f;
 	std::string filename_;
 public:

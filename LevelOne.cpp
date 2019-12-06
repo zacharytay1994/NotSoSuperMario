@@ -3,12 +3,14 @@
 #include "Goomba.h"
 #include "KoopaTroopa.h"
 #include "LevelEditor.h"
+#include "LevelSelect.h"
 #include "LevelOne.h"
 #include "MainMenuScreen.h"
 #include "Mario.h"
 #include "MarioGhost.h"
 #include "NotSoSuperMario.h"
 #include "pausedMenu.h"
+#include "leaderboard.h"
 #include "TestObject.h"
 
 #include <iostream>
@@ -20,6 +22,7 @@ LevelOne::LevelOne(Game* owner, const std::string& filename)
 	Scene(owner),
 	map_generator_(filename),
 	current_level_(filename),
+	background5("pictures\\editorbackground.png", 1200, 751, 1, camera_, 0.2f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 10),
 	background4("pictures\\mountainbackground.png", 1200, 1200, 1, camera_, 0.5f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 1),
 	background3("pictures\\cloudbackground.png", 1200, 1200, 1, camera_, 0.4f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 1),
 	background2("pictures\\rockbackground.png", 1200, 1200, 1, camera_, 0.3f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 1),
@@ -53,40 +56,91 @@ void LevelOne::Update(const float& frametime)
 		background3.Update(frametime);
 		background2.Update(frametime);
 		background1.Update(frametime);
-		save_mario_.Update(frametime);
-		load_mario_.Update(frametime);
+
+		// Update editor's background if the level is being tested
+		if (is_testing_) { background5.Update(frametime); }
+
+		if (!is_testing_) 
+		{
+			save_mario_.Update(frametime);
+			load_mario_.Update(frametime);
+		}
+		
 		TestingUpdate();
 
 		timer_->Update();
+	}
+
+	// Stop timer when level is completer
+	if (levelCompleted) { timer_->StopTimer(); }
+
+	if (levelCompleted && !showleaderboard_ && !is_testing_) { showleaderboard_ = true; }
+
+	if (showleaderboard_) {
+		if (!leaderboard_->HasScore()) {
+			leaderboard_->InsertScore(score_manager_->GetScore());
+		}
+		if (input_->wasKeyPressed(VK_RETURN) && leaderboard_->top10shown_) {
+			graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
+			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
+		}
+		leaderboard_->Update(frametime);
 	}
 
 	if (isPaused)
 	{
 		pausedMenu_->Update(frametime);
 
-		if (input_->wasKeyPressed(VK_RETURN))
+		if (is_testing_)
 		{
-			timer_->StopTimer();
-			timer_->PausedDuration();
+			if (input_->wasKeyPressed(VK_RETURN))
+			{
+				timer_->StopTimer();
+				timer_->PausedDuration();
 
-			if (pausedMenu_->selectionValue() == 0)
-			{
-				isPaused = false;
-				timer_->ContinueTimer();
-			}
-			else if (pausedMenu_->selectionValue() == 1)
-			{
-				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelOne(owner_, current_level_));
-			}
-			else if (pausedMenu_->selectionValue() == 2)
-			{
-				graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
-				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
+				if (pausedMenu_->selectionValue() == 0)
+				{
+					isPaused = false;
+					timer_->ContinueTimer();
+				}
+				else if (pausedMenu_->selectionValue() == 1)
+				{
+					dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(held_scene_);
+				}
+				else if (pausedMenu_->selectionValue() == 2)
+				{
+					graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
+					dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
+				}
 			}
 		}
+		else
+		{
+			if (input_->wasKeyPressed(VK_RETURN))
+			{
+				timer_->StopTimer();
+				timer_->PausedDuration();
+
+				if (pausedMenu_->selectionValue() == 0)
+				{
+					isPaused = false;
+					timer_->ContinueTimer();
+				}
+				else if (pausedMenu_->selectionValue() == 1)
+				{
+					dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelOne(owner_, current_level_));
+				}
+				else if (pausedMenu_->selectionValue() == 2)
+				{
+					graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
+					dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
+				}
+			}
+		}
+
 	}
 
-	if (mario_->isDead) 
+	if (mario_->isTouchedGoomba && !mario_->is_big_)
 	{ 
 		timer_->StopTimer(); 
 
@@ -112,7 +166,7 @@ void LevelOne::Update(const float& frametime)
 	}
 
 	if (mario_->GetPosition().y > 50) {
-		mario_->isDead = true;
+		mario_->isTouchedGoomba = true;
 	}
 }
 
@@ -127,17 +181,21 @@ void LevelOne::ChildRender()
 	if (isPaused)
 	{
 		pausedMenu_->showMenu();
-		pausedMenu_->ChildRender();	
+		pausedMenu_->ChildRender(is_testing_);
 	}
 
 	// If mario is dead and the dead animation is done, show the  menu
-	if (mario_->isDead)
+	if (mario_->isTouchedGoomba)
 	{
 		if (mario_->deathAnimationDone)
 		{
 			pausedMenu_->showMenu();
-			pausedMenu_->ChildRender();
+			pausedMenu_->ChildRender(is_testing_);
 		}
+	}
+
+	if (showleaderboard_) {
+		leaderboard_->Render();
 	}
 }
 
@@ -147,6 +205,9 @@ void LevelOne::BackgroundRender()
 	background3.Draw();
 	background2.Draw();
 	background1.Draw();
+
+	// Draw editor's background above everything if the level is being tested
+	if (is_testing_) { background5.Draw(); };
 }
 
 void LevelOne::Initialize()
@@ -175,18 +236,23 @@ void LevelOne::Initialize()
 	game_objects_.push_back(temp);
 	temp->SetPosition(map_generator_.GetMarioPosition().x_, map_generator_.GetMarioPosition().y_);
 
+	leaderboard_ = new Leaderboard(*graphics_, camera_, filename_);
+
+	// Initialize backgrounds
+	background5.Initialize(*graphics_);
 	background4.Initialize(*graphics_);
 	background3.Initialize(*graphics_);
 	background2.Initialize(*graphics_);
 	background1.Initialize(*graphics_);
 
 	pausedMenu_->Initialize(*graphics_, input_);
+	leaderboard_->Initialize(*graphics_, input_);
 
-	// initialize fonts
+	// Initialize fonts
 	options_display_ = new Font("pictures\\Fixedsys16x28.png", *graphics_, camera_);
 	name_display_ = new Font("pictures\\Fixedsys16x28.png", *graphics_, camera_);
 	// -------------------------------------------------------------------------------------
-	// initializing ghost and score
+	// Initializing ghost and score
 	InitGhostData();
 	Scene::Initialize();
 }
@@ -214,6 +280,9 @@ void LevelOne::TestingUpdate()
 	if (is_writing_) {
 		if (input_->wasKeyPressed(VK_RETURN)) {
 			dynamic_cast<LevelEditor*>(held_scene_)->PublishLevel(name_in_);
+
+			graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
+			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelSelect(owner_));
 		}
 	}
 }

@@ -48,7 +48,7 @@ void MainMenu::Update(const float& frametime)
 	}
 	if (!is_down_) {
 		if (input_->wasKeyPressed(VK_RETURN)) {
-			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelSelect(owner_)/*new LevelOne(owner_, "Levels/levelone.txt")*/);
+			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelSelect(owner_));
 		}
 	}
 }

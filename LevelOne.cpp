@@ -9,6 +9,7 @@
 #include "MarioGhost.h"
 #include "NotSoSuperMario.h"
 #include "pausedMenu.h"
+#include "leaderboard.h"
 #include "TestObject.h"
 
 #include <iostream>
@@ -60,6 +61,22 @@ void LevelOne::Update(const float& frametime)
 		timer_->Update();
 	}
 
+	if (levelCompleted && !showleaderboard_ && !is_testing_) {
+		showleaderboard_ = true;
+	}
+
+	if (showleaderboard_) {
+		if (!leaderboard_->HasScore()) {
+			leaderboard_->InsertScore(score_manager_->GetScore());
+		}
+		if (input_->wasKeyPressed(VK_RETURN) && leaderboard_->top10shown_) {
+			graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
+			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
+		}
+		leaderboard_->Update(frametime);
+
+	}
+
 	if (isPaused)
 	{
 		pausedMenu_->Update(frametime);
@@ -84,6 +101,7 @@ void LevelOne::Update(const float& frametime)
 				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
 			}
 		}
+
 	}
 
 	if (mario_->isDead) 
@@ -139,6 +157,10 @@ void LevelOne::ChildRender()
 			pausedMenu_->ChildRender();
 		}
 	}
+
+	if (showleaderboard_) {
+		leaderboard_->Render();
+	}
 }
 
 void LevelOne::BackgroundRender()
@@ -175,12 +197,17 @@ void LevelOne::Initialize()
 	game_objects_.push_back(temp);
 	temp->SetPosition(map_generator_.GetMarioPosition().x_, map_generator_.GetMarioPosition().y_);
 
+
+	leaderboard_ = new Leaderboard(*graphics_, camera_, filename_),
+
+
 	background4.Initialize(*graphics_);
 	background3.Initialize(*graphics_);
 	background2.Initialize(*graphics_);
 	background1.Initialize(*graphics_);
 
 	pausedMenu_->Initialize(*graphics_, input_);
+	leaderboard_->Initialize(*graphics_, input_);
 
 	// initialize fonts
 	options_display_ = new Font("pictures\\Fixedsys16x28.png", *graphics_, camera_);

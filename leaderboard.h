@@ -33,11 +33,13 @@ private:
 	std::queue<std::string> nameQueue_ = std::queue<std::string>();
 	std::queue<float> scoreQueue_ = std::queue<float>();
 
-	float currentscore_;
+	float currentscore_ = -69696969.69f;
 	std::string playername_ = "";
 
 	bool currentIsTop10_ = false;
 	bool hasName_ = false;
+
+	bool isShowing_ = false;
 	
 public:
 	Leaderboard(Graphics& gfx, Camera& camera, std::string filename);
@@ -54,5 +56,5 @@ public:
 	// insert player and generate text to display, also writes file
 	void InsertPlayer(std::string name, float score);
 
-	bool HasScore();
+	bool IsShowing();
 };

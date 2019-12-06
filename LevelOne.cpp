@@ -86,7 +86,7 @@ void LevelOne::Update(const float& frametime)
 	if (levelCompleted && !showleaderboard_ && !is_testing_) { showleaderboard_ = true; }
 
 	if (showleaderboard_) {
-		if (!leaderboard_->HasScore()) {
+		if (!leaderboard_->IsShowing()) {
 			leaderboard_->InsertScore(score_manager_->GetScore());
 		}
 		if (input_->wasKeyPressed(VK_RETURN) && leaderboard_->top10shown_) {

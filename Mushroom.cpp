@@ -31,23 +31,27 @@ void Mushroom::Update(const float& frametime)
 		touch_.touch_left_ && touch_obj_.touch_obj_left_->owner_->type_ == "Mario" || 
 		touch_.touch_right_ && touch_obj_.touch_obj_right_->owner_->type_ == "Mario")
 	{
-			removed_ = true;
+		removed_ = true;
+		isTouchedMushroom = true;
 
-			// mario goes super
-			mario_->ChangeSprite(mario_->super_idle_);
-			mario_->hold_ = mario_->super_idle_;
-			mario_->running_animation_ = mario_->super_running_animation_;
-			mario_->jumping_ = mario_->super_jumping_;
-
-			CollisionDetectionComponent<AABBCollider>* c = dynamic_cast<CollisionDetectionComponent<AABBCollider>*>(mario_->GetComponent("CollisionDetectionComponent"));
-			c->SetColliderHeight(128 * CAMERA_ZOOM);
-
-			mario_->is_big_ = true;
 	}
 	else if (touch_.touch_left_ && touch_obj_.touch_obj_left_->owner_->type_ != "Mario" && touch_obj_.touch_obj_left_ ->is_simulated_ ||
 			 touch_.touch_right_ && touch_obj_.touch_obj_right_->owner_->type_ != "Mario" && touch_obj_.touch_obj_right_->is_simulated_)
 	{
 		direction_ *= -1.0f;
+	}
+
+	if (isTouchedMushroom)
+	{
+		removed_ = true;
+		mario_->isAnimComplete = false;
+
+
+		CollisionDetectionComponent<AABBCollider>* c = dynamic_cast<CollisionDetectionComponent<AABBCollider>*>(mario_->GetComponent("CollisionDetectionComponent"));
+		c->SetColliderHeight(128 * CAMERA_ZOOM);
+
+		mario_->is_big_ = true;
+
 	}
 }
 

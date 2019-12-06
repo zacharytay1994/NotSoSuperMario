@@ -46,23 +46,30 @@ void LevelOne::Update(const float& frametime)
 		// Do not update the frame when the game is paused or mario is dead
 		if (input_->wasKeyPressed(VK_ESCAPE)) { isPaused = true; }
 
-		Scene::Update(frametime);
-		camera_.Update(frametime);
-		graphics_->BindCameraTransform(D3DXVECTOR2(camera_.GetCameraTransform().x_, camera_.GetCameraTransform().y_));
-		background4.Update(frametime);
-		background3.Update(frametime);
-		background2.Update(frametime);
-		background1.Update(frametime);
-		save_mario_.Update(frametime);
-		load_mario_.Update(frametime);
-		TestingUpdate();
 
-		timer_->Update();
+
+			Scene::Update(frametime);
+			camera_.Update(frametime);
+			graphics_->BindCameraTransform(D3DXVECTOR2(camera_.GetCameraTransform().x_, camera_.GetCameraTransform().y_));
+			background4.Update(frametime);
+			background3.Update(frametime);
+			background2.Update(frametime);
+			background1.Update(frametime);
+			save_mario_.Update(frametime);
+			load_mario_.Update(frametime);
+			TestingUpdate();
+
+			timer_->Update();
+		
+		
+
+
 	}
 
 	if (isPaused)
 	{
 		pausedMenu_->Update(frametime);
+
 
 		if (input_->wasKeyPressed(VK_RETURN))
 		{
@@ -86,7 +93,7 @@ void LevelOne::Update(const float& frametime)
 		}
 	}
 
-	if (mario_->isTouchedGoomba && !mario_->is_big_)
+	if (mario_->is_dead_)
 	{ 
 		timer_->StopTimer(); 
 

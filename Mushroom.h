@@ -15,6 +15,9 @@ private:
 
 	float direction_ = 0.0f;
 	float speed_ = 50.0f;
+
+	bool isTouchedMushroom = false;
+
 public:
 	Mushroom(ColliderManager& cm, const Vec2<float>& position, Mario& m);
 	void Update(const float& frametime) override;

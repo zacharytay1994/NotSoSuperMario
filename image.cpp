@@ -138,14 +138,19 @@ void Image::update(float frameTime)
             currentFrame++;
             if (currentFrame < startFrame || currentFrame > endFrame)
             {
-                if(loop == true)            // if looping animation
-                    currentFrame = startFrame;
-                else                        // not looping animation
-                {
-                    currentFrame = endFrame;
-                    animComplete = true;    // animation complete
-                }
+				if (loop == true)
+				{         // if looping animation
+					currentFrame = startFrame;
+					animComplete = false;
+				}
+         
             }
+			else if(currentFrame == endFrame)                       // not looping animation
+			{
+				animComplete = true;	// animation complete
+			}
+			
+			
             setRect();                      // set spriteData.rect
         }
     }
@@ -159,7 +164,6 @@ void Image::setCurrentFrame(int c)
     if(c >= 0)
     {
         currentFrame = c;
-        animComplete = false;
         setRect();                          // set spriteData.rect
     }
 }

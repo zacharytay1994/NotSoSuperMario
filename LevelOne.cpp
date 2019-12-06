@@ -197,6 +197,10 @@ void LevelOne::ChildRender()
 	score_manager_->Draw();
 	TestingDraw();
 
+	if (showleaderboard_) {
+		leaderboard_->Render();
+	}
+
 	// If the game is paused, show the paused menu
 	if (isPaused)
 	{
@@ -213,10 +217,6 @@ void LevelOne::ChildRender()
 			//pausedMenu_->ChildRender();
 			die_menu_.Draw();
 		}
-	}
-
-	if (showleaderboard_) {
-		leaderboard_->Render();
 	}
 }
 

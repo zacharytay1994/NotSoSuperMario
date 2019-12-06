@@ -86,6 +86,9 @@ void Leaderboard::ReadLeaderboard()
 		std::string lastline;
 		int commaindex = 0;
 		while (std::getline(file, line)) {
+			if (line.length() == 0) {
+				break;
+			}
 			commaindex = line.find(",");
 			nameQueue_.push(line.substr(0, commaindex));
 			scoreQueue_.push(std::stof(line.substr(commaindex + 1, line.length())));

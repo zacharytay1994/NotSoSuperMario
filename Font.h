@@ -10,7 +10,6 @@
 class Font
 {
 public:
-	//Font(const std::string& filename, Graphics& gfx, Camera& camera, DWORD chroma = D3DCOLOR_XRGB(255, 0, 255));
 	Font(const std::string& filename, Graphics& gfx, Camera& camera, float fontscale=1, DWORD chroma = D3DCOLOR_XRGB(255, 0, 255));
 	void DrawTextString(const std::string& text, const Vec2<int>& pos, Graphics& gfx) const;
 private:

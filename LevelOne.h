@@ -50,6 +50,7 @@ public:
 	bool state_recorded_ = false;
 	float loaded_high_score_ = 0.0f;
 	std::string filename_;
+	Sprite die_menu_;
 public:
 	LevelOne(Game* owner, const std::string& filename);
 	~LevelOne();

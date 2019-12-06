@@ -59,9 +59,12 @@ void LevelOne::Update(const float& frametime)
 		// Update editor's background if the level is being tested
 		if (is_testing_) { background5.Update(frametime); }
 
-		save_mario_.Update(frametime);
-		load_mario_.Update(frametime);
-
+		if (!is_testing_) 
+		{
+			save_mario_.Update(frametime);
+			load_mario_.Update(frametime);
+		}
+		
 		TestingUpdate();
 
 		timer_->Update();
@@ -240,7 +243,6 @@ void LevelOne::Initialize()
 	background3.Initialize(*graphics_);
 	background2.Initialize(*graphics_);
 	background1.Initialize(*graphics_);
-
 
 	pausedMenu_->Initialize(*graphics_, input_);
 	leaderboard_->Initialize(*graphics_, input_);

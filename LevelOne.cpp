@@ -3,6 +3,7 @@
 #include "Goomba.h"
 #include "KoopaTroopa.h"
 #include "LevelEditor.h"
+#include "LevelSelect.h"
 #include "LevelOne.h"
 #include "MainMenuScreen.h"
 #include "Mario.h"
@@ -279,6 +280,9 @@ void LevelOne::TestingUpdate()
 	if (is_writing_) {
 		if (input_->wasKeyPressed(VK_RETURN)) {
 			dynamic_cast<LevelEditor*>(held_scene_)->PublishLevel(name_in_);
+
+			graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
+			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelSelect(owner_));
 		}
 	}
 }

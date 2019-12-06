@@ -2,6 +2,7 @@
 #include "InputComponent.h"
 #include "PhysicsComponent.h"
 #include "CollisionDetectionComponent.h"
+#include "KoopaTroopa.h"
 #include <Windows.h>
 #include <chrono>
 #include <thread>
@@ -74,6 +75,22 @@ void Mario::Update(const float& frametime)
 				{
 					isTouchedGoomba = true;
 				}
+
+				else if (touch_obj_.touch_obj_left_->owner_->type_ == "Koopa")
+				{
+					if (dynamic_cast<KoopaTroopa*>(touch_obj_.touch_obj_left_->owner_)->GetShellState())
+					{
+						if (dynamic_cast<KoopaTroopa*>(touch_obj_.touch_obj_left_->owner_)->GetShellMovingState())
+						{
+							isTouchedGoomba = true;
+						}
+					}
+					else
+					{
+						isTouchedGoomba = true;
+					}
+				}
+
 			}
 
 			else if (touch_.touch_right_)
@@ -81,6 +98,20 @@ void Mario::Update(const float& frametime)
 				if (touch_obj_.touch_obj_right_->owner_->type_ == "Goomba")
 				{
 					isTouchedGoomba = true;
+				}
+				else if (touch_obj_.touch_obj_right_->owner_->type_ == "Koopa")
+				{
+					if (dynamic_cast<KoopaTroopa*>(touch_obj_.touch_obj_right_->owner_)->GetShellState())
+					{
+						if (dynamic_cast<KoopaTroopa*>(touch_obj_.touch_obj_right_->owner_)->GetShellMovingState())
+						{
+							isTouchedGoomba = true;
+						}
+					}
+					else
+					{
+						isTouchedGoomba = true;
+					}
 				}
 			}
 		}

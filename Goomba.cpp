@@ -1,6 +1,7 @@
 #include "Goomba.h"
 #include "PhysicsComponent.h"
 #include "CollisionDetectionComponent.h"
+#include "KoopaTroopa.h"
 
 Goomba::Goomba(ColliderManager& cm, const Vec2<float>& position)
 	:
@@ -29,17 +30,40 @@ void Goomba::Update(const float& frametime)
 		direction_.x_ = -1;
 		sprite_->GetImage().flipHorizontal(false);
 		looking_left_ = true;
+
+		if (touch_obj_.touch_obj_left_->owner_->type_ == "Koopa")
+		{
+			if (dynamic_cast<KoopaTroopa*>(touch_obj_.touch_obj_left_->owner_)->GetShellState())
+			{
+				pend_removal_ = true;
+			}
+		}
 	}
 	else if (touch_.touch_right_) {
 		direction_.x_ = 1;
 		sprite_->GetImage().flipHorizontal(true);
 		looking_left_ = false;
+		if (touch_obj_.touch_obj_right_->owner_->type_ == "Koopa")
+		{
+			if (dynamic_cast<KoopaTroopa*>(touch_obj_.touch_obj_right_->owner_)->GetShellState())
+			{
+				pend_removal_ = true;
+			}
+		}
 	}
 
-	if (touch_.touch_top_) {
+	if (touch_.touch_top_)
+	{
 		pend_removal_ = true;
 		ChangeSprite(death_sprite_);
 		sprite_->GetImage().flipHorizontal(!looking_left_);
+		if (touch_obj_.touch_obj_top_->owner_->type_ == "Koopa")
+		{
+			if (dynamic_cast<KoopaTroopa*>(touch_obj_.touch_obj_top_->owner_)->GetShellState())
+			{
+				pend_removal_ = true;
+			}
+		}
 	}
 	// walk
 	if (!pend_removal_) {

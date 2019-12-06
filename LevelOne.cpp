@@ -61,24 +61,50 @@ void LevelOne::Update(const float& frametime)
 	{
 		pausedMenu_->Update(frametime);
 
-		if (input_->wasKeyPressed(VK_RETURN))
+		if (is_testing_)
 		{
-			timer_->StopTimer();
-			timer_->PausedDuration();
+			if (input_->wasKeyPressed(VK_RETURN))
+			{
+				timer_->StopTimer();
+				timer_->PausedDuration();
 
-			if (pausedMenu_->selectionValue() == 0)
-			{
-				isPaused = false;
-				timer_->ContinueTimer();
+				if (pausedMenu_->selectionValue() == 0)
+				{
+					isPaused = false;
+					timer_->ContinueTimer();
+				}
+				else if (pausedMenu_->selectionValue() == 1)
+				{
+					dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(held_scene_);
+				}
+				else if (pausedMenu_->selectionValue() == 2)
+				{
+					graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
+					dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
+				}
 			}
-			else if (pausedMenu_->selectionValue() == 1)
+		}
+		else
+		{
+			if (input_->wasKeyPressed(VK_RETURN))
 			{
-				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelOne(owner_, current_level_));
-			}
-			else if (pausedMenu_->selectionValue() == 2)
-			{
-				graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
-				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
+				timer_->StopTimer();
+				timer_->PausedDuration();
+
+				if (pausedMenu_->selectionValue() == 0)
+				{
+					isPaused = false;
+					timer_->ContinueTimer();
+				}
+				else if (pausedMenu_->selectionValue() == 1)
+				{
+					dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelOne(owner_, current_level_));
+				}
+				else if (pausedMenu_->selectionValue() == 2)
+				{
+					graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
+					dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
+				}
 			}
 		}
 	}
@@ -124,7 +150,7 @@ void LevelOne::ChildRender()
 	if (isPaused)
 	{
 		pausedMenu_->showMenu();
-		pausedMenu_->ChildRender();	
+		pausedMenu_->ChildRender(is_testing_);
 	}
 
 	// If mario is dead and the dead animation is done, show the  menu
@@ -133,7 +159,7 @@ void LevelOne::ChildRender()
 		if (mario_->deathAnimationDone)
 		{
 			pausedMenu_->showMenu();
-			pausedMenu_->ChildRender();
+			pausedMenu_->ChildRender(is_testing_);
 		}
 	}
 }

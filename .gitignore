@@ -3,3 +3,6 @@
 
 # Miscellaneous Debug objects
 Debug/
+
+# Miscellaneous Release objects
+Release/

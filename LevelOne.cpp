@@ -30,7 +30,8 @@ LevelOne::LevelOne(Game* owner, const std::string& filename)
 	pausedMenu_(new pausedMenu(&camera_)),
 	timer_(new Timer()),
 	isPaused(false),
-	filename_(filename)
+	filename_(filename),
+	die_menu_(Sprite("pictures\\diemenu.png", 500, 250, 1))
 {
 }
 
@@ -44,6 +45,14 @@ LevelOne::~LevelOne()
 
 void LevelOne::Update(const float& frametime)
 {
+	// press r to restart level
+	if (input_->wasKeyPressed('R')) {
+		LevelOne* temp = new LevelOne(owner_, current_level_);
+		if (is_testing_) {
+			temp->SetTesting(true, held_scene_);
+		}
+		dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(temp);
+	}
 	if (!isPaused && !(mario_->deathAnimationDone))
 	{
 		// Do not update the frame when the game is paused or mario is dead
@@ -147,8 +156,19 @@ void LevelOne::Update(const float& frametime)
 		if (mario_->deathAnimationDone)
 		{
 			if (!is_testing_) {
-				graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
-				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
+				// i know its hacky, its been doneeeeee muahahaha
+				//die_menu_.Draw();
+				die_menu_.GetImage().setX(GAME_WIDTH/2 - die_menu_.GetWidth() - camera_.GetCameraTransform().x_);
+				die_menu_.GetImage().setY(GAME_HEIGHT/2 - die_menu_.GetHeight() - camera_.GetCameraTransform().y_);
+				if (input_->wasKeyPressed('E')) {
+					graphics_->BindCameraTransform(D3DXVECTOR2(0, 0));
+					dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new MainMenu(owner_));
+				}
+				// press r to retry
+				if (input_->wasKeyPressed('R')) {
+					dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(new LevelOne(owner_, current_level_));
+				}
+
 			}
 			else {
 				dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(held_scene_);
@@ -177,6 +197,10 @@ void LevelOne::ChildRender()
 	score_manager_->Draw();
 	TestingDraw();
 
+	if (showleaderboard_) {
+		leaderboard_->Render();
+	}
+
 	// If the game is paused, show the paused menu
 	if (isPaused)
 	{
@@ -189,13 +213,10 @@ void LevelOne::ChildRender()
 	{
 		if (mario_->deathAnimationDone)
 		{
-			pausedMenu_->showMenu();
-			pausedMenu_->ChildRender(is_testing_);
+			//pausedMenu_->showMenu();
+			//pausedMenu_->ChildRender();
+			die_menu_.Draw();
 		}
-	}
-
-	if (showleaderboard_) {
-		leaderboard_->Render();
 	}
 }
 
@@ -246,6 +267,8 @@ void LevelOne::Initialize()
 	background1.Initialize(*graphics_);
 
 	pausedMenu_->Initialize(*graphics_, input_);
+	die_menu_.Initialize(*graphics_);
+	// initialize fonts
 	leaderboard_->Initialize(*graphics_, input_);
 
 	// Initialize fonts
@@ -296,7 +319,7 @@ void LevelOne::TestingDraw()
 		options_display_->DrawTextString("CONGRATS YOU HAVE BEATEN YOUR CREATION!", Vec2<int>(10, GAME_HEIGHT / 2 - 30), *graphics_);
 		options_display_->DrawTextString("C = Continue Editing", Vec2<int>(10, GAME_HEIGHT/2), *graphics_);
 		options_display_->DrawTextString("P = Publish Level", Vec2<int>(10, GAME_HEIGHT / 2 + 30), *graphics_);
-		options_display_->DrawTextString("E = Exit to Main Menu", Vec2<int>(10, GAME_HEIGHT / 2 + 60), *graphics_);
+		options_display_->DrawTextString("Esc = Exit to Main Menu", Vec2<int>(10, GAME_HEIGHT / 2 + 60), *graphics_);
 	}
 	RenderWriting();
 }

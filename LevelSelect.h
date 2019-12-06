@@ -8,6 +8,18 @@
 #include <filesystem>
 #include <vector>
 
+enum class BlockType {
+	Empty,
+	Block,
+	Mario,
+	Flag,
+	Coin,
+	Goomba,
+	Kappa,
+	Question,
+	Bouncy
+};
+
 class Graphics;
 class LevelSelect : public Scene {
 private:
@@ -31,6 +43,27 @@ private:
 	bool ready_ = false;
 	Sprite* background_;
 
+	// display background buffer
+	std::vector<BlockType> display_container_;
+	Sprite shopfore_;
+	Sprite shopback_;
+	Sprite shoplayer1_;
+	Sprite shoplayer2_;
+	Sprite shoplayer3_;
+	Sprite mexican_mario_;
+	Sprite pseudogoomba1_;
+	Sprite pseudogoomba2_;
+	Sprite pseudokoopa_;
+	float walking_speed_ = -25.0f;
+	float walking_speed_2_ = 25.0f;
+	float walking_speed_3_ = 25.0f;
+	int grid_width_ = 50;
+	int grid_height_ = 50;
+	float cell_size_ = 9;
+	Sprite tile_;
+	float grid_offset_x_ = 0.0f;
+	float grid_offset_y_ = 0.0f;
+
 	// word placement variables
 	Vec2<int> selected_pos_ = Vec2<int>(50, (int)(GAME_HEIGHT/2 - 10));
 	Vec2<int> bottom_pos_ = Vec2<int>(50, (int)(GAME_HEIGHT / 2 + 80));
@@ -45,4 +78,10 @@ public:
 	void ReadAllLevelsFromFolder();
 	void ReadAllLevelsToVector();
 	void UpdateSelectedNames(const bool& some);
+	void InitializeDisplayContainer();
+	void ReadAndUpdateDisplayContainer(const std::string& path, std::vector<BlockType>& container);
+	void RenderDisplayContainer(std::vector<BlockType>& container);
+	void CenterGrid();
+	void AnimateGrid(const float& frametime, const float& animationspeed);
+	void WalkStuff(const float& frametime);
 };

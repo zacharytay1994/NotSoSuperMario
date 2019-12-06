@@ -171,7 +171,7 @@ void LevelEditor::UpdateCurrentlySelectedTile()
 		current_block_ = BlockTypes::Empty;
 		block_name_ = "Empty";
 	}
-	else if (input_->wasKeyPressed('B')) {
+	else if (input_->wasKeyPressed('W')) {
 		current_block_ = BlockTypes::Block;
 		block_name_ = "Block";
 	}
@@ -345,7 +345,7 @@ void LevelEditor::PublishLevel(const std::string& name)
 {
 	// create and write to new file
 	std::ofstream new_leaderboard_file("Leaderboard/" + name + "-leaderboard.txt");
-	new_leaderboard_file << "-";
+	//new_leaderboard_file << "-";
 	new_leaderboard_file.close();
 	std::ofstream new_file("Levels/" + name + ".txt");
 	if (new_file.is_open()) {

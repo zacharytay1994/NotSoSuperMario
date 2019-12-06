@@ -1,13 +1,3 @@
-testing ghost level.txt
-robinbeatthis.txt
-easiest level of your life.txt
-TestForDying.txt
-Testing.txt
-Testing no3.txt
-testing no4.txt
-leade.txt
-
-some.txt
-kuppagoomba.txt
-somethingkoop.txt
-earlevel.txt
+Simple Level.txt
+RobinBeatThisRemake.txt
+GhostTestingRemake.txt

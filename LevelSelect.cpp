@@ -161,13 +161,13 @@ void LevelSelect::UpdateSelectedNames(const bool& some)
 				indexed_level--;
 				selected_name_ = level_data_array[indexed_level];
 				ReadAndUpdateDisplayContainer("Levels/" + selected_name_, display_container_);
-				if (indexed_level + 1 >= 0) {
+				if (indexed_level + 1 >= 0 && indexed_level + 1 < level_data_array.size()) {
 					bottom_name_ = level_data_array[indexed_level + 1];
 				}
 				else {
 					bottom_name_ = "";
 				}
-				if (indexed_level - 1 >= 0) {
+				if (indexed_level - 1 >= 0 && indexed_level - 1 < level_data_array.size()) {
 					top_name_ = level_data_array[indexed_level - 1];
 				}
 				else {

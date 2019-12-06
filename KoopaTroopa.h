@@ -28,4 +28,6 @@ public:
 	void Update(const float& frametime) override;
 	void Render() override;
 	void ChildInitialize(Graphics& gfx) override;
+	bool GetShellState();
+	bool GetShellMovingState();
 };

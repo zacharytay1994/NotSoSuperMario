@@ -22,11 +22,11 @@ LevelOne::LevelOne(Game* owner, const std::string& filename)
 	Scene(owner),
 	map_generator_(filename),
 	current_level_(filename),
-	background5("pictures\\editorbackground.png", 1200, 751, 1, camera_, 0.2f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 10),
-	background4("pictures\\mountainbackground.png", 1200, 1200, 1, camera_, 0.5f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 1),
-	background3("pictures\\cloudbackground.png", 1200, 1200, 1, camera_, 0.4f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 1),
-	background2("pictures\\rockbackground.png", 1200, 1200, 1, camera_, 0.3f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 1),
-	background1("pictures\\bushesbackground.png", 1200, 700, 1, camera_, 0.2f, 0.1f, -300.0f, -650.0f * CAMERA_ZOOM, 10, 1),
+	background5("pictures\\" + theme + "\\editorbackground.png", 1200, 751, 1, camera_, 0.2f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 10),
+	background4("pictures\\" + theme + "\\mountainbackground.png", 1200, 1200, 1, camera_, 0.5f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 1),
+	background3("pictures\\" + theme + "\\cloudbackground.png", 1200, 1200, 1, camera_, 0.4f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 1),
+	background2("pictures\\" + theme + "\\rockbackground.png", 1200, 1200, 1, camera_, 0.3f, 0.1f, -300.0f, -1200.0f * CAMERA_ZOOM, 10, 1),
+	background1("pictures\\" + theme + "\\bushesbackground.png", 1200, 700, 1, camera_, 0.2f, 0.1f, -300.0f, -650.0f * CAMERA_ZOOM, 10, 1),
 	pausedMenu_(new pausedMenu(&camera_)),
 	timer_(new Timer()),
 	isPaused(false),
@@ -294,10 +294,10 @@ void LevelOne::TestingUpdate()
 		display_options_ = true;
 	}
 	if (display_options_) {
-		if (input_->wasKeyPressed('P')) {
+		if (input_->wasKeyPressed('P') && !is_writing_) {
 			is_writing_ = true;
 		}
-		else if (input_->wasKeyPressed('C')) {
+		else if (input_->wasKeyPressed('C') && !is_writing_) {
 			dynamic_cast<NotSoSuperMario*>(owner_)->ChangeScene(held_scene_);
 		}
 		else if (input_->wasKeyPressed(VK_ESCAPE)) {

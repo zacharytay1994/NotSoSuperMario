@@ -7,6 +7,7 @@
 #define WIN32_LEAN_AND_MEAN
 
 #include <windows.h>
+#include <string>
 
 //-----------------------------------------------
 // Useful macros
@@ -55,6 +56,7 @@ const float MIN_FRAME_RATE = 10.0f;             // the minimum frame rate
 const float MIN_FRAME_TIME = 1.0f/FRAME_RATE;   // minimum desired time for 1 frame
 const float MAX_FRAME_TIME = 1.0f/MIN_FRAME_RATE; // maximum time used in calculations
 const float CAMERA_ZOOM = 0.5f;
+const std::string theme = "Theme1";
 
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used

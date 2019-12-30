@@ -9,17 +9,17 @@
 LevelSelect::LevelSelect(Game* owner)
 	:
 	Scene(owner),
-	background_(new Sprite("pictures\\levelselectbackground.png", 640, 480, 1)),
-	tile_(Sprite("pictures\\editorempty2.png", 9, 9, 9)),
-	mexican_mario_(Sprite("pictures\\mexicanmario.png", 640, 480,1)),
-	shopfore_(Sprite("pictures\\marioshop.png", 640, 480, 1)),
-	shopback_(Sprite("pictures\\marioshop2.png", 640, 480, 1)),
-	shoplayer1_(Sprite("pictures\\marioshop3.png", 640, 480, 1)),
-	shoplayer2_(Sprite("pictures\\marioshop4.png", 640, 480, 1)),
-	shoplayer3_(Sprite("pictures\\marioshop5.png", 640, 480, 1)),
-	pseudogoomba1_(Sprite("pictures\\goombawalksheet.png", 64, 64, 4)),
-	pseudogoomba2_(Sprite("pictures\\goombawalksheet.png", 64, 64, 4)),
-	pseudokoopa_(Sprite("pictures\\kooparunsheet.png", 64, 64, 8))
+	background_(new Sprite("pictures\\" + theme + "\\levelselectbackground.png", 640, 480, 1)),
+	tile_(Sprite("pictures\\" + theme + "\\editorempty2.png", 9, 9, 9)),
+	mexican_mario_(Sprite("pictures\\" + theme + "\\mexicanmario.png", 640, 480,1)),
+	shopfore_(Sprite("pictures\\" + theme + "\\marioshop.png", 640, 480, 1)),
+	shopback_(Sprite("pictures\\" + theme + "\\marioshop2.png", 640, 480, 1)),
+	shoplayer1_(Sprite("pictures\\" + theme + "\\marioshop3.png", 640, 480, 1)),
+	shoplayer2_(Sprite("pictures\\" + theme + "\\marioshop4.png", 640, 480, 1)),
+	shoplayer3_(Sprite("pictures\\" + theme + "\\marioshop5.png", 640, 480, 1)),
+	pseudogoomba1_(Sprite("pictures\\" + theme + "\\goombawalksheet.png", 64, 64, 4)),
+	pseudogoomba2_(Sprite("pictures\\" + theme + "\\goombawalksheet.png", 64, 64, 4)),
+	pseudokoopa_(Sprite("pictures\\" + theme + "\\kooparunsheet.png", 64, 64, 8))
 {
 	ReadAllLevelsToVector();
 }

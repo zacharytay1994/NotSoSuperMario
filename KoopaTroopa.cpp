@@ -7,10 +7,10 @@
 
 KoopaTroopa::KoopaTroopa(ColliderManager& cm, const Vec2<float>& position)
 	:
-	GameObject("pictures\\testsquare.png", 64, 64, 1, D3DXVECTOR2(position.x_, position.y_), "Koopa"),
-	walking_sprite_(new Sprite("pictures\\kooparunsheet.png", 64, 64, 8)),
-	shellmoving_sprite_(new Sprite("pictures\\koopashellmovingsheet.png", 54, 64, 4)),
-	shellidle_sprite_(new Sprite("pictures\\koopashellidle.png", 54, 64, 1))
+	GameObject("pictures\\" + theme + "\\testsquare.png", 64, 64, 1, D3DXVECTOR2(position.x_, position.y_), "Koopa"),
+	walking_sprite_(new Sprite("pictures\\" + theme + "\\kooparunsheet.png", 64, 64, 8)),
+	shellmoving_sprite_(new Sprite("pictures\\" + theme + "\\koopashellmovingsheet.png", 54, 64, 4)),
+	shellidle_sprite_(new Sprite("pictures\\" + theme + "\\koopashellidle.png", 54, 64, 1))
 	
 {
 	walking_sprite_->InitializeAnimation(0, 7, 0.25f);

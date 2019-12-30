@@ -3,7 +3,7 @@
 Mushroom::Mushroom(ColliderManager& cm, const Vec2<float>& position, Mario& m)
 	:
 	cm_(&cm),
-	GameObject("pictures\\supermushroom.png", 48, 48, 1, D3DXVECTOR2(position.x_, position.y_)),
+	GameObject("pictures\\" + theme + "\\supermushroom.png", 48, 48, 1, D3DXVECTOR2(position.x_, position.y_)),
 	mario_(&m)
 {
 	// Initialize PhysicsComponent & add it to the Mushroom

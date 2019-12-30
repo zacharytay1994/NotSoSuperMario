@@ -33,7 +33,7 @@ private:
 
 	// Camera drag
 	Camera cam_;
-	GameObject camera_drag_ = GameObject("pictures\\marioidle.png", 64, 64, 1, D3DXVECTOR2(0, 50 * CAMERA_ZOOM * 16 + GAME_HEIGHT/2));
+	GameObject camera_drag_ = GameObject("pictures\\" + theme + "\\marioidle.png", 64, 64, 1, D3DXVECTOR2(0, 50 * CAMERA_ZOOM * 16 + GAME_HEIGHT/2));
 	bool mouse_lock_ = false;
 	Vec2<int> lock_position_ = Vec2<int>(0, 0);
 	Vec2<int> camera_translate_ = Vec2<int>(0, 0);

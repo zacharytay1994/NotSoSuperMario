@@ -5,9 +5,9 @@
 
 Goomba::Goomba(ColliderManager& cm, const Vec2<float>& position)
 	:
-	GameObject("pictures\\testsquare.png", 64, 64, 1, D3DXVECTOR2(position.x_, position.y_), "Goomba"),
-	walking_sprite_(new Sprite("pictures\\goombawalksheet.png", 64, 64, 4)),
-	death_sprite_(new Sprite("pictures\\goombadeath.png", 64, 64, 1))
+	GameObject("pictures\\" + theme + "\\testsquare.png", 64, 64, 1, D3DXVECTOR2(position.x_, position.y_), "Goomba"),
+	walking_sprite_(new Sprite("pictures\\" + theme + "\\goombawalksheet.png", 64, 64, 4)),
+	death_sprite_(new Sprite("pictures\\" + theme + "\\goombadeath.png", 64, 64, 1))
 {
 	//walking_sprite_->InitializeAnimation(0, 5, 0.25f);
 	walking_sprite_->InitializeAnimation(0, 5, 0.25f);

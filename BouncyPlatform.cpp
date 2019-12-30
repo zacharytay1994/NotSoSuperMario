@@ -5,7 +5,7 @@
 
 BouncyPlatform::BouncyPlatform(ColliderManager& cm, const Vec2<float>& position)
 	:
-	GameObject("pictures\\springboard.png", 64, 64, 1, D3DXVECTOR2(position.x_, position.y_))
+	GameObject("pictures\\" + theme + "\\springboard.png", 64, 64, 1, D3DXVECTOR2(position.x_, position.y_))
 {
 	sprite_->InitializeAnimation(0, 0, .15f);
 

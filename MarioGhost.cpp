@@ -2,9 +2,9 @@
 
 MarioGhost::MarioGhost()
 	:
-	GameObject("pictures\\marioghostidle.png", 64, 64, 1, D3DXVECTOR2(200 * CAMERA_ZOOM, 100 * CAMERA_ZOOM)),
-	running_animation_(new Sprite("pictures\\marioghostrunsheet.png", 64, 64, 3)),
-	jumping_animation_(new Sprite("pictures\\marioghostjumping.png", 64, 64, 3))
+	GameObject("pictures\\" + theme + "\\marioghostidle.png", 64, 64, 1, D3DXVECTOR2(200 * CAMERA_ZOOM, 100 * CAMERA_ZOOM)),
+	running_animation_(new Sprite("pictures\\" + theme + "\\marioghostrunsheet.png", 64, 64, 3)),
+	jumping_animation_(new Sprite("pictures\\" + theme + "\\marioghostjumping.png", 64, 64, 3))
 {
 }
 

@@ -3,10 +3,10 @@
 
 Leaderboard::Leaderboard(Graphics& gfx, Camera& camera, std::string filename)
 	:
-	toptensprite_(Sprite("pictures\\leaderboard-bg.png",832,640,1)),
-	namesprite_(Sprite("pictures\\leaderboard-bg-name.png",832,640,1)),
+	toptensprite_(Sprite("pictures\\" + theme + "\\leaderboard-bg.png",832,640,1)),
+	namesprite_(Sprite("pictures\\" + theme + "\\leaderboard-bg-name.png",832,640,1)),
 	camera_(&camera),
-	font_(new Font("pictures\\Fixedsys16x28b.png", gfx, camera, 0.75)),
+	font_(new Font("pictures\\" + theme + "\\Fixedsys16x28b.png", gfx, camera, 0.75)),
 	
 	filename_("Leaderboard" + filename.substr(6, filename.length()-10) + "-leaderboard.txt")
 	
@@ -32,13 +32,13 @@ void Leaderboard::Initialize(Graphics& gfx, Input* input)
 		GAME_HEIGHT / 2 - toptensprite_.GetHeight() / 2);
 	placingpos_ = Vec2<int>(
 		zerozero_.x_ + toptensprite_.GetWidth()/12*1.5,
-		zerozero_.y_ + toptensprite_.GetWidth()/8);
+		zerozero_.y_ + toptensprite_.GetHeight()/8);
 	namepos_ = Vec2<int>(
 		zerozero_.x_ + toptensprite_.GetWidth()/12*3,
-		zerozero_.y_ + toptensprite_.GetWidth()/8);
+		zerozero_.y_ + toptensprite_.GetHeight()/8);
 	scorepos_ = Vec2<int>(
 		zerozero_.x_ + toptensprite_.GetWidth()/12*8,
-		zerozero_.y_ + toptensprite_.GetWidth()/8);
+		zerozero_.y_ + toptensprite_.GetHeight()/8);
 	playernamepos_ = Vec2<int>(
 		zerozero_.x_ + namesprite_.GetWidth()/6,
 		zerozero_.y_ + namesprite_.GetHeight()/4*3

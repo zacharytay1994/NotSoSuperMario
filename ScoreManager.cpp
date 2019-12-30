@@ -4,7 +4,7 @@
 ScoreManager::ScoreManager(Graphics& gfx, Camera& camera, Timer& timer)
 	:
 	gfx(&gfx),
-	font_(new Font("pictures\\Fixedsys16x28.png", gfx, camera)),
+	font_(new Font("pictures\\" + theme + "\\Fixedsys16x28.png", gfx, camera)),
 	score_(0),
 	timer_(&timer)
 { 

@@ -12,22 +12,22 @@
 
 Mario::Mario(Input& input, ColliderManager& cm)
 	:
-	GameObject("pictures\\marioidle.png", 64, 64, 1, D3DXVECTOR2(200 * CAMERA_ZOOM, 100 * CAMERA_ZOOM), "Mario"),
-	dying_sprite(new Sprite("pictures\\marioDeath.png", 64, 64, 1)),
+	GameObject("pictures\\" + theme + "\\marioidle.png", 64, 64, 1, D3DXVECTOR2(200 * CAMERA_ZOOM, 100 * CAMERA_ZOOM), "Mario"),
+	dying_sprite(new Sprite("pictures\\" + theme + "\\marioDeath.png", 64, 64, 1)),
 	
-	normal_idle_(new Sprite("pictures\\marioidle.png", 64, 64, 1)),
-	normal_running_animation_(new Sprite("pictures\\mariorunsheet.png", 64, 64, 3)),
-	normal_jumping_animation_(new Sprite("pictures\\mariojumping.png", 64, 64, 3)),
+	normal_idle_(new Sprite("pictures\\" + theme + "\\marioidle.png", 64, 64, 1)),
+	normal_running_animation_(new Sprite("pictures\\" + theme + "\\mariorunsheet.png", 64, 64, 3)),
+	normal_jumping_animation_(new Sprite("pictures\\" + theme + "\\mariojumping.png", 64, 64, 3)),
 
-	super_idle_(new Sprite("pictures\\supermarioidle.png", 64, 128, 1)),
-	super_jumping_(new Sprite("pictures\\supermariojumping.png", 64, 128, 1)),
-	super_running_animation_(new Sprite("pictures\\supermariorunsheet.png", 64, 128, 3)),
+	super_idle_(new Sprite("pictures\\" + theme + "\\supermarioidle.png", 64, 128, 1)),
+	super_jumping_(new Sprite("pictures\\" + theme + "\\supermariojumping.png", 64, 128, 1)),
+	super_running_animation_(new Sprite("pictures\\" + theme + "\\supermariorunsheet.png", 64, 128, 3)),
 
 	idle_(normal_idle_),
 	jumping_(normal_jumping_animation_),
 	running_animation_(normal_running_animation_),
 
-	growing_animation_(new Sprite("pictures\\marioGrowing.png", 64, 128, 5))
+	growing_animation_(new Sprite("pictures\\" + theme + "\\marioGrowing.png", 64, 128, 5))
 {
 	//sprite_.InitializeAnimation(0, 5, SHIP_ANIMATION_DELAY);
 	normal_running_animation_->InitializeAnimation(0, 5, 0.25f);
@@ -175,7 +175,6 @@ void Mario::Update(const float& frametime)
 			running_animation_ = super_running_animation_;
 			jumping_ = super_jumping_;
 			isAnimComplete = true;
-
 		}
 
 

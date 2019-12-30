@@ -89,5 +89,6 @@
     <ClInclude Include="MarioGhost.h" />
     <ClInclude Include="SaveMario.h" />
     <ClInclude Include="AudioEngine.h" />
+    <ClInclude Include="Theme.h" />
   </ItemGroup>
 </Project>

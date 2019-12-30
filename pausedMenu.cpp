@@ -4,9 +4,9 @@
 
 pausedMenu::pausedMenu(Camera* camera)
 	:
-	pausedMenuBG(Sprite("pictures\\pausedMenuBg.png", 500, 250, 1)),
-	pausedMenuBGForTesting(Sprite("pictures\\pausedMenuBgForTesting.png", 500, 250, 1)),
-	mushIcon(Sprite("pictures\\mushroombutton.png", 32, 32, 1)),
+	pausedMenuBG(Sprite("pictures\\" + theme + "\\pausedMenuBg.png", 500, 250, 1)),
+	pausedMenuBGForTesting(Sprite("pictures\\" + theme + "\\pausedMenuBgForTesting.png", 500, 250, 1)),
+	mushIcon(Sprite("pictures\\" + theme + "\\mushroombutton.png", 32, 32, 1)),
 	menuShowed(false),
 	camera_(camera),
 	input_(new Input())

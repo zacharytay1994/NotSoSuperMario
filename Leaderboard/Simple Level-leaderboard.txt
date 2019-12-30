@@ -1,1 +1,4 @@
 bestmarioplayer,2.895
+kl,2.901
+,3.061
+tes,3.189

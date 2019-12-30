@@ -10,9 +10,9 @@
 LevelEditor::LevelEditor(Game* owner)
 	:
 	Scene(owner),
-	tile_(new Sprite("Pictures\\editorempty.png", 16, 16, 9)),
-	background1("pictures\\editorbackground.png", 1200, 751, 1, cam_, 0.2f, 0.1f, -300.0f, -650.0f * CAMERA_ZOOM, 10, 10),
-	legend_("pictures\\editorlegend.png", 640, 480, 1, cam_, 1.0f, 1.0f, -150, -100, 1, 1)
+	tile_(new Sprite("Pictures\\" + theme + "\\editorempty.png", 16, 16, 9)),
+	background1("pictures\\" + theme + "\\editorbackground.png", 1200, 751, 1, cam_, 0.2f, 0.1f, -300.0f, -650.0f * CAMERA_ZOOM, 10, 10),
+	legend_("pictures\\" + theme + "\\editorlegend.png", 640, 480, 1, cam_, 1.0f, 1.0f, -150, -100, 1, 1)
 {
 }
 

@@ -12,19 +12,19 @@
 MainMenu::MainMenu(Game* owner)
 	:
 	Scene(owner),
-	mainMenuBg(Sprite("pictures\\mainmenubackground.png", 640, 480,1)),
-	buttonbackground(Sprite("pictures\\buttonbackground.png", 320, 180,1)),
-	buttonbackground2(Sprite("pictures\\buttonbackground2.png", 320, 180, 1)),
-	buttonbackground3(Sprite("pictures\\buttonbackground3.png", 320, 180, 1)),
-	buttonbackground4(Sprite("pictures\\buttonbackground4.png", 320, 180, 1)),
-	mushicon(Sprite("pictures\\mushroombutton.png", 32, 32, 1)),
-	bg1("pictures\\menutitle.png", 664, 448, 1, cam_, 0.2f, 0.1f, 0.0f, 0.0f, 1, 1),
-	bg2("pictures\\mountainbackground.png", 1200, 1200, 1, cam_, 0.5f, 0.20f, -300.0f, -760.0f * CAMERA_ZOOM, 10, 1),
-	bg3("pictures\\cloudbackground.png", 1200, 1200, 1, cam_, 0.4f, 0.15f, -300.0f, -460.0f * CAMERA_ZOOM, 10, 1),
-	bg4("pictures\\rockbackground.png", 1200, 1200, 1, cam_, 0.3f, 0.10f, -300.0f, -360.0f * CAMERA_ZOOM, 10, 1),
-	bg5("pictures\\bushesbackground.png", 1200, 700, 1, cam_, 0.2f, 0.05f, -300.0f, 400.0f * CAMERA_ZOOM, 10, 1),
-	pseudogoomba_(Sprite("pictures\\goombawalksheet.png", 64, 64, 4)),
-	pseudokoopa_(Sprite("pictures\\kooparunsheet.png", 64, 64, 8))
+	mainMenuBg(Sprite("pictures\\" + theme + "\\mainmenubackground.png", 640, 480,1)),
+	buttonbackground(Sprite("pictures\\" + theme + "\\buttonbackground.png", 320, 180,1)),
+	buttonbackground2(Sprite("pictures\\" + theme + "\\buttonbackground2.png", 320, 180, 1)),
+	buttonbackground3(Sprite("pictures\\" + theme + "\\buttonbackground3.png", 320, 180, 1)),
+	buttonbackground4(Sprite("pictures\\" + theme + "\\buttonbackground4.png", 320, 180, 1)),
+	mushicon(Sprite("pictures\\" + theme + "\\mushroombutton.png", 32, 32, 1)),
+	bg1("pictures\\" + theme + "\\menutitle.png", 664, 448, 1, cam_, 0.2f, 0.1f, 0.0f, 0.0f, 1, 1),
+	bg2("pictures\\" + theme + "\\mountainbackground.png", 1200, 1200, 1, cam_, 0.5f, 0.20f, -300.0f, -760.0f * CAMERA_ZOOM, 10, 1),
+	bg3("pictures\\" + theme + "\\cloudbackground.png", 1200, 1200, 1, cam_, 0.4f, 0.15f, -300.0f, -460.0f * CAMERA_ZOOM, 10, 1),
+	bg4("pictures\\" + theme + "\\rockbackground.png", 1200, 1200, 1, cam_, 0.3f, 0.10f, -300.0f, -360.0f * CAMERA_ZOOM, 10, 1),
+	bg5("pictures\\" + theme + "\\bushesbackground.png", 1200, 700, 1, cam_, 0.2f, 0.05f, -300.0f, 400.0f * CAMERA_ZOOM, 10, 1),
+	pseudogoomba_(Sprite("pictures\\" + theme + "\\goombawalksheet.png", 64, 64, 4)),
+	pseudokoopa_(Sprite("pictures\\" + theme + "\\kooparunsheet.png", 64, 64, 8))
 {
 	button_to_render_ = &buttonbackground;
 }

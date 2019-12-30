@@ -3,7 +3,7 @@
 
 Coin::Coin(ColliderManager& cm, const Vec2<float>& position, ScoreManager* sm)
 	:
-	GameObject("pictures\\coinsheet.png", 64, 64, 4, D3DXVECTOR2(position.x_, position.y_), "Coin"),
+	GameObject("pictures\\" + theme + "\\coinsheet.png", 64, 64, 4, D3DXVECTOR2(position.x_, position.y_), "Coin"),
 	score_manager_(sm)
 {
 	// Begin animating Coin sprite
